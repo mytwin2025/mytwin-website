@@ -11,7 +11,7 @@ const navLinks = [
   { label: 'Corporate Wellness', to: '/corporate-wellness' },
 ];
 export default function Header() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const mobileMenuRef = React.useRef(null);
   useGSAP(
     () => {
