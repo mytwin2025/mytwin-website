@@ -16,8 +16,7 @@ export default function DetailSection({ frameRef }) {
     {
       index: '01',
       title: `Weight Loss & Healthy \nLiving.`,
-      paragraph: `Achieve Sustainable Fat loss with 
-\nPersonalized Plans that Protect muscle & \nSupport Long Term Weight management.`,
+      paragraph: `Achieve Sustainable Fat loss with \nPersonalized Plans that Protect muscle & \nSupport Long Term Weight management.`,
       variant: 'horizontal',
       buttonColor: '#E31F5D',
       image: Media.detailSection.womenBg,
@@ -27,8 +26,7 @@ export default function DetailSection({ frameRef }) {
     {
       index: '02',
       title: `Blood Pressure \nManagement`,
-      paragraph: `Manage blood Pressure
-\nnaturally and Support \nlong-term heart health \nwithout medications.`,
+      paragraph: `Manage blood Pressure \nnaturally and Support \nlong-term heart health \nwithout medications.`,
       variant: 'vertical',
       buttonColor: '#166A74',
       image: Media.detailSection.bpMachineBg,
@@ -48,7 +46,7 @@ export default function DetailSection({ frameRef }) {
     {
       index: '04',
       title: `Liver Health (Fatty \nLiver)`,
-      paragraph: `Reverse fatty liver \nand improve liver Function with Clinically Proven Lifestyle \n& nutrition Strategies`,
+      paragraph: `Reverse fatty liver and improve liver \nFunction with Clinically Proven Lifestyle \n& nutrition Strategies`,
       variant: 'horizontal',
       buttonColor: '#E13D0A',
       image: Media.detailSection.liverBg,
@@ -79,7 +77,7 @@ export default function DetailSection({ frameRef }) {
 
   useGSAP(() => {
     let mm = gsap.matchMedia();
-    mm.add("(min-width: 768px)", () => {
+    mm.add('(min-width: 768px)', () => {
       const section = sectionRef.current;
       const frame = document.querySelector('#framework');
       const overlay = overlayRef.current;
@@ -175,17 +173,17 @@ export default function DetailSection({ frameRef }) {
           id={'text-container'}
           className="flex w-full flex-col items-center justify-center gap-4 px-4 py-12"
         >
-          <h2 className="text-center font-[Arima] text-[1.6rem] md:text-4xl font-black font-bold leading-tight text-white">
+          <h2 className="text-center font-[Arima] text-[1.6rem] font-black font-bold leading-tight text-white md:text-4xl">
             We help you reverse these health <br />
             conditions.
           </h2>
-          <span className="w-[80%] text-center text-[14px] md:text-[16px] leading-relaxed text-[#E0E0E0]">
+          <span className="w-[80%] text-center text-[14px] leading-relaxed text-[#E0E0E0] md:text-[16px]">
             Struggling with weight gain, low energy, Chronic conditions ? Let's fix it together
           </span>
         </div>
         <div id={'image-container'} className="relative flex w-full items-start justify-center">
           <GradientArcAnim
-            scale={ isMobile ? 1.6 : 6 }
+            scale={isMobile ? 2 : 6}
             duration={4}
             color1="#f5f5f5"
             color2="#ffffff"
@@ -195,13 +193,16 @@ export default function DetailSection({ frameRef }) {
           <img
             src={Media.family}
             alt="Family Illustration"
-            className="absolute h-auto w-[40%] md:w-[30%] object-cover"
-            style={{ zIndex: 20 }}
+            className="absolute h-auto w-[50%] object-cover md:w-[30%]"
+            // style={{ zIndex: 20 }}
           />
         </div>
       </div>
       {/* <div className="w-full h-full bg-red-300"/> */}
-      <div ref={cardRef} className="hidden md:flex w-full md:translate-y-[-50%] items-center justify-end mb-48">
+      <div
+        ref={cardRef}
+        className="mb-48 hidden w-full items-center justify-end md:flex md:translate-y-[-50%]"
+      >
         <div className="flex min-h-full w-[100%] flex-wrap items-center justify-center">
           <div className="flex w-full items-start justify-center">
             <div className="">
@@ -281,7 +282,7 @@ export default function DetailSection({ frameRef }) {
         className="z-4 pointer-events-none absolute bottom-0 left-0 right-0 m-auto flex h-screen w-full flex-col items-center justify-end gap-0 opacity-0"
       >
         <div className="w-full">
-          <h2 className="w-full text-center font-[Arima] text-4xl font-bold leading-tight text-white mt-4">
+          <h2 className="mt-4 w-full text-center font-[Arima] text-4xl font-bold leading-tight text-white">
             Real People. Real Results.
           </h2>
           <div className="flex w-full items-center justify-center gap-4 py-12">
@@ -303,77 +304,113 @@ export default function DetailSection({ frameRef }) {
           </div>
         </div>
       </div>
-      
-      <div ref={cardRef} className="flex md:hidden w-full translate-y-[-10%] items-center justify-end mb-48">
-        <div className="flex min-h-full w-[100%] flex-wrap items-center justify-center">
-          {/* <div className="flex w-full items-start justify-center"> */}
-            {/* <div className=""> */}
-              <DetailsCard
-                index={cardData[0].index}
-                title={cardData[0].title}
-                paragraph={cardData[0].paragraph}
-                variant={cardData[0].variant}
-                buttonColor={cardData[0].buttonColor}
-                image={cardData[0].image}
-                icon={cardData[0].icon}
-                bgColor={cardData[0].bgColor}
-              />
-              <DetailsCard
-                index={cardData[3].index}
-                title={cardData[3].title}
-                paragraph={cardData[3].paragraph}
-                variant={cardData[3].variant}
-                buttonColor={cardData[3].buttonColor}
-                image={cardData[3].image}
-                icon={cardData[3].icon}
-                bgColor={cardData[3].bgColor}
-              />
-            {/* </div> */}
-            {/* <div className="flex items-center justify-center"> */}
-              <DetailsCard
-                index={cardData[1].index}
-                title={cardData[1].title}
-                paragraph={cardData[1].paragraph}
-                variant={cardData[1].variant}
-                buttonColor={cardData[1].buttonColor}
-                image={cardData[1].image}
-                icon={cardData[1].icon}
-                bgColor={cardData[1].bgColor}
-              />
-              <DetailsCard
-                index={cardData[2].index}
-                title={cardData[2].title}
-                paragraph={cardData[2].paragraph}
-                variant={cardData[2].variant}
-                buttonColor={cardData[2].buttonColor}
-                image={cardData[2].image}
-                icon={cardData[2].icon}
-                bgColor={cardData[2].bgColor}
-              />
-            {/* </div> */}
+
+      <div
+        ref={cardRef}
+        className="flex-items-center mb-48 flex w-full translate-y-[-7%] flex-col items-center justify-center md:hidden"
+      >
+        <div className="flex-items-center flex w-[100%] flex-col items-center justify-center px-8">
+          <DetailsCard
+            index={cardData[0].index}
+            title={cardData[0].title}
+            paragraph={cardData[0].paragraph}
+            variant={cardData[0].variant}
+            buttonColor={cardData[0].buttonColor}
+            image={cardData[0].image}
+            icon={cardData[0].icon}
+            bgColor={cardData[0].bgColor}
+            imageClassName="h-[90%] md:h-full"
+            textClassName="text-[10px] md:text-[16px] text-blue-300 w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+          />
+          <DetailsCard
+            index={cardData[3].index}
+            title={cardData[3].title}
+            paragraph={cardData[3].paragraph}
+            variant={cardData[3].variant}
+            buttonColor={cardData[3].buttonColor}
+            image={cardData[3].image}
+            icon={cardData[3].icon}
+            bgColor={cardData[3].bgColor}
+            imageClassName="h-[90%] md:h-full"
+            textClassName="text-[10px] md:text-[16px] text-blue-300 w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+          />
           {/* </div> */}
-          {/* <div className="flex w-full items-start justify-center"> */}
+          <div className="flex w-full items-center justify-start justify-center">
             <DetailsCard
-              index={cardData[4].index}
-              title={cardData[4].title}
-              paragraph={cardData[4].paragraph}
-              variant={cardData[4].variant}
-              buttonColor={cardData[4].buttonColor}
-              image={cardData[4].image}
-              icon={cardData[4].icon}
-              bgColor={cardData[4].bgColor}
+              index={cardData[1].index}
+              title={cardData[1].title}
+              paragraph={cardData[1].paragraph}
+              variant={cardData[1].variant}
+              buttonColor={cardData[1].buttonColor}
+              image={cardData[1].image}
+              icon={cardData[1].icon}
+              bgColor={cardData[1].bgColor}
+              style={{ height: '75vh', marginLeft: '0px' }}
+              textClassName="text-[10px] md:text-[16px] w-[100%] md:whitespace-pre-line leading-tight md:leading-relaxed"
             />
             <DetailsCard
-              index={cardData[5].index}
-              title={cardData[5].title}
-              paragraph={cardData[5].paragraph}
-              variant={cardData[5].variant}
-              buttonColor={cardData[5].buttonColor}
-              image={cardData[5].image}
-              icon={cardData[5].icon}
-              bgColor={cardData[5].bgColor}
+              index={cardData[2].index}
+              title={cardData[2].title}
+              paragraph={cardData[2].paragraph}
+              variant={cardData[2].variant}
+              buttonColor={cardData[2].buttonColor}
+              image={cardData[2].image}
+              icon={cardData[2].icon}
+              bgColor={cardData[2].bgColor}
+              style={{ height: '75vh', marginRight: '0px' }}
+              textClassName="text-[10px] md:text-[16px] w-[100%] md:w-full whitespace-pre-wrap leading-tight md:leading-relaxed"
             />
-          {/* </div> */}
+          </div>
+          <DetailsCard
+            index={cardData[4].index}
+            title={cardData[4].title}
+            paragraph={cardData[4].paragraph}
+            variant={cardData[4].variant}
+            buttonColor={cardData[4].buttonColor}
+            image={cardData[4].image}
+            icon={cardData[4].icon}
+            bgColor={cardData[4].bgColor}
+            imageClassName="h-[90%] md:h-full"
+            // textClassName="text-[12px] md:text-[16px] text-blue-300"
+            textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+          />
+          <DetailsCard
+            index={cardData[5].index}
+            title={cardData[5].title}
+            paragraph={cardData[5].paragraph}
+            variant={cardData[5].variant}
+            buttonColor={cardData[5].buttonColor}
+            image={cardData[5].image}
+            icon={cardData[5].icon}
+            bgColor={cardData[5].bgColor}
+            imageClassName="h-[90%] md:h-full"
+            // textClassName="text-[12px] md:text-[16px] text-blue-300"
+            textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+          />
+        </div>
+      </div>
+      <div className="z-4 pointer-events-none flex w-full translate-y-[-15%] flex-col items-center justify-end md:hidden">
+        <div className="w-full">
+          <h2 className="mt-4 w-full text-center font-[Arima] text-4xl font-bold leading-tight text-white">
+            Real People. Real Results.
+          </h2>
+          <div className="flex w-full flex-col items-center justify-center gap-4 py-12">
+            <img
+              src={Media.testimonials.testmonone}
+              alt="Testimonial 1"
+              className="h-auto w-[90%] object-cover"
+            />
+            <img
+              src={Media.testimonials.testmontwo}
+              alt="Testimonial 2"
+              className="h-auto w-[90%] object-cover"
+            />
+            <img
+              src={Media.testimonials.testmonthree}
+              alt="Testimonial 3"
+              className="h-auto w-[90%] object-cover"
+            />
+          </div>
         </div>
       </div>
     </div>

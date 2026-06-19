@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function MainLayout() {
   return (
-    <div className="main-layout relative flex min-h-screen w-full flex-col items-center justify-start">
+    <div className="main-layout relative flex min-h-screen w-full ">
       <Header />
       <main className="flex flex-1 flex-col">
         <Outlet />

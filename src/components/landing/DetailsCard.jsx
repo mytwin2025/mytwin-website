@@ -10,6 +10,8 @@ export default function DetailsCard({
   icon = null,
   style = {},
   bgColor = '#fff',
+  imageClassName='',
+  textClassName='',
 }) {
   const procTitle = title.split('\n').map((line, i) => (
     <span key={i} className="block">
@@ -32,6 +34,7 @@ export default function DetailsCard({
         position: 'relative',
         margin: '8px',
         ...style,
+        
       }}
       className={
         variant === 'vertical'
@@ -40,15 +43,15 @@ export default function DetailsCard({
       }
     >
       <div className="flex h-full w-full flex-col items-start justify-between gap-4 p-6">
-        <div>
+        <div className={``}>
           <img src={icon} alt={`${title} icon`} style={{ width: '42px', height: '42px' }} />
           <h3
             style={{ color: buttonColor }}
-            className="font-[Inter] text-1.8xl font-bold leading-[24px] text-black mt-4"
+            className={`font-[Inter] text-1.8xl font-bold leading-[24px] text-black mt-4`}
           >
             {procTitle}
           </h3>
-          <p className="text-[14px] leading-relaxed text-[#484848] mt-4">{procParagraph}</p>
+          <p className={`text-[14px] leading-relaxed text-[#484848] mt-4 whitespace-pre-wrap ${textClassName}`}>{paragraph}</p>
         </div>
         <RoundArrowButton
           buttonColor={buttonColor}
@@ -69,7 +72,7 @@ export default function DetailsCard({
           right: 0,
           objectFit: 'cover',
         }}
-        className=""
+        className={` ${imageClassName}`}
       />
     </div>
   );

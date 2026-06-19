@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Media} from '../utils/media';
+import { Link } from 'react-router-dom';
+import { Media } from '../utils/media';
 const company = [
   {
     name: 'About Us',
@@ -17,7 +17,7 @@ const company = [
   {
     name: 'Become a Coach',
     link: '/become-a-coach',
-  }
+  },
 ];
 const offerings = [
   'Coaching',
@@ -35,7 +35,11 @@ function LinkList({ heading, links }) {
     <div className="flex flex-col gap-3">
       <span className="text-sm font-bold text-black">{heading}</span>
       {links.map((link, index) => (
-        <Link key={index} to={link.link} className="text-sm text-gray-600 transition-colors hover:text-black">
+        <Link
+          key={index}
+          to={link.link}
+          className="text-sm text-gray-600 transition-colors hover:text-black"
+        >
           {link.name}
         </Link>
       ))}
@@ -47,47 +51,43 @@ export default function Footer({ style }) {
   return (
     <footer style={style} className="w-full bg-[#F4F4F2] px-10 py-10">
       {/* Top row */}
-      <img
-      src={Media.header.mytwin}
-      alt="MyTwin Logo"
-      className="h-8 w-auto"
-      />
-      <div className="flex items-center justify-between pb-8">
+      <div className="top-row flex md:flex-col flex-col w-full items-start justify-between">
+        <img src={Media.header.mytwin} alt="MyTwin Logo" className="h-8 w-auto" />
+        <div className="flex items-center justify-between pb-8">
+          <h2 className="text-3xl leading-tight text-black">
+            Learn how to build a <span className="text-orange-500">healthier</span>
+            <br />
+            <span className="text-orange-500">and longer</span> life with MyTwin
+          </h2>
 
-        <h2 className="text-3xl leading-tight text-black">
-          Learn how to build a <span className="text-orange-500">healthier</span>
-          <br />
-          <span className="text-orange-500">and longer</span> life with MyTwin
-        </h2>
-
-        {/* App store buttons */}
-        <div className="flex items-center gap-0 rounded-full bg-black px-1 py-1">
-          <a href="#" className="flex items-center gap-2 px-4 py-2 text-white">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 814 1000"
-              fill="white"
-            >
-              <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-42.4-155.5-127.4C46.7 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 71 0 130.5 46.4 174.9 46.4 42.7 0 109.2-49.9 188.2-49.9 30.3 0 130.9 2.6 198.3 99zM549.8 148.8c22.1-26 37.3-62.3 37.3-98.6 0-5.2-.4-10.5-1.3-14.7-34.9 1.3-76.1 23.3-100.8 51.7-20.1 23-38.7 59.3-38.7 96.2 0 5.8.9 11.7 1.3 13.6 2.2.4 5.8.9 9.4.9 31.3 0 70.1-21 92.8-49.1z" />
-            </svg>
-            <span className="text-sm font-semibold">App Store</span>
-          </a>
-          <div className="h-6 w-px bg-white/30" />
-          <a href="#" className="flex items-center gap-2 px-4 py-2 text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
-              <path fill="#4CAF50" d="M8 4l22 20L8 44V4z" />
-              <path fill="#FFEB3B" d="M8 4l22 20 8-7.3L8 4z" />
-              <path fill="#F44336" d="M8 44l22-20 8 7.3L8 44z" />
-              <path fill="#2196F3" d="M30 24L8 4l30 13.3L30 24z" />
-              <path fill="#2196F3" d="M30 24l8 7.3L38 17.3 30 24z" />
-            </svg>
-            <span className="text-sm font-semibold">Google Play</span>
-          </a>
+          {/* App store buttons */}
+          <div className="flex items-center gap-0 rounded-full bg-black px-1 py-1">
+            <a href="#" className="flex items-center gap-2 px-4 py-2 text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 814 1000"
+                fill="white"
+              >
+                <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-42.4-155.5-127.4C46.7 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 71 0 130.5 46.4 174.9 46.4 42.7 0 109.2-49.9 188.2-49.9 30.3 0 130.9 2.6 198.3 99zM549.8 148.8c22.1-26 37.3-62.3 37.3-98.6 0-5.2-.4-10.5-1.3-14.7-34.9 1.3-76.1 23.3-100.8 51.7-20.1 23-38.7 59.3-38.7 96.2 0 5.8.9 11.7 1.3 13.6 2.2.4 5.8.9 9.4.9 31.3 0 70.1-21 92.8-49.1z" />
+              </svg>
+              <span className="text-sm font-semibold">App Store</span>
+            </a>
+            <div className="h-6 w-px bg-white/30" />
+            <a href="#" className="flex items-center gap-2 px-4 py-2 text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                <path fill="#4CAF50" d="M8 4l22 20L8 44V4z" />
+                <path fill="#FFEB3B" d="M8 4l22 20 8-7.3L8 4z" />
+                <path fill="#F44336" d="M8 44l22-20 8 7.3L8 44z" />
+                <path fill="#2196F3" d="M30 24L8 4l30 13.3L30 24z" />
+                <path fill="#2196F3" d="M30 24l8 7.3L38 17.3 30 24z" />
+              </svg>
+              <span className="text-sm font-semibold">Google Play</span>
+            </a>
+          </div>
         </div>
       </div>
-
       {/* Divider */}
       <hr className="mb-8 border-gray-300" />
 
