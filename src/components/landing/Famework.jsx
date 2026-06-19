@@ -24,7 +24,7 @@ export default function Framework({ index = '', heading = '', paragraph = ``, im
           {index}
         </span>
         <h2 className="font-[Arima] text-4xl font-black leading-tight text-black">{heading}</h2>
-        <p className="text-[14px] text-gray-900 whitespace-pre-line text-left">{procParagraph}</p>
+        <p className="text-[14px] text-[#484848] whitespace-pre-line text-left">{procParagraph}</p>
       </div>
     </div>
   );

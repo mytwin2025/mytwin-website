@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import { Link } from 'react-router-dom';
 import { Media } from '../utils/media';
 import { Headphones } from 'lucide-react';
@@ -10,16 +10,22 @@ const navLinks = [
   { label: 'Corporate Wellness', to: '/corporate-wellness' },
 ];
 export default function Header() {
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <div className="fixed left-0 right-0 top-[24px] z-[999] w-full">
-      <div className="mx-auto flex h-[70px] max-w-[95%] items-center justify-between rounded-full border border-gray-200 bg-white px-6 shadow-sm">
+    <div className="header fixed md:top-[24px] z-[999] w-full align-center flex justify-center">
+      {/* <div className={`mx-auto flex h-[70px] max-w-[95%] items-center justify-between rounded-full border border-gray-200 bg-white px-6 shadow-sm`}> */}
+      <div
+        className={`content flex h-[70px] lg:min-w-[95%] md:w-fit w-full items-center justify-between border border-gray-200 bg-white px-6 shadow-sm lg:rounded-full`}
+      >
         {/* Logo */}
         <Link to="/">
-          <img src={Media.header.mytwin} alt="My Twin" className="h-7" />
+          <img src={Media.header.mytwin} alt="My Twin" className="h-70 lg:h-7" />
         </Link>
 
+        <HamBerger className={`md:hidden lg:hidden`} />
+
         {/* Nav Links */}
-        <nav className="flex items-center gap-8">
+        <nav className="flex hidden items-center gap-8 md:flex lg:flex">
           {navLinks.map(({ label, to }) => (
             <Link
               key={to}
@@ -32,7 +38,7 @@ export default function Header() {
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex hidden items-center gap-3 md:flex lg:flex">
           {/* Talk to Expert */}
           <button className="flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 font-[Inter] text-sm text-white transition-colors hover:bg-orange-600">
             <Headphones size={15} />
@@ -71,3 +77,20 @@ export default function Header() {
     </div>
   );
 }
+
+const HamBerger = ({ className }) => {
+  return (
+    <button
+      className={`flex h-[40px] w-[40px] cursor-pointer flex-col items-center justify-center rounded-full bg-transparent ${className}`}
+    >
+      <div className="align-center flex w-full justify-center gap-1.5 mb-1">
+        <div className="h-4 w-5 rounded-md border-2 border-black" />
+        <div className="h-4 w-5 rounded-md border-2 border-black" />
+      </div>
+      <div className="align-center flex w-full justify-center gap-1.5">
+        <div className="h-4 w-5 rounded-md border-2 border-black" />
+        <div className="h-4 w-5 rounded-md border-2 border-black" />
+      </div>
+    </button>
+  );
+};

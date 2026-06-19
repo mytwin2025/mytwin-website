@@ -12,7 +12,7 @@ import LabCard from '../../components/landing/LabCard';
 import MealBodyVitalCard from '../../components/landing/MealBodyVitalCard';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
+import CombinedFeaturePhone from '../../components/CombinedFeaturePhone';
 export default function LandingVideo({ forwardedRef }) {
   const navigate = useNavigate();
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -31,25 +31,25 @@ export default function LandingVideo({ forwardedRef }) {
       index: '01',
       heading: 'Your glucose tells\na story. We help\nyou read it.',
       buttonText: 'Track Your Glucose',
-      to: ''
+      to: '',
     },
     {
       index: '02',
       heading: 'Don’t wait for \nsymptoms. Know early.',
       buttonText: 'Add Lab Test',
-      to: ''
+      to: '',
     },
     {
       index: '03',
       heading: 'Your vitals. \nScanned in seconds.',
       buttonText: 'Start Face Scan',
-      to: ''
+      to: '',
     },
     {
       index: '04',
       heading: 'Personalised \ncoaching That \nAdapts To Your \nBody',
       buttonText: 'Book a Free Consultation',
-      to: ''
+      to: '',
     },
   ];
   const rightCardData = [
@@ -64,7 +64,7 @@ export default function LandingVideo({ forwardedRef }) {
         'Smarter food & lifestyle decisions',
       ],
       // card: <MealBodyVitalCard style={{ backgroundColor: '#fff' }} />,
-      card: (<img src={Media.landing.labCard} alt="Lab Card" className="w-full rounded-[1.5rem]" />),
+      // card: (<img src={Media.landing.labCard} alt="Lab Card" className="w-full rounded-[1.5rem]" />),
       image: Media.landing.labCard,
     },
     {
@@ -103,13 +103,13 @@ export default function LandingVideo({ forwardedRef }) {
       //     />
       //   </div>
       // ),
-      card: (
-        <img
-          src={Media.landing.glucoseCard}
-          alt="Glucose Card"
-          className="w-full rounded-[1.5rem]"
-        />
-      ),
+      // card: (
+      //   <img
+      //     src={Media.landing.glucoseCard}
+      //     alt="Glucose Card"
+      //     className="w-full rounded-[1.5rem]"
+      //   />
+      // ),
       image: Media.landing.glucoseCard,
     },
     {
@@ -123,8 +123,8 @@ export default function LandingVideo({ forwardedRef }) {
         'Track changes over time',
       ],
       // card: <FaceScanVitalCard />,
-      card: (<img src={Media.landing.faceScanCard} alt="Face Scan Card" className="w-full rounded-[1.5rem]" />
-      ),
+      // card: (<img src={Media.landing.faceScanCard} alt="Face Scan Card" className="w-full rounded-[1.5rem]" />
+      // ),
       image: Media.landing.faceScanCard,
     },
     {
@@ -137,21 +137,22 @@ export default function LandingVideo({ forwardedRef }) {
         'Ongoing plan adjustments',
         'Indian meals. Real life. Sustainable results.',
       ],
+      image: Media.landing.consultCoachBg,
       // card: <AppointmentCard />,
-      card: (<div className="relative w-full">
-        <img
-          src={Media.landing.consultCoachBg}
-          alt="Consult Coach Background"
-          className="w-full rounded-t-[1.5rem]"
-        />
-        </div>),
+      // card: (<div className="relative w-full">
+      //   <img
+      //     src={Media.landing.consultCoachBg}
+      //     alt="Consult Coach Background"
+      //     className="w-full rounded-t-[1.5rem]"
+      //   />
+      //   </div>),
     },
   ];
 
   useGSAP(
     () => {
       let mm = gsap.matchMedia();
-      mm.add("(min-width: 768px)", () => {
+      mm.add('(min-width: 768px)', () => {
         ScrollTrigger.create({
           trigger: sectionRef.current,
           start: '20% top',
@@ -336,20 +337,23 @@ export default function LandingVideo({ forwardedRef }) {
 
   const combinedFeatures = leftCardData.map((left, i) => ({
     ...left,
-    ...rightCardData[i]
+    phoneBg: phoneBgArray[i],
+    ...rightCardData[i],
   }));
+  // console.log('phoneBgArray', phoneBgArray);
+  console.log('combinedFeatures', combinedFeatures);
 
   return (
     <>
       <section className="hero relative h-screen w-full" ref={sectionRef}>
         <div
           ref={bgGrid}
-          className="absolute bottom-0 left-0 right-0 top-0 z-[6] flex h-full w-full items-start justify-center bg-black/60 pointer-events-none"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-[6] flex h-full w-full items-start justify-center bg-black/60"
         >
           <img
             src={Media.landing.bgGrid}
             alt="Background"
-            className="scale-x-[1.13] object-cover opacity-50"
+            className="object-cover opacity-50"
             id="bgGrid"
           />
         </div>
@@ -363,16 +367,16 @@ export default function LandingVideo({ forwardedRef }) {
           poster={Media.landing.videoPoster}
           preload="auto"
           onLoadedData={() => setVideoLoaded(true)}
-          className={`absolute bottom-0 left-0 right-0 top-0 z-[2] h-screen w-full object-cover bg-[#151714] pointer-events-none transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-[2] h-screen w-full bg-[#151714] object-cover transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
         <div
           id="textContent"
           ref={textContent}
           className="relative z-[8] flex h-full w-full items-center justify-center"
         >
-          <div className="w-full px-4 text-center leading-[1.2] text-white z-[20]">
-            <h1 className="font-[Arima] text-[40px] md:text-[72px] font-bold">Optimal Health</h1>
-            <h2 className="font-[Inter] text-[20px] md:text-[40px] font-light tracking-wider mt-2">
+          <div className="z-[20] w-full px-4 text-center leading-[1.2] text-white">
+            <h1 className="font-[Arima] text-[40px] font-bold md:text-[72px]">Optimal Health</h1>
+            <h2 className="mt-2 font-[Inter] text-[20px] font-light tracking-wider md:text-[40px]">
               Through clinically guided and outcome-driven care.
             </h2>
             <div className="mx-auto mt-6 flex max-w-[600px] flex-col items-center gap-6">
@@ -380,8 +384,9 @@ export default function LandingVideo({ forwardedRef }) {
                 Continous health Monitoring, expert-led guidance, and personalised action plans to
                 help you prevent, manage, and reverse lifestyle conditions.
               </p>
-              <button className="spacing-2 rounded-full cursor-pointer bg-white px-6 py-4 font-[Inter] font-bold text-black animate-pulse"
-              onClick={() => navigate('/plans/')}
+              <button
+                className="spacing-2 animate-pulse cursor-pointer rounded-full bg-white px-6 py-4 font-[Inter] font-bold text-black"
+                onClick={() => navigate('/plans/')}
               >
                 Start your journey
               </button>
@@ -432,12 +437,12 @@ export default function LandingVideo({ forwardedRef }) {
               ))}
             </div>
 
-            <div className="relative flex h-[575px] w-[290px] flex-shrink-0 items-center justify-center overflow-hidden rounded-[2rem]">
+            <div className="relative flex h-[60vh] w-[19vw] flex-shrink-0 items-center justify-center overflow-hidden rounded-[2rem]">
               <img
                 ref={phoneModel}
                 src={Media.landing.iphoneModel}
                 alt="iPhone Model"
-                className={`absolute z-[16] h-[589px] object-contain`}
+                className={`absolute z-[16] h-full object-contain`}
               />
 
               {phoneBgArray.map((bg, index) => (
@@ -445,7 +450,7 @@ export default function LandingVideo({ forwardedRef }) {
                   key={index}
                   src={bg}
                   alt={`Phone Background ${index + 1}`}
-                  className={`screenshot opacity-1 absolute h-[575px] rounded-[2rem] object-cover z-[${15 - index}]`}
+                  className={`screenshot opacity-1 absolute h-full rounded-[2rem] object-cover z-[${15 - index}]`}
                 />
               ))}
             </div>
@@ -474,65 +479,17 @@ export default function LandingVideo({ forwardedRef }) {
           <h2 className="font-[Arima] text-[2.5rem] font-bold tracking-wide text-black">
             MyTwin 4M Framework
           </h2>
-          
         </div>
       </section>
 
       {/* Mobile-Only Feature Stack (Fallback for ScrollTrigger pinning) */}
-      <div className="block md:hidden bg-[#0A0A07] text-white px-6 py-16 flex flex-col gap-12">
-        <div className="text-center mb-6">
-          <h2 className="font-[Arima] text-3xl font-bold text-white mb-3">
-            MyTwin 4M Framework
-          </h2>
-          <p className="font-[Inter] text-xs text-gray-400 leading-relaxed max-w-sm mx-auto">
-            Continuous health monitoring, expert-led guidance, and personalised action plans to
-            help you prevent, manage, and reverse lifestyle conditions.
-          </p>
-        </div>
-
-        {combinedFeatures.map((feature, i) => (
-          <div key={i} className="flex flex-col gap-5 bg-[#141311] p-6 rounded-[28px] border border-[#ffffff0a] shadow-lg">
-            <div className="flex items-center justify-between border-b border-[#ffffff08] pb-3">
-              <span className="text-sm font-semibold text-orange-500 font-[Inter] tracking-wider">{feature.index}</span>
-              <span className="text-[10px] text-gray-500 font-[Inter] uppercase tracking-widest">framework phase</span>
-            </div>
-            
-            <div className="flex flex-col gap-3">
-              <h3 className="font-[Arima] text-2xl font-bold leading-tight text-white whitespace-pre-line">
-                {feature.heading}
-              </h3>
-              <p className="font-[Inter] text-xs text-gray-400 leading-relaxed">
-                {feature.paragraph}
-              </p>
-              
-              {feature.tableData && feature.tableData.length > 0 && (
-                <ul className="flex flex-col gap-2 list-disc pl-5 mt-2">
-                  {feature.tableData.map((item, idx) => (
-                    <li key={idx} className="text-xs text-gray-400 font-[Inter] leading-snug">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-
-            {feature.card && (
-              <div className="w-full mt-4 overflow-hidden rounded-2xl border border-[#ffffff0a] bg-[#0F0E0C] p-2 flex items-center justify-center">
-                {feature.card}
-              </div>
-            )}
-
-            <button 
-              onClick={() => {
-                if (feature.to) navigate(feature.to);
-                else navigate('/plans/');
-              }}
-              className="mt-4 w-full cursor-pointer rounded-full bg-orange-500 py-3 text-sm font-bold text-white text-center hover:bg-orange-600 transition-colors duration-150"
-            >
-              {feature.buttonText}
-            </button>
-          </div>
+      <div className="block flex flex-col gap-2 bg-[#F1EFEC] px-2 py-4 text-white md:hidden">
+        {combinedFeatures.map((feature, index) => (
+          <CombinedFeaturePhone key={index} feature={feature} />
         ))}
+        <h2 className="text-center font-[Arima] text-[1.7rem] font-bold tracking-wide text-black">
+          MyTwin 4M Framework
+        </h2>
       </div>
     </>
   );

@@ -37,7 +37,7 @@ export default function AppFrameworkSection({ frameRef }) {
       className="flex h-auto w-full flex-col items-center justify-start bg-[#F1EFEC] text-center pb-12"
       ref={frameRef}
     >
-      <p>
+      <p className="max-w-[90%] text-center text-[14px]  font-[Inter] text-black md:max-w-[70%]">
         Your Body Is Constantly Giving Signals,You are just not tracking them.MyTwin Helps You
         Understand them. <br /> MyTwin combines real-time health monitoring, AI-powered insights, and
         clinically guided care to detect risks early, improve daily habits, and optimize long-term

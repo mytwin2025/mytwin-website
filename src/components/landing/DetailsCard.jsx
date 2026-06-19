@@ -68,10 +68,8 @@ export default function DetailsCard({
           bottom: 0,
           right: 0,
           objectFit: 'cover',
-          maxWidth: '45%',
-          maxHeight: '50%',
         }}
-        className="md:max-w-none md:max-h-none"
+        className=""
       />
     </div>
   );

@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import GradientArcAnim from '../../components/GradientArcAnim';
 import DetailsCard from '../../components/landing/DetailsCard';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 export default function DetailSection({ frameRef }) {
   const sectionRef = React.useRef(null);
   const contentRef = React.useRef(null);
@@ -160,6 +161,9 @@ export default function DetailSection({ frameRef }) {
 
     return () => mm.revert();
   }, [sectionRef, contentRef, cardRef]);
+
+  const isMobile = useMediaQuery('(max-width: 767px)');
+
   return (
     <div
       id="details"
@@ -171,17 +175,17 @@ export default function DetailSection({ frameRef }) {
           id={'text-container'}
           className="flex w-full flex-col items-center justify-center gap-4 px-4 py-12"
         >
-          <h2 className="text-center font-[Arima] text-4xl font-black font-bold leading-tight text-white">
+          <h2 className="text-center font-[Arima] text-[1.6rem] md:text-4xl font-black font-bold leading-tight text-white">
             We help you reverse these health <br />
             conditions.
           </h2>
-          <span className="w-[80%] text-center text-[16px] leading-relaxed text-[#E0E0E0]">
+          <span className="w-[80%] text-center text-[14px] md:text-[16px] leading-relaxed text-[#E0E0E0]">
             Struggling with weight gain, low energy, Chronic conditions ? Let's fix it together
           </span>
         </div>
         <div id={'image-container'} className="relative flex w-full items-start justify-center">
           <GradientArcAnim
-            scale={6}
+            scale={ isMobile ? 1.6 : 6 }
             duration={4}
             color1="#f5f5f5"
             color2="#ffffff"
@@ -191,13 +195,13 @@ export default function DetailSection({ frameRef }) {
           <img
             src={Media.family}
             alt="Family Illustration"
-            className="absolute h-auto w-[30%] object-cover"
+            className="absolute h-auto w-[40%] md:w-[30%] object-cover"
             style={{ zIndex: 20 }}
           />
         </div>
       </div>
       {/* <div className="w-full h-full bg-red-300"/> */}
-      <div ref={cardRef} className="flex w-full translate-y-[-50%] items-center justify-end mb-48">
+      <div ref={cardRef} className="hidden md:flex w-full md:translate-y-[-50%] items-center justify-end mb-48">
         <div className="flex min-h-full w-[100%] flex-wrap items-center justify-center">
           <div className="flex w-full items-start justify-center">
             <div className="">
@@ -300,6 +304,78 @@ export default function DetailSection({ frameRef }) {
         </div>
       </div>
       
+      <div ref={cardRef} className="flex md:hidden w-full translate-y-[-10%] items-center justify-end mb-48">
+        <div className="flex min-h-full w-[100%] flex-wrap items-center justify-center">
+          {/* <div className="flex w-full items-start justify-center"> */}
+            {/* <div className=""> */}
+              <DetailsCard
+                index={cardData[0].index}
+                title={cardData[0].title}
+                paragraph={cardData[0].paragraph}
+                variant={cardData[0].variant}
+                buttonColor={cardData[0].buttonColor}
+                image={cardData[0].image}
+                icon={cardData[0].icon}
+                bgColor={cardData[0].bgColor}
+              />
+              <DetailsCard
+                index={cardData[3].index}
+                title={cardData[3].title}
+                paragraph={cardData[3].paragraph}
+                variant={cardData[3].variant}
+                buttonColor={cardData[3].buttonColor}
+                image={cardData[3].image}
+                icon={cardData[3].icon}
+                bgColor={cardData[3].bgColor}
+              />
+            {/* </div> */}
+            {/* <div className="flex items-center justify-center"> */}
+              <DetailsCard
+                index={cardData[1].index}
+                title={cardData[1].title}
+                paragraph={cardData[1].paragraph}
+                variant={cardData[1].variant}
+                buttonColor={cardData[1].buttonColor}
+                image={cardData[1].image}
+                icon={cardData[1].icon}
+                bgColor={cardData[1].bgColor}
+              />
+              <DetailsCard
+                index={cardData[2].index}
+                title={cardData[2].title}
+                paragraph={cardData[2].paragraph}
+                variant={cardData[2].variant}
+                buttonColor={cardData[2].buttonColor}
+                image={cardData[2].image}
+                icon={cardData[2].icon}
+                bgColor={cardData[2].bgColor}
+              />
+            {/* </div> */}
+          {/* </div> */}
+          {/* <div className="flex w-full items-start justify-center"> */}
+            <DetailsCard
+              index={cardData[4].index}
+              title={cardData[4].title}
+              paragraph={cardData[4].paragraph}
+              variant={cardData[4].variant}
+              buttonColor={cardData[4].buttonColor}
+              image={cardData[4].image}
+              icon={cardData[4].icon}
+              bgColor={cardData[4].bgColor}
+            />
+            <DetailsCard
+              index={cardData[5].index}
+              title={cardData[5].title}
+              paragraph={cardData[5].paragraph}
+              variant={cardData[5].variant}
+              buttonColor={cardData[5].buttonColor}
+              image={cardData[5].image}
+              icon={cardData[5].icon}
+              bgColor={cardData[5].bgColor}
+            />
+          {/* </div> */}
+        </div>
+      </div>
     </div>
   );
 }
