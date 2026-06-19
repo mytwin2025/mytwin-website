@@ -31,7 +31,7 @@ export default function Header() {
         className={`content flex h-[70px] w-full items-center justify-between border border-gray-200 bg-white px-6 shadow-sm md:w-fit lg:min-w-[95%] lg:rounded-full`}
       >
         {/* Logo */}
-        <Link to="/">
+        <Link to="/" onClick={() => setIsOpen(false)} >
           <img src={Media.header.mytwin} alt="My Twin" className="h-70 lg:h-7" />
         </Link>
 
