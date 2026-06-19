@@ -45,12 +45,12 @@ export default function Plans() {
       icon: Media.plans.icons.cholesterolIcon,
       slug: 'high-cholesterol',
     },
-    // {
-    //   index: '07',
-    //   title: 'Fatty Liver',
-    //   icon: Media.plans.icons.fattyLiverIcon,
-    //   slug: 'fatty-liver',
-    // },
+    {
+      index: '07',
+      title: 'Fatty Liver',
+      icon: Media.plans.icons.fattyLiverIcon,
+      slug: 'fatty-liver',
+    },
   ];
 
   // Show first 5 in grid, last slot is "View all"
@@ -152,36 +152,88 @@ export default function Plans() {
     //     </div>
     //   )}
     // </div>
-    <div className="mx-11 flex pt-5 flex-1 mt-[120px] mb-10 bg-red-500 rounded-2xl">
-      <div
-        style={{ backgroundImage: `url(${LeftDocImg})` }}
-        className="flex-[1.5] bg-cover bg-no-repeat"
-      >
-        
-      </div>
-      <div className="flex-1 pb-5 space-y-4 px-3">
-        <h1 className="text-center font-[Arima] text-2xl font-bold leading-snug text-black">
-          Better health starts with understanding your body
-        </h1>
-        <p className="text-center font-[Inter] text-xs text-black">
-          Get expert-led care plans designed around your body, habits, biomarkers, and health goals
-          to help you prevent, manage, and reverse lifestyle conditions.
-        </p>
-        <div className="grid grid-cols-3 gap-2">
-          {plansTabs.map((tab, i) => (
-            <PlansCard
-              key={tab.index}
-              {...tab}
-              isActive={i === activeTab}
-              onClick={() => {
-                setActiveTab(i);
-                setModalOpen(false);
-              }}
-            />
-          ))}
+    <>
+      <div className="mx-4 mb-8 mt-[100px] flex flex-col overflow-hidden rounded-2xl bg-gradient-to-r from-[#D8EAFB] via-[#EFF5EA] to-[#FAECFE] pt-4 sm:mx-6 md:mx-10 md:mb-10 md:mt-[120px] md:flex-row md:pt-5">
+        <div
+          style={{ backgroundImage: `url(${LeftDocImg})` }}
+          className="min-h-[220px] flex-1 bg-contain bg-center bg-no-repeat sm:min-h-[280px] md:min-h-[420px] md:flex-[1.5] md:bg-top"
+        ></div>
+        <div className="flex-1 self-center px-4 pb-6 sm:px-6 md:px-3 md:pb-5">
+          <h1 className="text-center font-[Arima] text-[28px] font-bold leading-tight text-black sm:text-[34px] md:text-[1.95vw] md:leading-snug">
+            Better health starts with understanding your body
+          </h1>
+          <p className="my-4 text-center font-[Inter] text-[14px] leading-6 text-black sm:my-5 sm:text-[16px] md:text-[1vw] md:leading-snug">
+            Get expert-led care plans designed around your body, habits, biomarkers, and health
+            goals to help you prevent, manage, and reverse lifestyle conditions.
+          </p>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-2">
+            {visibleTabs.map((tab, i) => (
+              <PlansCard
+                key={tab.index}
+                {...tab}
+                isActive={i === activeTab}
+                onClick={() => {
+                  setActiveTab(i);
+                  setModalOpen(false);
+                }}
+              />
+            ))}
+            <button
+              onClick={() => setModalOpen(true)}
+              className="flex cursor-pointer items-center justify-center gap-1 rounded-md bg-white px-3 py-3 text-left text-black shadow-md md:py-2"
+            >
+              <h1 className="text-[15px] font-semibold leading-snug sm:text-[16px] md:text-[1vw]">
+                View all <ChevronRight className="inline-block h-4 w-4" />
+              </h1>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 pt-10 backdrop-blur-sm"
+          onClick={() => setModalOpen(false)}
+        >
+          <div
+            className="relative max-h-[85vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl sm:w-[90vw] sm:p-6 md:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-6 flex items-center justify-between">
+              <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">All Health Plans</h3>
+              <button
+                onClick={() => setModalOpen(false)}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+              {plansTabs.map((tab, i) => (
+                <PlansCard
+                  key={tab.index}
+                  {...tab}
+                  isActive={i === activeTab}
+                  onClick={() => {
+                    setActiveTab(i);
+                    setModalOpen(false);
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="flex flex-col items-start gap-4 bg-white px-4 py-6 sm:px-6 md:flex-row md:items-center md:justify-between md:px-10 md:py-5">
+        <h1 className="text-[26px] font-bold leading-tight text-[#18181B] sm:text-[32px] md:text-[2vw] md:leading-snug">
+          Learn how to be fit 💪with <br /> MyTwin
+        </h1>
+        <button className="w-full rounded-full bg-black px-8 py-3 font-semibold text-white transition duration-300 hover:bg-gray-800 sm:w-auto md:ml-4 md:py-2">
+          Download App
+        </button>
+      </div>
+    </>
   );
 }
 
@@ -191,9 +243,9 @@ export const PlansCard = ({ title, icon, isActive, onClick, slug }) => {
       to={`/plan-details/${slug}`}
       onClick={onClick}
       style={{ backgroundColor: isActive ? '#F97316' : '#fff' }}
-      className="flex cursor-pointer flex-col items-start gap-1 rounded-md border border-gray-200 py-2 px-3 text-left"
+      className="flex min-h-[120px] cursor-pointer flex-col items-start gap-2 rounded-md px-3 py-3 text-left shadow-md transition-transform hover:scale-[1.01] md:min-h-[unset] md:gap-1 md:py-2"
     >
-      <div className="icon h-10 w-10">
+      <div className="icon h-10 w-10 shrink-0 sm:h-11 sm:w-11 md:h-10 md:w-10">
         <img
           src={icon}
           alt={`${title} Icon`}
@@ -201,7 +253,7 @@ export const PlansCard = ({ title, icon, isActive, onClick, slug }) => {
         />
       </div>
       <h2
-        className={` text-sm font-semibold ${isActive ? 'text-white' : 'text-gray-800'}`}
+        className={`whitespace-pre-line text-[15px] font-semibold leading-snug sm:text-[16px] md:text-[1vw] ${isActive ? 'text-white' : 'text-gray-800'}`}
       >
         {title.replace(/\\n/g, '\n')}
       </h2>
