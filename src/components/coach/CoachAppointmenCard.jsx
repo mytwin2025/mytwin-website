@@ -13,7 +13,7 @@ export default function CoachAppointmenCard({
   return (
     <Link to="/coach-details">
       <div
-        className="relative flex w-full cursor-pointer flex-col rounded-2xl border border-gray-200 bg-white pb-4 shadow-sm"
+        className="relative flex w-full cursor-pointer flex-col rounded-2xl border border-gray-200 bg-white pb-4"
         style={style}
       >
         {/* Coach image */}
@@ -22,7 +22,7 @@ export default function CoachAppointmenCard({
         </div>
 
         {/* Info */}
-        <div className="flex w-full flex-1 flex-col gap-2 px-4 pt-3">
+        <div className="flex w-full flex-1 flex-col px-4 pt-3">
           <p className="line-clamp-1 text-center text-[18px] font-bold text-black">{name}</p>
 
           {/* Rating & people coached */}
@@ -35,23 +35,23 @@ export default function CoachAppointmenCard({
 
           {/* Availability */}
           <div className="flex w-full items-center justify-between rounded-full bg-gray-100 px-4 py-1">
-            <span className="text-[13px] font-medium text-gray-600">Availability</span>
-            <span className="text-[13px] font-semibold text-orange-500">
+            <span className="text-[13px] font-medium text-black">Availability</span>
+            <span className="text-[13px] font-semibold text-green-500">
               {availableSlots} slots left
             </span>
           </div>
 
           {/* CTA row */}
-          <div className="z-10 mt-2 flex w-full items-center justify-between gap-4">
+          <div className="z-10 mt-4 flex w-full items-center justify-between gap-4">
             <button
               onClick={onClickAppoint}
-              className="rounded-full bg-orange-500 px-4 py-1 text-[13px] font-semibold text-white transition-colors hover:bg-orange-600"
+              className="rounded-md bg-orange-500 px-4 py-1 text-[13px] font-semibold text-white transition-colors hover:bg-orange-600"
             >
               Schedule Appointment
             </button>
             <button
               onClick={onClickMsg}
-              className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-orange-300 text-orange-400 transition-colors hover:bg-orange-50"
+              className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-orange-300 bg-orange-100 text-orange-400 transition-colors hover:bg-orange-50"
             >
               <MessageCircle size={16} />
             </button>
