@@ -5,24 +5,26 @@ import RazorpayButton from '../components/PaymentComponent';
 export default function Diagnostics() {
   return (
     <div className="flex min-h-screen w-full items-start justify-center bg-[#f0efed]">
-      <div className="content mt-[124px] flex h-full w-full flex-col items-center justify-start gap-6">
-        <div className="relative flex h-full w-[90%] items-start justify-center gap-6">
+      <div className="content mt-[84px] flex h-full w-full flex-col items-center justify-start gap-5 pb-8 sm:mt-[100px] sm:gap-6 md:mt-[124px]">
+        <div className="relative flex h-full w-[92%] items-start justify-center gap-4 sm:w-[90%] sm:gap-6">
           <img src={Media.diagnosticsBanner} alt="diagnostics banner" className="h-auto w-full" />
           <button
-            className="absolute bottom-8 left-16 h-[50px] w-[19vw] rounded-full bg-[transparent] px-4 py-2 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#00000010]"
+            className="absolute bottom-[8%] left-[8%] h-[38px] w-[44vw] rounded-full bg-[transparent] px-3 py-1 text-xs font-medium text-white transition-colors duration-300 sm:bottom-6 sm:left-10 sm:h-[44px] sm:w-[28vw] sm:px-4 sm:py-2 sm:text-sm md:bottom-8 md:left-16 md:h-[50px] md:w-[19vw]"
             onClick={() => alert('Contact us for more information')}
           >
             {/* Contact Us */}
           </button>
         </div>
-        <div className="flex h-full w-[90%] flex-col items-start justify-center gap-6">
-          <h2 className="font-[Arima] text-4xl font-bold">Checkups based on Vital Organs</h2>
+        <div className="flex h-full w-[92%] flex-col items-start justify-center gap-4 sm:w-[90%] sm:gap-6">
+          <h2 className="font-[Arima] text-2xl font-bold leading-tight sm:text-3xl md:text-4xl">
+            Checkups based on Vital Organs
+          </h2>
           <img src={Media.vitalOrgans} alt="vital organs" className="h-auto w-[100%]" />
         </div>
         <CheckupChip />
-        <div className="grid h-full w-[90%] grid-cols-3 gap-6">
+        <div className="grid h-full w-[92%] grid-cols-1 gap-4 sm:w-[90%] sm:gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {DUMMY_CHECKUP_PACKAGES.map((pkg) => (
-            <CheckupCard key={pkg.Pid} {...pkg} />
+            <CheckupCard key={pkg.id} {...pkg} />
           ))}
         </div>
         <Footer />
@@ -43,13 +45,15 @@ const CheckupChip = ({
   ],
 }) => {
   return (
-    <div className="flex h-full w-[90%] flex-col items-start justify-center gap-6">
-      <h2 className="font-[Arima] text-4xl font-bold">Explore Checkups</h2>
-      <div className="flex h-full w-full items-start justify-start gap-4 overflow-x-auto">
+    <div className="flex h-full w-[92%] flex-col items-start justify-center gap-4 sm:w-[90%] sm:gap-6">
+      <h2 className="font-[Arima] text-2xl font-bold leading-tight sm:text-3xl md:text-4xl">
+        Explore Checkups
+      </h2>
+      <div className="flex w-full items-start justify-start gap-3 overflow-x-auto pb-2 sm:gap-4">
         {data.map((item, index) => (
           <button
             key={index}
-            className="flex h-[50px] min-w-max items-center justify-center rounded-full bg-[#fff] px-4 py-2 text-sm font-medium text-black transition-colors duration-300 hover:bg-[#333333]"
+            className="flex h-[42px] min-w-max items-center justify-center rounded-full bg-[#fff] px-3 py-2 text-xs font-medium text-black transition-colors duration-300 hover:bg-[#333333] hover:text-white sm:h-[50px] sm:px-4 sm:text-sm"
           >
             {item}
           </button>
@@ -122,37 +126,37 @@ const CheckupCard = ({
   onBook = () => {},
 }) => {
   return (
-    <div className="flex w-full flex-col gap-4 rounded-2xl bg-white p-5 shadow-sm">
+    <div className="flex w-full flex-col gap-4 rounded-2xl bg-white p-4 shadow-sm sm:p-5">
       {/* Top row: icon + test count */}
       <div className="flex items-start justify-between">
-        <div className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#fdf0eb] text-[32px]">
+        <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#fdf0eb] text-[28px] sm:h-[72px] sm:w-[72px] sm:text-[32px]">
           {icon}
         </div>
-        <span className="rounded-xl bg-[#e0f2f1] px-4 py-2 text-[14px] font-semibold text-teal-600">
+        <span className="rounded-xl bg-[#e0f2f1] px-3 py-1.5 text-[12px] font-semibold text-teal-600 sm:px-4 sm:py-2 sm:text-[14px]">
           {testCount} Tests
         </span>
       </div>
 
       {/* Title & Description */}
       <div className="flex flex-col gap-1">
-        <h3 className="font-[Public Sans] text-[18px] font-bold leading-snug text-black">
+        <h3 className="font-[Public Sans] text-[16px] font-bold leading-snug text-black sm:text-[18px]">
           {title}
         </h3>
-        <p className="font-[Public Sans] text-[13px] leading-relaxed text-gray-500">
+        <p className="font-[Public Sans] text-[12px] leading-relaxed text-gray-500 sm:text-[13px]">
           {description}
         </p>
       </div>
 
       {/* Offer Banner */}
       <div className="flex items-center justify-center rounded-lg bg-[#f0fdf4] px-4 py-2">
-        <span className="font-[Public Sans] text-center text-[13px] font-medium text-green-600">
+        <span className="font-[Public Sans] text-center text-[12px] font-medium text-green-600 sm:text-[13px]">
           {offerText}
         </span>
       </div>
 
       {/* Members selector + Price */}
-      <div className="flex items-center justify-between">
-        <button className="flex items-center gap-2 rounded-xl border border-gray-300 px-4 py-2 text-[13px] font-medium text-black">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <button className="flex items-center gap-2 rounded-xl border border-gray-300 px-3 py-2 text-[12px] font-medium text-black sm:px-4 sm:text-[13px]">
           {members} Member{members > 1 ? 's' : ''}
           <svg
             width="14"
@@ -168,8 +172,10 @@ const CheckupCard = ({
           </svg>
         </button>
         <div className="flex items-center gap-2">
-          <span className="text-[20px] font-bold text-black">₹{price.toLocaleString('en-IN')}</span>
-          <span className="font-[Public Sans] text-[14px] text-gray-400 line-through">
+          <span className="text-[18px] font-bold text-black sm:text-[20px]">
+            ₹{price.toLocaleString('en-IN')}
+          </span>
+          <span className="font-[Public Sans] text-[12px] text-gray-400 line-through sm:text-[14px]">
             ₹{originalPrice.toLocaleString('en-IN')}
           </span>
         </div>
@@ -187,7 +193,17 @@ const CheckupCard = ({
         description={title}
         onSuccess={() => alert('Payment Successful!')}
         onError={() => alert('Payment Failed. Please try again.')}
-        style={{ width: '100%', borderRadius: '0.75rem', backgroundColor: '#f97316', color: '#fff', fontSize: '15px', fontWeight: 'bold', padding: '0.75rem', border: 'none', cursor: 'pointer' }}
+        style={{
+          width: '100%',
+          borderRadius: '0.75rem',
+          backgroundColor: '#f97316',
+          color: '#fff',
+          fontSize: '15px',
+          fontWeight: 'bold',
+          padding: '0.75rem',
+          border: 'none',
+          cursor: 'pointer',
+        }}
       />
     </div>
   );
