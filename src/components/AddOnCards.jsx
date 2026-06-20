@@ -3,7 +3,7 @@ import { CheckCircle2 as Check } from 'lucide-react';
 export default function AddOnCards({ name, image, price, description, isActive = false, onClick, gstIncludedText='' }) {
   return (
     <button
-      className={`plan-card border-1 relative h-[124px] w-[584px] cursor-pointer rounded-[16px] border-black bg-[#fff] px-4 py-2`}
+      className={`plan-card border-1 relative cursor-pointer rounded-[16px] border-black bg-[#fff] p-4`}
       style={{ borderColor: isActive ? '#ff6b01' : 'transparent', borderWidth: '1px' }}
       onClick={onClick}
     >

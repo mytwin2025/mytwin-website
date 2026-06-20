@@ -16,24 +16,24 @@ import { useGSAP } from '@gsap/react';
 import CoachDetails from './routes/CoachDetails';
 import AboutUs from './routes/AboutUs';
 function App() {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      smoothWheel: true,
-    });
-    const update = (time) => {
-      lenis.raf(time * 1000);
-    };
+  // useEffect(() => {
+  //   const lenis = new Lenis({
+  //     duration: 1.2,
+  //     smoothWheel: true,
+  //   });
+  //   const update = (time) => {
+  //     lenis.raf(time * 1000);
+  //   };
 
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(update);
-    gsap.ticker.lagSmoothing(0);
+  //   lenis.on('scroll', ScrollTrigger.update);
+  //   gsap.ticker.add(update);
+  //   gsap.ticker.lagSmoothing(0);
 
-    return () => {
-      gsap.ticker.remove(update);
-      lenis.destroy();
-    };
-  }, []);
+  //   return () => {
+  //     gsap.ticker.remove(update);
+  //     lenis.destroy();
+  //   };
+  // }, []);
   return (
     <Router>
       <Routes>

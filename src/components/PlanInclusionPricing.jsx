@@ -19,11 +19,11 @@ export default function PlanInclusionPricing({
   const [activeTab, setActiveTab] = React.useState(0);
   return (
     <div
-      className="plan-inclusion-pricing flex h-full w-[70%] flex-col items-start justify-center gap-6 rounded-2xl bg-[#fff] p-8 shadow-lg"
+      className="plan-inclusion-pricing flex h-full w-full flex-col items-start justify-center gap-6 rounded-2xl bg-[#fff] p-4 shadow-lg md:p-8"
       style={style}
     >
       <h3 className="text-left text-sm font-semibold text-[#71717A]">WHAT'S INCLUDED</h3>
-      <div className="content flex w-full items-start justify-around gap-12">
+      <div className="content flex w-full flex-col items-start justify-around gap-8 md:flex-row md:gap-12">
         <div className="inclusions flex w-full flex-col items-start gap-4">
           {inclusions.map((item, i) => (
             <div key={i} className="flex items-center gap-3">
@@ -33,7 +33,7 @@ export default function PlanInclusionPricing({
           ))}
         </div>
         <div className="pricing flex w-full flex-col items-center justify-start gap-12">
-          <div className="flex items-center gap-3 rounded-full bg-[#f4f4f5] px-4 py-2">
+          <div className="flex flex-wrap items-center justify-center gap-2 rounded-full bg-[#f4f4f5] px-3 py-2 md:gap-3 md:px-4">
             {pricing.map((item, i) => (
               <button
                 key={i}
@@ -62,7 +62,8 @@ export default function PlanInclusionPricing({
               color: '#fff',
               padding: '10px 20px',
               height: '50px',
-              width: '200px',
+              width: '100%',
+              maxWidth: '300px',
               border: 'none',
               borderRadius: '25px',
               cursor: paymentLoading ? 'not-allowed' : 'pointer',

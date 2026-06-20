@@ -12,7 +12,46 @@ const navLinks = [
 ];
 export default function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = React.useState(true);
   const mobileMenuRef = React.useRef(null);
+  const headerRef = React.useRef(null);
+  const lastScrollYRef = React.useRef(0);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (isOpen) {
+        setIsHeaderVisible(true);
+        lastScrollYRef.current = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY <= 24) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollYRef.current + 4) {
+        setIsHeaderVisible(false);
+      } else if (currentScrollY < lastScrollYRef.current - 4) {
+        setIsHeaderVisible(true);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    lastScrollYRef.current = window.scrollY;
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setIsHeaderVisible(true);
+    }
+  }, [isOpen]);
+
   useGSAP(
     () => {
       gsap.to(mobileMenuRef.current, {
@@ -24,21 +63,37 @@ export default function Header() {
     { dependencies: [isOpen] }
   );
 
+  useGSAP(
+    () => {
+      gsap.to(headerRef.current, {
+        y: isHeaderVisible ? '0%' : '-110%',
+        autoAlpha: isHeaderVisible ? 1 : 0,
+        duration: 0.3,
+        ease: 'power2.out',
+        overwrite: 'auto',
+      });
+    },
+    { dependencies: [isHeaderVisible] }
+  );
+
   return (
-    <div className="header align-center fixed z-[999] flex w-full flex-col justify-center md:top-[24px] md:flex-row">
+    <div
+      ref={headerRef}
+      className="header align-center fixed z-[999] flex w-full flex-col justify-center md:top-[24px] md:flex-row"
+    >
       {/* <div className={`mx-auto flex h-[70px] max-w-[95%] items-center justify-between rounded-full border border-gray-200 bg-white px-6 shadow-sm`}> */}
       <div
         className={`content flex h-[70px] w-full items-center justify-between border border-gray-200 bg-white px-6 shadow-sm md:w-fit lg:min-w-[95%] lg:rounded-full`}
       >
         {/* Logo */}
-        <Link to="/" onClick={() => setIsOpen(false)} >
+        <Link to="/" onClick={() => setIsOpen(false)}>
           <img src={Media.header.mytwin} alt="My Twin" className="h-70 lg:h-7" />
         </Link>
 
         <HamBerger className={`md:hidden lg:hidden`} setIsOpen={setIsOpen} isOpen={isOpen} />
 
         {/* Nav Links */}
-        <nav className="flex hidden items-center gap-8 md:flex lg:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map(({ label, to }) => (
             <Link
               key={to}
@@ -51,7 +106,7 @@ export default function Header() {
         </nav>
 
         {/* Right Actions */}
-        <div className="flex hidden items-center gap-3 md:flex lg:flex">
+        <div className="hidden items-center gap-3 md:flex">
           {/* Talk to Expert */}
           <button className="flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 font-[Inter] text-sm text-white transition-colors hover:bg-orange-600">
             <Headphones size={15} />

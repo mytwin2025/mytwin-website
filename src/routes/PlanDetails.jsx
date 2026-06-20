@@ -16,6 +16,9 @@ import Dialog from '../components/Dialog';
 import Input from '../components/Input';
 import { showToast } from '../components/Toast';
 import { useRazorpay } from 'react-razorpay';
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function PlanDetails() {
   const { Razorpay } = useRazorpay();
   const { slug } = useParams() || { slug: 'obesity-weight-management' };
@@ -528,45 +531,42 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
     </React.Fragment>
   ));
 
-  useGSAP(() => {
-    const scrollContainer = scrollContentRef.current;
+ useGSAP(() => {
+    const container = scrollContentRef.current;
     const track = trackRef.current;
-    const content = contentRef.current;
-    const trackWrapperElement = trackWrapper.current;
-    const section = sectionRef.current;
-    if (!scrollContainer || !track || !content || !trackWrapperElement || !section) return;
-    const getScrollAmount = () => {
-      return track.scrollWidth - trackWrapperElement.clientWidth;
-    };
-    console.log('Scroll Amount:', getScrollAmount());
-    const tl = gsap.timeline({
+
+    if (!container || !track) return;
+
+    // 1. Calculate the exact distance to move horizontally.
+    // It is the total width of all cards combined MINUS the width of the screen.
+    // I added 80px to account for the padding on the right side.
+    const getScrollAmount = () => track.scrollWidth - window.innerWidth + 80;
+
+    gsap.to(track, {
+      x: () => -getScrollAmount(),
+      ease: "none", // Must be "none" so the scroll speed remains constant
       scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${getScrollAmount()}`, // extra range so cards have room
-        scrub: 0.5,
-        pin: true, // optional: pin the whole section while sequence plays
-        invalidateOnRefresh: true,
-        // markers: true, // uncomment for debugging
-      },
-    });
+        trigger: container,
+        start: "top top", // Starts when the top of the section hits the top of the viewport
+        end: () => `+=${getScrollAmount()}`, // The scroll duration matches the horizontal width exactly
+        pin: true, // Locks the screen in place
+        pinSpacing: true, // IMPORTANT: This pushes the next section down so it waits its turn!
+        scrub: 1, // Smooth 1-second catch-up effect
 
-    gsap.set(track, { x: 0 }); // ensure track starts in correct position
-    // Step 1: hero slides up
-    tl.to(content, {
-      y: '-100%',
-      opacity: 0.5,
-      ease: 'none',
-      duration: 1, // portion of the scroll
+        // OPTIONAL: If you literally want it to snap "one by one" to each card
+        /*
+        snap: {
+          snapTo: 1 / (plan.scrollCards.length - 1),
+          duration: 0.5,
+          delay: 0.1,
+          ease: "power1.inOut"
+        },
+        */
+       
+        invalidateOnRefresh: true, // Recalculates if the user resizes their window
+      }
     });
-
-    // Step 2: cards scroll horizontally
-    tl.to(track, {
-      x: () => -getScrollAmount() - 20,
-      ease: 'none',
-      duration: 3, // takes more scroll space than hero
-    });
-  }, []);
+  }, { scope: scrollContentRef });
 
   return (
     <div
@@ -575,7 +575,7 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
     >
       <div
         ref={contentRef}
-        className="absolute left-0 right-0 top-0 z-20 m-auto flex h-screen w-full items-start justify-center bg-[#0b0A07]"
+        className="relative flex h-screen w-full items-start justify-center bg-[#0b0A07]"
       >
         <div className="absolute left-0 top-0 z-10 h-full w-full bg-black opacity-50" />
         <video
@@ -585,17 +585,17 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
           muted
           playsInline
           poster={plan.video}
-          className="absolute bottom-0 left-0 right-0 top-0 m-auto h-full w-full object-cover"
+          className="absolute inset-0 z-0 h-full w-full object-cover"
         />
 
         <img
           src={Media.plans.graph}
           alt="Graph"
-          className="absolute bottom-0 left-0 right-0 z-20 m-auto w-full translate-y-[30%] object-cover"
+          className="absolute bottom-0 left-0 right-0 z-20 w-full translate-y-[30%] object-cover"
         />
-        <div className="content z-20 flex h-full w-full flex-col items-center justify-start gap-5">
-          <div className="mt-40 flex w-[60%] flex-col items-center justify-center gap-6 text-center">
-            <h2 className="text-center font-[Arima] text-5xl font-bold leading-snug text-white">
+        <div className="content z-20 flex h-full w-full flex-col items-center justify-center gap-5">
+          <div className="flex w-[90%] flex-col items-center justify-center gap-6 text-center md:mt-10 md:w-[60%]">
+            <h2 className="text-center font-[Arima] text-3xl font-bold leading-snug text-white md:text-5xl md:leading-tight">
               {processedHeading}
             </h2>
             <p className="text-center font-[Inter] text-sm leading-relaxed text-white">
@@ -608,21 +608,15 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
         </div>
       </div>
 
-      <div ref={scrollContentRef} className="flex h-[80vh] w-full">
-        <div ref={trackWrapper} className="flex h-full w-full flex-col items-start justify-center">
-          <div
-            ref={trackRef}
-            className="scroll-cards flex h-fit w-max items-start justify-start gap-4"
-          >
+      <div ref={scrollContentRef} className="flex w-[99.9%] h-screen overflow-hidden">
+        <div ref={trackWrapper} className="flex  h-full w-full flex-col items-start justify-center">
+          <div ref={trackRef} className="scroll-cards flex w-max h-max items-start justify-start gap-4 p-10">
             {plan.scrollCards.map((card, index) => (
-              <div
-                className="h-[512px] w-[647px] flex-shrink-0 overflow-hidden rounded-lg bg-transparent"
-                key={index}
-              >
+              <div className="w-[647px] shrink-0 overflow-hidden rounded-lg bg-transparent" key={index}>
                 {index === 0 ? (
-                  <div className="h-full w-full flex-shrink-0 rounded-lg bg-transparent px-8">
-                    <h2 className="p-4 text-lg font-thin text-gray-800">HOW WE WORKS</h2>
-                    <h3 className="whitespace-pre-line px-4 font-[Arima] text-4xl font-bold text-gray-600">
+                  <div className="h-full w-full rounded-lg bg-transparent">
+                    <h2 className="text-lg font-thin text-gray-800">HOW WE WORKS</h2>
+                    <h3 className="whitespace-pre-line font-[Arima] text-4xl font-bold text-gray-600">
                       {card}
                     </h3>
                   </div>
@@ -646,7 +640,7 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
         </div>
       </div>
 
-      <div className="item-center relative z-10 h-[80vh] min-h-[80vh] w-full overflow-hidden rounded-bl-[32px] rounded-br-[32px]">
+      <div className="item-center relative z-10 w-full overflow-hidden rounded-bl-[32px] rounded-br-[32px]">
         <video
           src={Media.plans.videos.scrollCardBgVideo}
           autoPlay
@@ -657,41 +651,41 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
         />
         <div className="overlay absolute inset-0 z-0 bg-black opacity-50" />
 
-        <div className="membership-content absolute left-0 top-0 h-[100%] w-full overflow-hidden rounded-bl-[32px] rounded-br-[32px]">
-          <div className="content relative z-10 flex h-full w-full items-center justify-center px-20">
-            <div className="h-full w-full pt-32">
+        <div className="membership-content w-full overflow-hidden rounded-bl-[32px] rounded-br-[32px] px-4 py-10">
+          <div className="content relative z-10 mx-auto flex h-full w-full max-w-5xl flex-col items-center justify-between gap-10 md:flex-row">
+            <div className="w-full">
               <div className="mb-6 flex flex-col items-start justify-start">
-                <h2 className="font-[Arima] text-4xl font-bold text-white">
+                <h2 className="font-[Arima] text-2xl font-bold text-white md:text-4xl">
                   What's included in your membership
                 </h2>
                 <p className="text-left font-[Inter] text-sm font-thin text-white">
                   Your data, your guidance, your progress — all in one intelligent platform.
                 </p>
               </div>
-              <div className="flex grid h-fit w-full flex-col items-start justify-start gap-6">
+              <div className="grid h-fit w-full flex-col items-start justify-start gap-6">
                 {plan.memPerks.map((perk, index) => (
                   <span
                     key={index}
-                    className="flex cursor-pointer items-start gap-4 rounded-full bg-white px-6 py-4 text-black transition-colors hover:bg-[#ff6b01] hover:text-white"
+                    className="flex cursor-pointer items-start gap-4 rounded-full bg-white px-6 py-4 text-sm text-black transition-colors hover:bg-[#ff6b01] hover:text-white"
                   >
                     {perk}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="h-full w-fit">
+            <div className="hidden w-full justify-center md:flex md:justify-end">
               <img
                 src={Media.plans.memberShipPhone}
                 alt="Membership Phone"
-                className="h-full w-full translate-y-12 object-contain"
+                className="h-auto w-[50%] object-contain"
               />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="planpricing-section mt-12 flex w-full flex-col items-center justify-center">
-        <h2 className="font-[Arima] text-4xl font-bold text-black">The {plan.title}</h2>
+      <div className="planpricing-section mx-auto mt-12 flex w-full max-w-5xl flex-col items-center justify-center px-4 md:px-0">
+        <h2 className="font-[Arima] text-2xl font-bold text-black md:text-4xl">The {plan.title}</h2>
         <PlanInclusionPricing
           pricing={pricing.weekPlans}
           inclusions={plan.includes}
@@ -705,15 +699,15 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
         />
       </div>
 
-      <div className="addon-section item-center flex w-full flex-col justify-center pt-4">
+      <div className="addon-section mx-auto flex w-full max-w-5xl flex-col justify-center px-4 pt-4 md:px-0">
         <div className="flex h-full w-full flex-col items-center justify-start">
-          <div className="flex w-[70%] items-center justify-start gap-4 pt-12 text-left">
+          <div className="flex items-center justify-start gap-4 pt-12 text-left">
             <div className="flex flex-row items-center gap-4">
               <h2 className="text-2xl font-bold"> Add-Ons</h2>
               <span className="text-sm font-thin text-gray-600">(Optional)</span>
             </div>
           </div>
-          <div className="justify-items-between mb-20 grid h-auto w-[70%] grid-cols-2 items-start justify-center gap-4 pt-8">
+          <div className="justify-items-between mb-20 grid w-full grid-cols-1 items-start justify-center gap-4 pt-8 sm:grid-cols-2">
             {addOnData.map((addOn, index) => (
               <AddOnCards
                 key={index}
@@ -736,9 +730,9 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
         </div>
       </div>
 
-      <div className="transformation-section mb-20 flex w-full items-center justify-center">
-        <div className="flex w-[70%] flex-col items-center justify-center rounded-[24px] rounded-lg bg-[#fff] px-4 pb-2 pt-6">
-          <h2 className="font-[Inter] text-[48px] font-semibold tracking-wider text-black">
+      <div className="transformation-section mb-20 flex w-full items-center justify-center px-4">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-center rounded-lg bg-[#fff] px-4 py-10">
+          <h2 className="text-center font-[Inter] text-[28px] font-semibold leading-snug tracking-wider text-black md:text-[40px] lg:text-[48px]">
             See Your Health Transformation
           </h2>
           <p className="mt-6 text-center font-[Inter] text-[18px] text-gray-600">
@@ -748,10 +742,10 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
             Start your Transformation
           </button>
 
-          <div className="my-8 mb-12 flex h-[2px] w-[60%] flex-shrink-0 items-center justify-between bg-[#E5E7EB]">
+          <div className="my-8 mb-12 flex h-[2px] w-full flex-shrink-0 items-center justify-between bg-[#E5E7EB] md:w-[60%]">
             {['Phase 1', 'Phase 2', 'Phase 3'].map((phase, index) => (
               <div
-                className="relative flex w-[4rem] w-fit items-center justify-center"
+                className="relative flex w-fit items-center justify-center"
                 style={{
                   justifyContent: index === 0 ? 'flex-start' : index === 1 ? 'center' : 'flex-end',
                 }}
@@ -777,12 +771,12 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
             ))}
           </div>
 
-          <div className="flex w-full items-stretch justify-center gap-4 pt-6">
+          <div className="flex w-full flex-wrap items-stretch justify-center gap-4 pt-6">
             {steps.map((step, index) => {
               return (
                 <div
                   key={index}
-                  className="flex w-[25%] flex-col items-start justify-start rounded-[14px] border border-gray-300 bg-[#fff]"
+                  className="flex w-full flex-col items-start justify-start rounded-[14px] border border-gray-300 bg-[#fff] sm:w-[calc(50%-8px)] lg:w-[25%]"
                 >
                   <div className="mb-2 flex w-full flex-col items-start rounded-t-[14px] bg-[#FFF0E5] px-4 py-4">
                     <h3 className="font-[Inter] text-[18px] font-semibold text-black">
@@ -809,14 +803,14 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
         </div>
       </div>
 
-      <div className="more-plans-section mb-20 flex w-full items-center justify-center">
-        <div className="flex w-[74%] flex-col items-start justify-center rounded-[24px] px-4 py-6">
-          <h2 className="font-[Inter] text-[32px] font-semibold tracking-wider text-black">
+      <div className="more-plans-section mb-20 flex w-full items-center justify-center px-4">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-start justify-center rounded-[24px] py-6">
+          <h2 className="font-[Inter] text-[22px] font-semibold tracking-wider text-black md:text-[32px]">
             Discover more plans, designed by experts.
           </h2>
 
           <div className="mt-12 flex flex-col items-start justify-start">
-            <div className="flex w-full items-stretch justify-start gap-0">
+            <div className="flex w-full flex-col items-stretch justify-start gap-0 md:flex-row">
               {gridPlans.slice(0, 3).map((plan, index) => (
                 <PlansItem
                   key={index}
@@ -832,7 +826,7 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
               ))}
             </div>
 
-            <div className="flex w-full items-stretch justify-center gap-0">
+            <div className="flex w-full flex-col items-stretch justify-center gap-0 md:flex-row">
               {gridPlans.slice(3).map((plan, index) => (
                 <PlansItem
                   key={index}
@@ -854,8 +848,8 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
       <Footer />
 
       <Dialog isOpen={userDialogOpen} onClose={() => setUserDialogOpen(false)}>
-        <div className="flex h-[50vh] w-[70vw] items-center justify-center">
-          <div className="flex h-full w-1/2 flex-col items-start justify-start gap-2 rounded-l-lg bg-white px-8 py-4">
+        <div className="flex w-[95vw] flex-col items-center justify-center md:h-[50vh] md:w-[70vw] md:flex-row">
+          <div className="flex h-full w-full flex-col items-start justify-start gap-2 rounded-t-lg bg-white px-6 py-4 md:w-1/2 md:rounded-l-lg md:rounded-tr-none">
             <h2 className="text-md font-semibold text-[#FF6B01]">Order Details</h2>
             <div className="flex w-full flex-col items-start justify-start gap-2">
               <div className="flex w-full items-center justify-between">
@@ -905,7 +899,7 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
               </div>
             </div>
           </div>
-          <div className="flex h-full w-1/2 flex-col items-start justify-around gap-2 rounded-r-lg bg-[#FF6B01] px-8 py-4">
+          <div className="flex h-full w-full flex-col items-start justify-around gap-2 rounded-b-lg bg-[#FF6B01] px-6 py-4 md:w-1/2 md:rounded-r-lg md:rounded-bl-none">
             <div className="align-center flex h-full w-full flex-col items-start justify-start gap-2">
               <h2 className="text-md mb-4 text-center font-semibold text-white">
                 Enter Your Details
@@ -976,16 +970,14 @@ const PlansItem = ({ title = '', description = '', route = '', style }) => {
       style={style}
     >
       <div className="h-full w-full gap-4">
-        <h3 className="whitespace-pre-line font-[Inter] text-[28px] font-semibold leading-[1.2] text-black">
+        <h3 className="whitespace-pre-line font-[Inter] text-base font-semibold text-black">
           {title}
         </h3>
-        <p className="whitespace-pre-line font-[Inter] text-[14px] text-[#00000090]">
-          {description}
-        </p>
+        <p className="whitespace-pre-line font-[Inter] text-xs text-[#00000090]">{description}</p>
       </div>
       <a
         href={route}
-        className="w-fit rounded-full border-[2px] border-[#fff44] bg-[#dbd8d7] px-4 py-2 font-[Inter] text-[14px] text-[#000]"
+        className="w-fit rounded-full border-[2px] border-[#fff44] bg-[#dbd8d7] px-4 py-2 font-[Inter] text-xs text-[#000]"
       >
         Check Now <ChevronRight className="inline-block" />
       </a>
@@ -1001,17 +993,3 @@ const PlansItem = ({ title = '', description = '', route = '', style }) => {
     </div>
   );
 };
-
-// /* Button */
-
-// box-sizing: border-box;
-
-// position: absolute;
-// height: 44.48px;
-// left: 112px;
-// right: 1034px;
-// top: 412px;
-
-// background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 31.77%), rgba(0, 0, 0, 0.04);
-// box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
-// border-radius: 26px;
