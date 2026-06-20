@@ -52,6 +52,20 @@
   }
 }
 
+/* Define a class for custom thin scrollbar with light gray color */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Adjust the width of the scrollbar */
+  height: 8px; /* Adjust the height of the scrollbar for horizontal scrolling */
+  scrollbar-width: thin; /* For Firefox */
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Optional: Set the track background to transparent */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1; /* Light gray color for the scrollbar thumb */
+  border-radius: 4px; /* Optional: Add rounded corners to the scrollbar thumb */
+}
+
 body {
   margin: 0;
   padding: 0;

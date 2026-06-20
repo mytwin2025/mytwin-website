@@ -7,7 +7,7 @@ import Diagnostics from './routes/Diagnostics';
 import CorporateWelness from './routes/CorporateWelness';
 import Coaches from './routes/Coaches';
 import PlanDetails from './routes/PlanDetails';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
@@ -35,7 +35,7 @@ function App() {
   //   };
   // }, []);
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<LandingPage />} />
@@ -48,7 +48,7 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
         </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

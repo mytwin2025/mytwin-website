@@ -1,14 +1,9 @@
 import React from 'react';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import { gsap } from 'gsap';
 import { Media } from '../../utils/media';
-import { useGSAP } from '@gsap/react';
 import Search from '../../components/Search';
 import Filter from '../../components/Filter';
 import CoachAppointmenCard from '../../components/coach/CoachAppointmenCard';
 export default function BrowseCoaches() {
-  const searchRef = React.useRef(null);
-  const contentRef = React.useRef(null);
   const categoryData = [
     {
       name: `Obesity & Weight\nmanagement`,
@@ -116,76 +111,33 @@ export default function BrowseCoaches() {
     },
   ];
 
-  useGSAP(() => {
-    if (!searchRef.current || !contentRef.current) return;
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: contentRef.current,
-          start: 'top center',
-          end: 'top 20%',
-          scrub: 1,
-          showMarkers: true,
-        },
-      });
-      tl.to(searchRef.current, { y: 80, duration: 1, ease: 'power2.out', showMarkers: true }).to(
-        contentRef.current,
-        {
-          y: 80,
-          duration: 1,
-          ease: 'power2.out',
-          showMarkers: true,
-        },
-        '<'
-      );
-    });
-    return () => ctx.revert();
-  }, [searchRef, contentRef]);
-
   return (
-    <div className="browse-coaches flex h-screen min-h-screen w-[90%] flex-col items-center justify-start overflow-hidden">
-      <div
-        ref={searchRef}
-        className="search-section flex w-full items-center justify-center gap-4 pt-4"
-      >
+    <div className="browse-coaches flex min-h-screen w-full flex-col items-center justify-start px-4 pb-6 lg:h-screen lg:overflow-hidden lg:px-0 lg:pb-0">
+      <div className="search-sectin flex w-full flex-col  justify-center gap-3 pt-4 sm:flex-row sm:items-center lg:w-[90%]">
         <Search
           onSearch={(query) => console.log('Search query:', query)}
-          style={{ height: '60px' }}
         />
         <Filter
           onFilter={() => console.log('Filter button clicked')}
-          style={{ height: '60px', gap: 4 }}
         />
       </div>
 
-      <div
-        ref={contentRef}
-        className="coaches-list flex min-h-0 w-full flex-1 items-start justify-start gap-6 py-8"
-        // style={{ height: 'calc(100vh - 100px)', overflow: 'hidden' }}
-      >
-        <div
-          data-lenis-prevent
-          className={`category-card relative grid h-full w-[300px] shrink-0 grid-cols-1 gap-0 rounded-lg bg-white bg-cover bg-center px-2 py-6`}
-          style={{ height: 'calc(100vh - 200px)' }}
-        >
+      <div className="coaches-list flex min-h-0 w-full flex-1 flex-col items-start justify-start gap-4 py-6 lg:w-[90%] lg:flex-row lg:gap-6 lg:py-8">
+        <div className="category-card custom-scrollbar relative grid md:h-full w-full shrink-0 grid-cols-1 gap-2 overflow-auto rounded-lg border border-gray-200 bg-[#FAFAFA] px-2 py-4 lg:w-[250px] lg:gap-3 lg:overflow-y-auto lg:border-0 lg:py-6">
           {categoryData.map((category, index) => (
             <button
               key={index}
-              className="flex h-[74px] w-full items-center rounded-full border-[1px] border-gray-200 bg-white text-left transition-colors duration-300 hover:bg-gray-100"
+              className="flex w-full items-center gap-3 rounded-full border border-gray-200 bg-white px-3 py-2 text-left transition-colors duration-300 hover:bg-gray-100"
               onClick={() => onClickCategory(category.name)}
             >
-              <img src={category.icon} alt={`${category.name} icon`} className="mx-6 h-5 w-5" />
-              <p className="whitespace-pre-line font-[Inter] text-[14px] font-medium leading-snug text-black">
+              <img src={category.icon} alt={`${category.name} icon`} className="h-5 w-5" />
+              <p className="whitespace-pre-line font-[Inter] text-[12px] font-medium leading-snug text-black">
                 {category.name}
               </p>
             </button>
           ))}
         </div>
-        <div
-          data-lenis-prevent
-          className="coaches-container grid w-full auto-rows-max grid-cols-3 items-center justify-center justify-items-center gap-6 overflow-y-auto rounded-lg border-[1px] border-gray-200 bg-white p-4"
-          style={{ height: 'calc(100vh - 200px)' }}
-        >
+        <div className="custom-scrollbar grid h-full w-full grid-cols-1 md:grid-cols-3 gap-5 overflow-auto pr-2">
           {coachesData.map((coach, index) => (
             <CoachAppointmenCard
               key={index}
