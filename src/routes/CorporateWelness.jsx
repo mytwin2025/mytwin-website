@@ -55,7 +55,7 @@ export default function CorporateWelness() {
   ];
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center bg-[#f0efed]">
-      <div className="hero relative flex min-h-screen w-full flex-col items-start justify-center bg-[#f0efed]">
+      <div className="relative flex w-full flex-col items-start justify-center">
         <video
           src={Media.corporateWellnessVideo}
           autoPlay
@@ -65,14 +65,14 @@ export default function CorporateWelness() {
         />
         <div className="absolute left-0 top-0 h-full w-full bg-black bg-opacity-50" />
 
-        <div className="relative z-10 flex h-full w-full items-start justify-center">
-          <div className="relative z-20 flex h-full w-full flex-col items-start justify-start text-center">
-            <div className="mb-4 w-full rounded px-3 py-1 text-sm font-semibold text-white">
-              <h1 className="font-[Arima] text-6xl font-bold leading-snug text-white/90">
+        <div className="flex h-full w-full items-start justify-center">
+          <div className="flex h-full w-full flex-col items-start justify-start text-center">
+            <div className="mb-4 w-full rounded px-3 py-1">
+              <h1 className="font-[Arima] text-6xl font-bold leading-snug text-black">
                 Healthier Teams. <br />
                 Better Performance.
               </h1>
-              <p className="font-[400] text-white/70">
+              <p className="font-[400] text-black/70">
                 Help your employees improve energy, manage stress, and build healthier habits with
                 personalised <br /> wellness programs designed for today’s workplace.
               </p>
@@ -88,7 +88,7 @@ export default function CorporateWelness() {
           </div>
         </div>
       </div>
-      <div className="content min-h-[95%] w-full flex-col items-start justify-start gap-6">
+      <div className="content min-h-] w-full flex-col items-start justify-start gap-6">
         <div className="flex h-full w-full items-start justify-center gap-0 px-16 py-4">
           <div className="flex h-full w-[50%] flex-col items-start justify-center gap-4 px-6 py-4">
             {images.map((img, index) => (
