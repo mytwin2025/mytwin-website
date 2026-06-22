@@ -55,7 +55,7 @@ export default function CorporateWelness() {
   ];
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center overflow-x-hidden bg-[#f0efed]">
-      <div className="relative flex w-full flex-col items-start justify-center h-screen">
+      <div className="relative flex h-screen w-full flex-col items-start justify-center">
         <video
           src={Media.corporateWellnessVideo}
           autoPlay
@@ -183,7 +183,7 @@ export default function CorporateWelness() {
               Explore Membership
             </button>
           </div>
-          <div className="grid w-full md:flex md:justify-end grid-cols-1 gap-4 lg:gap-6">
+          <div className="grid w-full grid-cols-1 gap-4 md:flex md:justify-end lg:gap-6">
             {packageSubCards.map((card, index) => (
               <PackageSubCard key={index} {...card} />
             ))}
@@ -191,7 +191,7 @@ export default function CorporateWelness() {
         </div>
       </div>
 
-      <div className="our-tests relative mx-auto flex min-screen w-full max-w-5xl flex-col items-start justify-start gap-2 px-4 py-6 pb-16 sm:px-6 lg:px-0">
+      <div className="our-tests min-screen relative mx-auto flex w-full max-w-5xl flex-col items-start justify-start gap-2 px-4 py-6 pb-16 sm:px-6 lg:px-0">
         <div className="flex h-auto w-full items-center justify-center">
           <div className="mb-4 flex items-center justify-center rounded-full bg-[#25323c] px-6 py-2">
             <SmileIcon size={18} color="#fff" />
@@ -203,8 +203,7 @@ export default function CorporateWelness() {
           User Reviews and Feedback
         </h2>
         <p className="w-full text-center text-sm text-[#454545dd] sm:text-base">
-          See how Capable has transformed users' social experiences through
-          their own words.
+          See how Capable has transformed users' social experiences through their own words.
         </p>
         <img
           src={Media.corporateWellness.userReviewImage}
@@ -216,42 +215,42 @@ export default function CorporateWelness() {
 
       {talkToModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 pt-20"
           onClick={() => setTalkToModal(false)}
         >
           <div
             className="w-[calc(100%-2rem)] max-w-md rounded-lg bg-white p-5 shadow-xl sm:p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="mb-4 font-[Arima] text-xl font-bold">Contact Us</h2>
+            <h2 className="mb-4 font-[Arima] text-xl font-bold text-orange-500">Contact Us</h2>
             <form className="flex flex-col gap-4">
               <input
                 required
                 type="text"
                 placeholder="Name"
-                className="rounded border border-gray-300 px-3 py-2 font-[Inter] text-[14px] text-black placeholder-black"
+                className="rounded border border-gray-300 bg-white px-3 py-2 font-[Inter] text-[14px] text-black"
               />
               <input
                 required
                 type="email"
                 placeholder="Email"
-                className="rounded border border-gray-300 px-3 py-2 font-[Inter] text-[14px] text-black placeholder-black"
+                className="rounded border border-gray-300 bg-white px-3 py-2 font-[Inter] text-[14px] text-black"
               />
               <input
                 required
                 type="text"
                 placeholder="Company Name"
-                className="rounded border border-gray-300 px-3 py-2 font-[Inter] text-[14px] text-black placeholder-black"
+                className="rounded border border-gray-300 bg-white px-3 py-2 font-[Inter] text-[14px] text-black"
               />
               <textarea
                 required
                 placeholder="Message"
-                className="rounded border border-gray-300 px-3 py-2 font-[Inter] text-[14px] text-black placeholder-black"
+                className="resize-none rounded border border-gray-300 bg-white px-3 py-2 font-[Inter] text-[14px] text-black"
                 rows="4"
               ></textarea>
               <button
                 type="submit"
-                className="rounded bg-[#ff6a00] px-4 py-2 font-bold text-white transition-colors duration-300 hover:bg-[#333333]"
+                className="rounded bg-[#ff6a00] px-4 py-2 font-semibold text-white transition-colors duration-300 hover:bg-[#333333]"
               >
                 Submit
               </button>
@@ -265,12 +264,10 @@ export default function CorporateWelness() {
 
 const PackageSubCard = ({ title, image, description }) => {
   return (
-    <div className="flex h-full w-full md:w-[210px] flex-col items-center justify-start gap-3 rounded-lg bg-white p-4 text-center shadow-sm">
+    <div className="flex h-full w-full flex-col items-center justify-start gap-3 rounded-lg bg-white p-4 text-center shadow-sm md:w-[210px]">
       <img src={image} alt={title} className="h-14 w-14 sm:h-16 sm:w-16" />
       <h3 className="font-[Inter] text-base font-bold text-black sm:text-[17px]">{title}</h3>
-      <p className="text-xs text-[#454545aa] sm:text-sm">
-        {description}
-      </p>
+      <p className="text-xs text-[#454545aa] sm:text-sm">{description}</p>
     </div>
   );
 };
