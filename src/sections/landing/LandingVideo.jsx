@@ -341,7 +341,7 @@ export default function LandingVideo({ forwardedRef }) {
     ...rightCardData[i],
   }));
   // console.log('phoneBgArray', phoneBgArray);
-  console.log('combinedFeatures', combinedFeatures);
+  // console.log('combinedFeatures', combinedFeatures);
 
   return (
     <>
@@ -374,24 +374,24 @@ export default function LandingVideo({ forwardedRef }) {
           ref={textContent}
           className="relative z-[8] flex h-full w-full items-center justify-center"
         >
-          <div className="z-[20] w-full px-4 text-center leading-[1.2] text-white">
-            <h1 className="font-[Arima] text-[40px] font-bold md:text-[72px]">Optimal Health</h1>
-            <h2 className="mt-2 font-[Inter] text-[20px] font-light tracking-wider md:text-[40px]">
+          <div className="z-[20] w-full pt-14 text-center text-white">
+            <h1 className="font-[Arima] text-[40px] font-bold md:text-6xl">Optimal Health</h1>
+            <h2 className="mt-2 font-[Inter] text-base font-extralight md:text-4xl">
               Through clinically guided and outcome-driven care.
             </h2>
-            <div className="mx-auto mt-6 flex max-w-[600px] flex-col items-center gap-6">
-              <p className="spacing-2 mx-auto font-[Inter] text-sm">
+            <div className="mx-auto mt-6 flex max-w-[600px] flex-col items-center">
+              <p className="mx-auto font-[Inter] text-sm">
                 Continous health Monitoring, expert-led guidance, and personalised action plans to
                 help you prevent, manage, and reverse lifestyle conditions.
               </p>
               <button
-                className="spacing-2 animate-pulse cursor-pointer rounded-full bg-white px-6 py-4 font-[Inter] font-bold text-black"
+                className="mt-4 cursor-pointer rounded-full bg-white px-6 py-2 font-[Inter] font-semibold text-black"
                 onClick={() => navigate('/plans/')}
               >
                 Start your journey
               </button>
 
-              <button className="spacing-2 rounded-full border-[2px] border-white bg-transparent px-6 py-4 font-[Inter] font-bold text-white">
+              <button className="mt-4 rounded-full border border-white cursor-pointer bg-transparent px-6 py-3 font-[Inter] font-semibold text-white">
                 Is MyTwin for me?
               </button>
             </div>
@@ -472,25 +472,25 @@ export default function LandingVideo({ forwardedRef }) {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           ref={myTwinFrameworkHeading}
           className="absolute bottom-0 left-0 right-0 z-[14] m-auto flex h-[100px] w-full items-center justify-center opacity-0"
         >
           <h2 className="font-[Arima] text-[2.5rem] font-bold tracking-wide text-black">
             MyTwin 4M Framework
           </h2>
-        </div>
+        </div> */}
       </section>
 
       {/* Mobile-Only Feature Stack (Fallback for ScrollTrigger pinning) */}
-      <div className="block flex flex-col gap-2 bg-[#F1EFEC] px-2 py-4 text-white md:hidden">
+      {/* <div className="flex flex-col gap-2 bg-[#F1EFEC] px-2 py-4 text-white md:hidden">
         {combinedFeatures.map((feature, index) => (
           <CombinedFeaturePhone key={index} feature={feature} />
         ))}
         <h2 className="text-center font-[Arima] text-[1.7rem] font-bold tracking-wide text-black">
           MyTwin 4M Framework
         </h2>
-      </div>
+      </div> */}
     </>
   );
 }

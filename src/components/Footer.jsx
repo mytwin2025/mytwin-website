@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Media } from '../utils/media';
+import playstore from '../assets/images/playstore.png';
+import apple from '../assets/images/apple.png';
 const company = [
   {
     name: 'About Us',
@@ -52,39 +54,55 @@ export default function Footer({ style }) {
     <footer style={style} className="w-full bg-[#F4F4F2] px-6 py-10 md:px-10">
       {/* Top row */}
       <div className="top-row flex w-full flex-col items-start justify-between md:flex-row">
-        <div className="flex w-full flex-col items-start justify-between pb-8 md:flex-row">
-          <div className="">
+        <div className="flex w-full flex-col items-center justify-between pb-8 md:flex-row">
+          <div className="w-1/2 ">
             <img src={Media.header.mytwin} alt="MyTwin Logo" className="h-6 w-auto md:h-8" />
-            <h2 className="text-[18px] leading-tight text-black md:text-3xl">
-              Learn how to build a <span className="text-orange-500">healthier</span>
-              <br />
-              <span className="text-orange-500">and longer</span> life with MyTwin
+            <h2 className="mt-4 text-lg font-bold leading-tight text-black md:text-2xl">
+              India's family first{' '}
+              <span className="text-orange-500">fully integrated chronic care platform</span>{' '}
+              supporting you & your parents between doctor visits
             </h2>
           </div>
           {/* App store buttons */}
-          <div className="mt-6 flex items-center gap-0 rounded-full bg-black px-1 py-1 md:mt-0">
-            <a href="#" className="flex items-center gap-2 px-4 py-2 text-white">
-              <svg
+          <div className="inline-flex items-center rounded-full bg-black px-2 py-2">
+            <a
+              href="#"
+              className="flex shrink-0 items-center gap-2 whitespace-nowrap px-2 py-1 text-white"
+            >
+              {/* <svg
+                className="h-7 w-7 flex-shrink-0"
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
                 viewBox="0 0 814 1000"
-                fill="white"
+                fill="currentColor"
               >
                 <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-42.4-155.5-127.4C46.7 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 71 0 130.5 46.4 174.9 46.4 42.7 0 109.2-49.9 188.2-49.9 30.3 0 130.9 2.6 198.3 99zM549.8 148.8c22.1-26 37.3-62.3 37.3-98.6 0-5.2-.4-10.5-1.3-14.7-34.9 1.3-76.1 23.3-100.8 51.7-20.1 23-38.7 59.3-38.7 96.2 0 5.8.9 11.7 1.3 13.6 2.2.4 5.8.9 9.4.9 31.3 0 70.1-21 92.8-49.1z" />
-              </svg>
-              <span className="text-xs font-semibold md:text-sm">App Store</span>
+              </svg> */}
+              <img width={40} src={apple} alt="Apple App Store" />
+
+              <span className="text-sm font-semibold">App Store</span>
             </a>
-            <div className="h-6 w-px bg-white/30" />
-            <a href="#" className="flex items-center gap-2 px-4 py-2 text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+
+            <div className="mx-1 h-6 w-px bg-white/30" />
+
+            <a
+              href="#"
+              className="flex shrink-0 items-center gap-2 whitespace-nowrap px-2 py-1 text-white"
+            >
+              {/* <svg
+                className="h-7 w-7 flex-shrink-0"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+              >
                 <path fill="#4CAF50" d="M8 4l22 20L8 44V4z" />
                 <path fill="#FFEB3B" d="M8 4l22 20 8-7.3L8 4z" />
                 <path fill="#F44336" d="M8 44l22-20 8 7.3L8 44z" />
                 <path fill="#2196F3" d="M30 24L8 4l30 13.3L30 24z" />
                 <path fill="#2196F3" d="M30 24l8 7.3L38 17.3 30 24z" />
-              </svg>
-              <span className="text-xs font-semibold md:text-sm">Google Play</span>
+              </svg> */}
+
+              <img width={40} src={playstore} alt="Google Play Store" />
+
+              <span className="text-sm font-semibold">Google Play</span>
             </a>
           </div>
         </div>

@@ -34,18 +34,21 @@ export default function AppFrameworkSection({ frameRef }) {
   ];
   return (
     <div
-      className="flex h-auto w-full flex-col items-center justify-start bg-[#F1EFEC] text-center pb-12"
+      className="flex h-auto w-full flex-col items-center justify-start bg-[#F1EFEC] py-12 text-center"
       ref={frameRef}
     >
-      <p className="max-w-[90%] text-center text-[14px]  font-[Inter] text-black md:max-w-[70%]">
+      <h2 className="font-[Arima] text-[45px] leading-tight mb-4 font-bold text-black">
+        MyTwin 4M Framework
+      </h2>
+      <p className="max-w-[90%] text-center font-[Inter] text-sm text-black md:max-w-[70%]">
         Your Body Is Constantly Giving Signals,You are just not tracking them.MyTwin Helps You
-        Understand them. <br /> MyTwin combines real-time health monitoring, AI-powered insights, and
-        clinically guided care to detect risks early, improve daily habits, and optimize long-term
-        health outcomes.
+        Understand them. <br /> MyTwin combines real-time health monitoring, AI-powered insights,
+        and clinically guided care to detect risks early, improve daily habits, and optimize
+        long-term health outcomes.
       </p>
       <div
         id="framework"
-        className="h-auto w-[92%] md:w-[88%] grid grid-cols-1 md:grid-cols-2 items-start justify-between justify-items-center gap-8 md:gap-4 mt-12"
+        className="mt-12 grid h-auto w-[92%] grid-cols-1 items-start justify-between justify-items-center gap-8 md:w-[88%] md:grid-cols-2 md:gap-4"
         ref={frameRef}
       >
         {frameworkData.map((data, index) => (

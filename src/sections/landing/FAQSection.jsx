@@ -37,8 +37,8 @@ export default function FAQSection() {
     },
   ];
   return (
-    <div className="relative flex w-full items-start justify-center bg-[#F0EFED]">
-      <div className="relative w-full z-10 mb-20">
+    <div className="relative flex w-full items-start py-20 justify-center bg-[#F0EFED]">
+      <div className="relative w-full z-10">
         <h1 className="text-center font-[Arima] text-4xl font-bold text-gray-800">
           Frequently Asked Questions (FAQ)
         </h1>

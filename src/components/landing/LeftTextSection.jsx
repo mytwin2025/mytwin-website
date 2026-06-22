@@ -19,7 +19,7 @@ export default function LeftTextSection({
         {index}
       </span>
 
-      <h2 className="font-[Arima] text-5xl font-black leading-tight text-black">
+      <h2 className="font-[Arima] text-[45px] font-black leading-tight text-black">
         {procHeading}
       </h2>
 

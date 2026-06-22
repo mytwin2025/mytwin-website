@@ -44,14 +44,14 @@ export default function DetailsCard({
     >
       <div className="flex h-full w-full flex-col items-start justify-between gap-4 p-6">
         <div className={``}>
-          <img src={icon} alt={`${title} icon`} style={{ width: '42px', height: '42px' }} />
+          <img src={icon} alt={`${title} icon`} style={{ width: '60px', height: '60px' }} />
           <h3
             style={{ color: buttonColor }}
-            className={`font-[Inter] text-1.8xl font-bold leading-[24px] text-black mt-4`}
+            className={`font-[Inter] text-xl font-bold text-black mt-2`}
           >
             {procTitle}
           </h3>
-          <p className={`text-[14px] leading-relaxed text-[#484848] mt-4 whitespace-pre-wrap ${textClassName}`}>{paragraph}</p>
+          <p className={`text-sm text-[#484848] mt-2 whitespace-pre-wrap ${textClassName}`}>{paragraph}</p>
         </div>
         <RoundArrowButton
           buttonColor={buttonColor}

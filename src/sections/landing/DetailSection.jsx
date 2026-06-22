@@ -173,7 +173,7 @@ export default function DetailSection({ frameRef }) {
           id={'text-container'}
           className="flex w-full flex-col items-center justify-center gap-4 px-4 py-12"
         >
-          <h2 className="text-center font-[Arima] text-[1.6rem] font-black font-bold leading-tight text-white md:text-4xl">
+          <h2 className="text-center font-[Arima] text-[1.6rem] font-bold leading-tight text-white md:text-[45px]">
             We help you reverse these health <br />
             conditions.
           </h2>
@@ -335,7 +335,7 @@ export default function DetailSection({ frameRef }) {
             textClassName="text-[10px] md:text-[16px] text-blue-300 w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
           />
           {/* </div> */}
-          <div className="flex w-full items-center justify-start justify-center">
+          <div className="flex w-full items-center justify-center">
             <DetailsCard
               index={cardData[1].index}
               title={cardData[1].title}

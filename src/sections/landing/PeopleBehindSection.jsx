@@ -73,11 +73,29 @@ export default function PeopleBehindSection() {
           <h1 ref={heading} className="text-center font-[Arima] text-4xl font-bold text-gray-800">
             The Minds Behind The Mission
           </h1>
-          <div
+          {/* <div
             ref={avatar}
-            className="mt-10 flex w-full flex-wrap items-center justify-center gap-8 md:translate-y-[90%]"
-          >
+            className="mt-10 flex w-full flex-wrap items-center justify-center gap-8"
+          > */}
+          <div className="grid w-full translate-y-28 grid-cols-1 items-start justify-center gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
             {people.map((person, index) => (
+              <div
+                key={person.name}
+                className={`text-center ${index % 2 === 0 ? 'lg:translate-y-16' : 'lg:translate-y-0'}`}
+              >
+                <div className="mx-auto h-40 w-40 overflow-hidden rounded-full sm:h-44 sm:w-44 lg:h-52 lg:w-52">
+                  <img
+                    src={person.image}
+                    alt={person.name}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <h3 className="mt-5 text-xl font-semibold text-gray-900">{person.name}</h3>
+                <p className="mt-1 text-gray-500">{person.designation}</p>
+              </div>
+            ))}
+            {/* </div> */}
+            {/* {people.map((person, index) => (
               <Avatar
                 key={index}
                 image={person.image}
@@ -93,7 +111,7 @@ export default function PeopleBehindSection() {
                 className={isMobile ? 'w-full' : 'w-auto'}
                 imageClassName="h-50 w-60 object-cover rounded-full"
               />
-            ))}
+            ))} */}
           </div>
         </div>
         <img
@@ -104,9 +122,9 @@ export default function PeopleBehindSection() {
         />
       </div>
 
-      <div className="relative block flex w-full items-start justify-center bg-[#F0EFED] md:hidden">
-        <div className="relative z-10 mt-6 h-full w-full mb-8">
-          <h1 className="text-center font-[Arima] text-4xl font-bold text-gray-800 mt-8">
+      <div className="relative flex w-full items-start justify-center bg-[#F0EFED] md:hidden">
+        <div className="relative z-10 mb-8 mt-6 h-full w-full">
+          <h1 className="mt-8 text-center font-[Arima] text-4xl font-bold text-gray-800">
             The Minds Behind The Mission
           </h1>
           <div className="mt-10 grid w-full grid-cols-2 items-center justify-center">
@@ -116,12 +134,12 @@ export default function PeopleBehindSection() {
                 image={person.image}
                 name={person.name}
                 designation={person.designation}
-                className="last:col-span-2 last:justify-self-center last:mx-auto last:w-[50%]"
+                className="last:col-span-2 last:mx-auto last:w-[50%] last:justify-self-center"
                 // className="rounded-lg "
                 // style={{ height: '10vh', margin: '0px' }}
-              
+
                 imageClassName="rounded-lg w-[80%] object-cover my-2"
-              /> 
+              />
             ))}
           </div>
         </div>
