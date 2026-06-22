@@ -374,13 +374,13 @@ export default function LandingVideo({ forwardedRef }) {
           ref={textContent}
           className="relative z-[8] flex h-full w-full items-center justify-center"
         >
-          <div className="z-[20] w-full pt-14 text-center text-white">
+          <div className="z-[20] w-full px-4 pt-14 text-center text-white">
             <h1 className="font-[Arima] text-[40px] font-bold md:text-6xl">Optimal Health</h1>
-            <h2 className="mt-2 font-[Inter] text-base font-extralight md:text-4xl">
+            <h2 className="mt-2 font-[Inter] text-2xl font-extralight md:text-4xl">
               Through clinically guided and outcome-driven care.
             </h2>
             <div className="mx-auto mt-6 flex max-w-[600px] flex-col items-center">
-              <p className="mx-auto font-[Inter] text-sm">
+              <p className="mx-auto font-[Inter] text-sm font-extralight">
                 Continous health Monitoring, expert-led guidance, and personalised action plans to
                 help you prevent, manage, and reverse lifestyle conditions.
               </p>
@@ -391,7 +391,7 @@ export default function LandingVideo({ forwardedRef }) {
                 Start your journey
               </button>
 
-              <button className="mt-4 rounded-full border border-white cursor-pointer bg-transparent px-6 py-3 font-[Inter] font-semibold text-white">
+              <button className="mt-4 cursor-pointer rounded-full border border-white bg-transparent px-6 py-3 font-[Inter] font-semibold text-white">
                 Is MyTwin for me?
               </button>
             </div>

@@ -205,7 +205,7 @@ export default function DetailSection({ frameRef }) {
       >
         <div className="flex min-h-full w-[100%] flex-wrap items-center justify-center">
           <div className="flex w-full items-start justify-center">
-            <div className="">
+            <div>
               <DetailsCard
                 index={cardData[0].index}
                 title={cardData[0].title}
@@ -321,6 +321,7 @@ export default function DetailSection({ frameRef }) {
             bgColor={cardData[0].bgColor}
             imageClassName="h-[90%] md:h-full"
             textClassName="text-[10px] md:text-[16px] text-blue-300 w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+            imageClassName="w-1/2 md:w-auto"
           />
           <DetailsCard
             index={cardData[3].index}
@@ -333,9 +334,10 @@ export default function DetailSection({ frameRef }) {
             bgColor={cardData[3].bgColor}
             imageClassName="h-[90%] md:h-full"
             textClassName="text-[10px] md:text-[16px] text-blue-300 w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+            imageClassName="w-[50%] md:w-auto"
           />
           {/* </div> */}
-          <div className="flex w-full items-center justify-center">
+          <div className="flex w-full flex-col items-center justify-center">
             <DetailsCard
               index={cardData[1].index}
               title={cardData[1].title}
@@ -347,6 +349,7 @@ export default function DetailSection({ frameRef }) {
               bgColor={cardData[1].bgColor}
               style={{ height: '75vh', marginLeft: '0px' }}
               textClassName="text-[10px] md:text-[16px] w-[100%] md:whitespace-pre-line leading-tight md:leading-relaxed"
+              imageClassName="w-[60%] md:w-auto"
             />
             <DetailsCard
               index={cardData[2].index}
@@ -359,6 +362,7 @@ export default function DetailSection({ frameRef }) {
               bgColor={cardData[2].bgColor}
               style={{ height: '75vh', marginRight: '0px' }}
               textClassName="text-[10px] md:text-[16px] w-[100%] md:w-full whitespace-pre-wrap leading-tight md:leading-relaxed"
+              imageClassName="w-[60%] md:w-auto"
             />
           </div>
           <DetailsCard
@@ -373,6 +377,7 @@ export default function DetailSection({ frameRef }) {
             imageClassName="h-[90%] md:h-full"
             // textClassName="text-[12px] md:text-[16px] text-blue-300"
             textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+            imageClassName="w-[60%] md:w-auto"
           />
           <DetailsCard
             index={cardData[5].index}
@@ -386,6 +391,7 @@ export default function DetailSection({ frameRef }) {
             imageClassName="h-[90%] md:h-full"
             // textClassName="text-[12px] md:text-[16px] text-blue-300"
             textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+            imageClassName="w-[60%] md:w-auto"
           />
         </div>
       </div>
