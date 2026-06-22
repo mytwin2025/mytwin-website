@@ -6,13 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import LeftTextSection from '../../components/landing/LeftTextSection';
 import RightTextCardSection from '../../components/landing/RightTextCardSection';
-import AppointmentCard from '../../components/landing/AppointmentCard';
-import FaceScanVitalCard from '../../components/landing/FaceScanVitalCard';
-import LabCard from '../../components/landing/LabCard';
-import MealBodyVitalCard from '../../components/landing/MealBodyVitalCard';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import CombinedFeaturePhone from '../../components/CombinedFeaturePhone';
 export default function LandingVideo({ forwardedRef }) {
   const navigate = useNavigate();
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -398,13 +393,14 @@ export default function LandingVideo({ forwardedRef }) {
           </div>
         </div>
 
-        <div ref={bgBlurSlider} id="bgBlurSlider" className="">
+        <div ref={bgBlurSlider} id="bgBlurSlider">
           <div className="blur-top" />
         </div>
 
+        {/* Middle mobile layout good in desktop*/}
         <div
           ref={phoneModelWrap}
-          className="absolute bottom-0 left-0 right-0 top-0 z-[12] flex h-screen w-full items-center justify-center overflow-hidden opacity-0"
+          className="absolute bottom-0 left-0 right-0 top-0 z-[12] hidden h-screen w-full items-center justify-center overflow-hidden opacity-0 md:flex"
         >
           <div
             className={`absolute bottom-0 left-0 right-0 top-0 m-auto flex h-full flex-row items-center justify-around`}
@@ -482,15 +478,35 @@ export default function LandingVideo({ forwardedRef }) {
         </div> */}
       </section>
 
-      {/* Mobile-Only Feature Stack (Fallback for ScrollTrigger pinning) */}
-      {/* <div className="flex flex-col gap-2 bg-[#F1EFEC] px-2 py-4 text-white md:hidden">
+      {/* Mobile-only stacked flow: left text -> phone -> right content */}
+      <div className="flex flex-col gap-8 bg-[#F1EFEC] px-4 py-6 md:hidden">
         {combinedFeatures.map((feature, index) => (
-          <CombinedFeaturePhone key={index} feature={feature} />
+          <div key={feature.index} className="rounded-3xl bg-white p-4 shadow-sm">
+            <LeftTextSection
+              index={feature.index}
+              heading={feature.heading}
+              buttonText={feature.buttonText}
+            />
+
+            <div className="relative mx-auto mt-1 w-[78%] max-w-[280px]">
+              <img
+                src={Media.landing.iphoneModel}
+                alt="iPhone Model"
+                className="relative z-[2] w-full object-contain"
+              />
+              <img
+                src={feature.phoneBg}
+                alt={`${feature.heading} preview`}
+                className="absolute left-[5.5%] top-[0] z-[1] w-[90%] rounded-[1.2rem] object-cover"
+              />
+            </div>
+
+            <div className="mt-2">
+              <RightTextCardSection paragraph={feature.paragraph} tableData={feature.tableData} />
+            </div>
+          </div>
         ))}
-        <h2 className="text-center font-[Arima] text-[1.7rem] font-bold tracking-wide text-black">
-          MyTwin 4M Framework
-        </h2>
-      </div> */}
+      </div>
     </>
   );
 }
