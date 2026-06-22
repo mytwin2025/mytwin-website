@@ -38,7 +38,7 @@ function LinkList({ heading, links }) {
         <Link
           key={index}
           to={link.link}
-          className="font-[Inter] text-xs md:text-sm text-gray-600 transition-colors hover:text-black"
+          className="font-[Inter] text-xs text-gray-600 transition-colors hover:text-black md:text-sm"
         >
           {link.name}
         </Link>
@@ -90,8 +90,8 @@ export default function Footer({ style }) {
         </div>
       </div>
       {/* Divider */}
-      <div className="flex flex-col gap-4 md:hidden mb-4">
-        <span className="font-[Inter] text-md font-bold text-black">About MyTwin</span>
+      <div className="mb-4 flex flex-col gap-4 md:hidden">
+        <span className="text-md font-[Inter] font-bold text-black">About MyTwin</span>
         <p className="text-sm leading-relaxed text-gray-600">
           MyTwin combines technology, health expertise, and real-time insights to help you take
           better control of your body, habits, and long-term health. From fitness and nutrition to
@@ -104,8 +104,8 @@ export default function Footer({ style }) {
       <hr className="mb-8 border-gray-300" />
 
       {/* Bottom grid */}
-      <div className="grid grid-cols-3 md:grid-cols-4 gap-8">
-        <div className="flex hidden flex-col gap-4 md:flex">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="hidden flex-col gap-4 md:flex">
           <span className="text-sm font-bold text-black">About MyTwin</span>
           <p className="text-sm leading-relaxed text-gray-600">
             MyTwin combines technology, health expertise, and real-time insights to help you take

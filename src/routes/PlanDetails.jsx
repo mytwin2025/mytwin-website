@@ -598,7 +598,7 @@ Personalized Plans that Protect muscle & Support Long Term Weight management.`,
             <h2 className="text-center font-[Arima] text-3xl font-bold leading-snug text-white md:text-5xl md:leading-tight">
               {processedHeading}
             </h2>
-            <p className="text-center font-[Inter] text-sm leading-relaxed text-white">
+            <p className="text-center font-light font-[Inter] text-sm leading-relaxed text-white">
               {processedSubHeading}
             </p>
             <button className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-gray-100">
