@@ -1,0 +1,27 @@
+.plans > .top-card > .content {
+  background-image: linear-gradient(to right, #d9eafa, #f1f4ed, #fbedfe);
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  /* pointer-events: none; */
+  overscroll-behavior: contain;
+}
+
+
+/* *{
+  outline: 1px solid red;
+} */
+
+
+.pill::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+.pill::-webkit-scrollbar-track {
+  background: transparent;
+}
+.pill::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 2px;
+  scrollbar-gutter: stable both-edges;
+}

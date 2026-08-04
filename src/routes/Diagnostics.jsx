@@ -1,0 +1,397 @@
+import React, { useState } from 'react';
+import { Media } from '../utils/media';
+import Footer from '../components/Footer';
+import RazorpayButton from '../components/PaymentComponent';
+import DiagnosisBookForm from '../components/DiagnosisBookForm';
+import { useContactForm } from '../context/ContactFormContext';
+import { card } from '../components/DiagnosisBookForm';
+import { useLocation } from 'react-router-dom';
+import {
+  ShieldCheck,
+  BadgeCheck,
+  FilePlus,
+  Droplet,
+  ArrowRightIcon as RightArrow,
+  X,
+  Clock,
+  FileText,
+} from 'lucide-react';
+export default function Diagnostics() {
+  const location = useLocation();
+  const isBookingFlow = location.state?.isBookingFlow || false;
+  console.log(location.state);
+  const { handleOpenModal } = useContactForm();
+  const [showConsultationModal, setShowConsultationModal] = useState(false);
+  const [selectedPackageId, setSelectedPackageId] = useState(null);
+  const [selectedMemberCount, setSelectedMemberCount] = useState(1);
+
+  const handleOpenBooking = (pkgId, membersCount = 1) => {
+    setSelectedPackageId(pkgId);
+    setSelectedMemberCount(membersCount);
+    setShowConsultationModal(true);
+  };
+
+  const highlight = [
+    {
+      title: 'Certified Phlebotomists',
+      img: Media.icons.phlebo,
+      ringColor: '#015C3E',
+    },
+    {
+      title: 'CAP & NABL Accredited Labs',
+      img: Media.icons.cap,
+      ringColor: '#441FAF',
+    },
+    {
+      title: 'Free Report Consultation',
+      img: Media.icons.consult,
+      ringColor: '#701C89',
+    },
+  ];
+
+  return (
+    <div className="flex min-h-screen w-full items-start justify-center bg-[#f0efed]">
+      <div className="content mt-[84px] flex h-full w-full flex-col items-center justify-start gap-5 pb-8 sm:mt-[100px] sm:gap-6 md:mt-[124px]">
+        <div className="relative flex h-full w-[92%] items-start justify-center gap-4 sm:w-[90%] sm:gap-6">
+          <img src={Media.diagnosticsBanner} alt="diagnostics banner" className="h-auto w-full" />
+          <button
+            className="sm:left-15 absolute bottom-[11%] left-[3%] h-[14px] w-[32vw] rounded-full bg-[transparent] px-3 py-1 text-xs font-medium text-white transition-colors duration-300 sm:bottom-1 sm:h-[44px] sm:w-[29vw] sm:px-4 sm:py-2 sm:text-sm md:bottom-8 md:left-14 md:h-[64px] md:w-[28vw]"
+            onClick={() => handleOpenBooking(null)}
+          >
+            {/* Contact Us */}
+          </button>
+        </div>
+        <div className="flex h-full w-[92%] flex-col items-start justify-center gap-4 sm:w-[90%] sm:gap-6">
+          <h2 className="mb-4 w-full font-[Arima] text-2xl font-bold leading-tight text-[#1E253A] sm:text-3xl md:text-[40px]">
+            Find test by Organs
+          </h2>
+          <div className="grid w-full grid-cols-4 gap-x-3 gap-y-6 sm:grid-cols-6 sm:gap-x-6 sm:gap-y-8 lg:flex lg:flex-nowrap lg:justify-between">
+            {Object.entries(Media.vitalOrgans).map(([key, imgSrc], index) => {
+              return (
+                <div
+                  key={key}
+                  className="group flex w-full cursor-pointer flex-col items-center justify-start"
+                >
+                  <div
+                    className="mb-2 flex aspect-square w-[56px] items-end justify-center overflow-hidden rounded-b-[16px] rounded-t-[100px] transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-lg sm:w-[70px] md:w-[86px] lg:w-[90px] xl:w-[100px]"
+                  >
+                    <img src={imgSrc} alt={key} className="h-full w-full object-cover" />
+                  </div>
+                  <span className="text-center font-[Inter] text-[10px] font-medium leading-tight capitalize text-[#333] sm:text-xs lg:text-[13px]" style={{ letterSpacing: '-0.3px' }}>
+                    {key.replace(/([A-Z])/g, ' $1').trim()}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <CheckupChip />
+        <div className="grid h-full w-[92%] grid-cols-1 gap-4 sm:w-[90%] sm:gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {card.map((pkg) => (
+            <CheckupCard
+              key={pkg.packageId}
+              title={pkg.name}
+              description={pkg.description}
+              testCount={pkg.sub}
+              price={parseInt(pkg.finalPrice.replace(/[^0-9]/g, ''), 10)}
+              originalPrice={parseInt(pkg.price.replace(/[^0-9]/g, ''), 10)}
+              icon="🧪"
+              tests={pkg.tests}
+              members={1}
+              offerText={pkg.discount + ' OFF'}
+              isBookingFlow={isBookingFlow}
+              onBook={(membersCount) => handleOpenBooking(pkg.packageId, membersCount)}
+            />
+          ))}
+        </div>
+
+        {/* Trust Section */}
+        <div className="flex w-[92%] flex-col items-center justify-center gap-6 py-6 sm:w-[90%] md:py-10">
+          <div className="grid w-full grid-cols-2 gap-3 md:grid-cols-4 md:gap-6">
+            <div className="relative flex min-h-[140px] flex-col items-start justify-end rounded-[20px] bg-[#f5f5f7] p-4 pt-12 shadow-sm sm:min-h-[160px] sm:p-5 sm:pt-14">
+              <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#e8e4ff] text-[#6b4cff] sm:h-12 sm:w-12">
+                <BadgeCheck size={28} />
+              </div>
+              <h3 className="font-[Inter] text-[20px] font-bold tracking-tight text-[#1c1c1c] sm:text-[24px]">
+                Trusted
+              </h3>
+              <p className="font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:text-[14px]">
+                labs. Accurate results
+              </p>
+            </div>
+            <div className="relative flex min-h-[140px] flex-col items-start justify-end rounded-[20px] bg-[#f5f5f7] p-4 pt-12 shadow-sm sm:min-h-[160px] sm:p-5 sm:pt-14">
+              <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#ffe8d6] text-[#ff7043] sm:h-12 sm:w-12">
+                <Droplet size={28} />
+              </div>
+              <h3 className="font-[Inter] text-[20px] font-bold tracking-tight text-[#1c1c1c] sm:text-[24px]">
+                Home
+              </h3>
+              <p className="font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:text-[14px]">
+                Hassle-free sample collections
+              </p>
+            </div>
+            <div className="relative flex min-h-[140px] flex-col items-start justify-end rounded-[20px] bg-[#f5f5f7] p-4 pt-12 shadow-sm sm:min-h-[160px] sm:p-5 sm:pt-14">
+              <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#dcf2f1] text-[#00838f] sm:h-12 sm:w-12">
+                <FilePlus size={28} />
+              </div>
+              <h3 className="font-[Inter] text-[20px] font-bold tracking-tight text-[#1c1c1c] sm:text-[24px]">
+                Smart
+              </h3>
+              <p className="font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:text-[14px]">
+                & fast report
+              </p>
+            </div>
+            <div className="relative flex min-h-[140px] flex-col items-start justify-end rounded-[20px] bg-[#f5f5f7] p-4 pt-12 shadow-sm sm:min-h-[160px] sm:p-5 sm:pt-14">
+              <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#dcedc8] text-[#33691e] sm:h-12 sm:w-12">
+                <ShieldCheck size={28} />
+              </div>
+              <h3 className="font-[Inter] text-[20px] font-bold tracking-tight text-[#1c1c1c] sm:text-[24px]">
+                Safe
+              </h3>
+              <p className="font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:text-[14px]">
+                & secure data
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-2 flex w-full items-center justify-center gap-3 rounded-[20px] bg-[#f5f5f7] py-4 shadow-sm sm:py-5">
+            <ShieldCheck className="text-[#33691e]" size={24} />
+            <span className="font-[Inter] text-[15px] font-medium text-[#1c1c1c] sm:text-[16px]">
+              Built on Trust. Backed by Science.
+            </span>
+          </div>
+          <span>Now offering lab tests across India</span>
+          <div className="flex w-full items-start justify-between gap-2 py-6 sm:justify-center sm:gap-16">
+            {highlight.map((item, index) => (
+              <div
+                key={index}
+                className="flex w-1/3 flex-col items-center justify-start gap-3 sm:w-[140px]"
+              >
+                <div
+                  className="flex h-[72px] w-[72px] items-center justify-center rounded-full sm:h-[88px] sm:w-[88px]"
+                  style={{
+                    border: `2px solid ${item.ringColor}`,
+                    padding: '4px',
+                  }}
+                >
+                  <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-white shadow-sm">
+                    <img src={item.img} alt={item.title} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+                <span className="text-center font-[Inter] text-[12px] font-semibold leading-snug text-[#1c1c1c] sm:text-[14px]">
+                  {item.title}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col items-center justify-center gap-4 text-center font-[Inter] text-[15px] font-medium text-[#6b7280] sm:text-[16px] md:flex-row">
+            <span className="font-[Inter] text-[18px] font-semibold leading-[24px] text-[#2F387F]">
+              Still have a question?
+            </span>
+            {/* Healthians Section */}
+
+            <button
+              className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pl-4 pr-4 transition-transform hover:scale-105"
+              onClick={handleOpenModal}
+            >
+              <div className="relative hidden h-10 w-[136px] md:flex">
+                {[
+                  'https://randomuser.me/api/portraits/men/32.jpg',
+                  'https://randomuser.me/api/portraits/women/44.jpg',
+                  'https://randomuser.me/api/portraits/men/46.jpg',
+                  'https://randomuser.me/api/portraits/women/68.jpg',
+                  'https://randomuser.me/api/portraits/men/85.jpg',
+                ].map((src, idx) => (
+                  <img
+                    key={idx}
+                    src={src}
+                    className="absolute top-0 h-10 w-10 rounded-full border-2 border-[#f3f3f4] object-cover"
+                    style={{
+                      transform: `translateX(${idx * 24}px)`,
+                      zIndex: 10 + idx,
+                    }}
+                    alt="user"
+                  />
+                ))}
+              </div>
+              <span className="text-[14px] font-semibold text-gray-800 md:text-[16px]">
+                Talk To Our Experts
+              </span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm">
+                <RightArrow size={20} color="#000" />
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <Footer />
+        <DiagnosisBookForm
+          isOpen={showConsultationModal}
+          onClose={() => setShowConsultationModal(false)}
+          initialPackageId={selectedPackageId}
+          initialMemberCount={selectedMemberCount}
+          isBookingFlow={isBookingFlow}
+        />
+      </div>
+    </div>
+  );
+}
+
+const CheckupChip = ({
+  data = [
+    // 'Fever',
+    'Full Body Checkup',
+    'Heart Disease',
+    'Kidney Disease',
+    'Diabetes',
+    'Hypertension',
+    'Liver Disease',
+  ],
+}) => {
+  return (
+    <div className="flex h-full w-[92%] flex-col items-start justify-center gap-4 sm:w-[90%] sm:gap-6">
+      <h2 className="font-[Arima] text-2xl font-bold leading-tight text-black sm:text-3xl md:text-4xl">
+        Explore Checkups
+      </h2>
+      <div className="pill flex w-full items-start justify-start gap-3 overflow-x-scroll pb-2 sm:gap-4">
+        {data.map((item, index) => (
+          <button
+            key={index}
+            className="flex h-[42px] min-w-max items-center justify-center rounded-full bg-[#fff] px-3 py-2 text-xs font-medium text-black transition-colors duration-300 hover:bg-[#333333] hover:text-white sm:h-[50px] sm:px-4 sm:text-sm"
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const CheckupCard = ({
+  icon = '🧪',
+  testCount = 54,
+  tests = [],
+  title = 'Comprehensive Male Health Screening Package',
+  description = 'Comprehensive male health screening package including multiple body checkup tests for overall wellness.',
+  offerText = 'Get upto 25% off on adding 6 member in plan',
+  members = 2,
+  price = 1500,
+  originalPrice = 2000,
+  isBookingFlow = false,
+  onBook = () => {},
+}) => {
+  const [selectedMembers, setSelectedMembers] = React.useState(members);
+  const [showTests, setShowTests] = React.useState(false);
+
+  // Calculate scaled prices relative to the base members configuration
+  const currentPrice = Math.round((price / members) * selectedMembers);
+  const currentOriginalPrice = Math.round((originalPrice / members) * selectedMembers);
+
+  return (
+    <div className="flex w-full flex-col justify-between gap-4 rounded-2xl bg-white p-4 shadow-sm sm:p-5">
+      <div className="flex flex-col gap-4">
+        {/* Top row: icon + test count */}
+        <div className="flex items-start justify-between">
+          <div className="flex h-[60px] w-[60px] items-center justify-center overflow-hidden rounded-full bg-[#fdf0eb] bg-cover bg-center text-[28px] sm:h-[72px] sm:w-[72px] sm:text-[32px]">
+            <img src={Media.icons.labIcon} alt="labIcon" className="h-full w-full object-cover" />
+          </div>
+          <span
+            onClick={() => {
+              if (tests && tests.length > 0) setShowTests(true);
+            }}
+            className="cursor-pointer rounded-xl bg-[#e0f2f1] px-3 py-1.5 text-[12px] font-semibold text-teal-600 underline decoration-dotted underline-offset-4 hover:text-teal-700 sm:px-4 sm:py-2 sm:text-[14px]"
+          >
+            {testCount} Tests
+          </span>
+        </div>
+
+        {/* Title & Description */}
+        <div className="flex flex-col gap-1">
+          <h3 className="font-[Public Sans] text-[16px] font-bold leading-snug text-black sm:text-[18px]">
+            {title}
+          </h3>
+          <p className="font-[Public Sans] text-[12px] leading-relaxed text-gray-500 sm:text-[13px]">
+            {description}
+          </p>
+          <div className="mt-1 flex w-full flex-wrap items-center justify-start gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 rounded-md bg-gray-100 px-2.5 py-1 text-gray-600">
+              <Clock size={12} className="text-gray-500" />
+              <span className="font-[Public Sans] text-[11px] font-medium leading-none sm:text-[12px]">
+                12 hrs fasting
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-md bg-gray-100 px-2.5 py-1 text-gray-600">
+              <FileText size={12} className="text-gray-500" />
+              <span className="font-[Public Sans] text-[11px] font-medium leading-none sm:text-[12px]">
+                Report in 24-48 hrs
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Offer Banner */}
+        <div className="flex items-center justify-center rounded-lg bg-[#f0fdf4] px-4 py-2">
+          <span className="font-[Public Sans] text-center text-[12px] font-medium text-green-600 sm:text-[13px]">
+            {offerText}
+          </span>
+        </div>
+
+        {/* Price and Action */}
+        <div className="mt-1 flex items-center justify-between gap-3">
+          <div className="flex items-baseline gap-2">
+            <span className="text-[18px] font-bold text-black sm:text-[22px]">
+              ₹{currentPrice.toLocaleString('en-IN')}
+            </span>
+            <span className="font-[Public Sans] text-[12px] text-gray-400 line-through sm:text-[14px]">
+              ₹{currentOriginalPrice.toLocaleString('en-IN')}
+            </span>
+          </div>
+          
+          <button
+            onClick={() => onBook(selectedMembers)}
+            className="cursor-pointer rounded-xl bg-orange-500 px-5 py-2.5 text-[14px] font-bold text-white transition-colors duration-200 hover:bg-orange-600 sm:px-6 sm:py-3 sm:text-[15px]"
+          >
+            {isBookingFlow ? 'Add To Cart' : 'Book Now'}
+          </button>
+        </div>
+      </div>
+
+      {/* Tests Modal */}
+      {showTests && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div
+            className="flex max-h-[85vh] w-full max-w-3xl flex-col rounded-2xl bg-white shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-gray-100 p-4 sm:p-5">
+              <h2 className="text-lg font-bold text-gray-900">{title} - Included Tests</h2>
+              <button
+                onClick={() => setShowTests(false)}
+                className="rounded-full p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-4 sm:p-5">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {tests.map((testGroup, idx) => (
+                  <div key={idx} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                    <h4 className="mb-2 text-sm font-bold text-gray-900">{testGroup.testName}</h4>
+                    {testGroup.subTests && testGroup.subTests.length > 0 ? (
+                      <ul className="flex list-disc flex-col gap-1.5 pl-4 text-xs text-gray-600">
+                        {testGroup.subTests.map((sub, sIdx) => (
+                          <li key={sIdx}>{sub}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
