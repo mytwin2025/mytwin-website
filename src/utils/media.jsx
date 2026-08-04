@@ -164,11 +164,11 @@ import phlebo from '../assets/images/phlebo.svg'
 import cap from '../assets/images/Cap.svg';
 import consult from '../assets/images/consult.svg'
 
-import Banner1 from '../assets/images/diagnostics/Banner1.png'
-import Banner2 from '../assets/images/diagnostics/Banner2.png'
-import Banner3 from '../assets/images/diagnostics/Banner3.png'
-import Banner4 from '../assets/images/diagnostics/Banner4.png'
-import Banner5 from '../assets/images/diagnostics/Banner5.png'
+// import Banner1 from '../assets/images/diagnostics/Banner1.png'
+// import Banner2 from '../assets/images/diagnostics/Banner2.png'
+// import Banner3 from '../assets/images/diagnostics/Banner3.png'
+// import Banner4 from '../assets/images/diagnostics/Banner4.png'
+// import Banner5 from '../assets/images/diagnostics/Banner5.png'
 
 export const Media = {
   webMetrics: {
