@@ -164,11 +164,41 @@ import phlebo from '../assets/images/phlebo.svg'
 import cap from '../assets/images/Cap.svg';
 import consult from '../assets/images/consult.svg'
 
-// import Banner1 from '../assets/images/diagnostics/Banner1.png'
-// import Banner2 from '../assets/images/diagnostics/Banner2.png'
-// import Banner3 from '../assets/images/diagnostics/Banner3.png'
-// import Banner4 from '../assets/images/diagnostics/Banner4.png'
-// import Banner5 from '../assets/images/diagnostics/Banner5.png'
+//diagnostic banner
+//obesity weight, diabetes, heart health, muscle strength, fatty liver, pcos 
+import diagnostics from '../assets/images/diagnostics/diagnostics.png'
+import diagnoIco1 from '../assets/images/diagnostics/icons/diagnoIco1.png'
+import diagnoIco2 from '../assets/images/diagnostics/icons/diagnoIco2.png'
+import diagnoIco3 from '../assets/images/diagnostics/icons/diagnoIco3.png'
+import diagnoIco4 from '../assets/images/diagnostics/icons/diagnoIco4.png'
+
+import diabetes from '../assets/images/diagnostics/diabetes.png'
+import diabetesIco1 from '../assets/images/diagnostics/icons/diabetesIco1.png'
+import diabetesIco2 from '../assets/images/diagnostics/icons/diabetesIco2.png'
+import diabetesIco3 from '../assets/images/diagnostics/icons/diabetesIco3.png'
+
+import heartDiag from '../assets/images/diagnostics/heart.png'
+import heartIco1 from '../assets/images/diagnostics/icons/heartIco1.png'
+import heartIco2 from '../assets/images/diagnostics/icons/heartIco2.png'
+import heartIco3 from '../assets/images/diagnostics/icons/heartIco3.png'
+
+// import muscle from '../assets/images/diagnostics/muscle.png'
+import fattyLiver from '../assets/images/diagnostics/fattyLiver.png'
+import liverIco1 from '../assets/images/diagnostics/icons/liverIco1.png'
+import liverIco2 from '../assets/images/diagnostics/icons/liverIco2.png'
+import liverIco3 from '../assets/images/diagnostics/icons/liverIco3.png'
+
+import pcos from '../assets/images/diagnostics/pcos.png'
+import pcosIco1 from '../assets/images/diagnostics/icons/pcosIco1.png'
+import pcosIco2 from '../assets/images/diagnostics/icons/pcosIco2.png'
+import pcosIco3 from '../assets/images/diagnostics/icons/pcosIco3.png'
+import pcosIco4 from '../assets/images/diagnostics/icons/pcosIco4.png'
+
+import bpCholesterol from '../assets/images/diagnostics/bpCholesterol.png'
+import bpIco1 from '../assets/images/diagnostics/icons/bpIco1.png'
+import bpIco2 from '../assets/images/diagnostics/icons/bpIco2.png'
+import bpIco3 from '../assets/images/diagnostics/icons/bpIco3.png'
+
 
 export const Media = {
   webMetrics: {
@@ -313,6 +343,34 @@ export const Media = {
     coachBanner,
   },
   diagnosticsBanner,
+  diagnosticBanners: {
+    diagnostics,
+    diagnoIco1,
+    diagnoIco2,
+    diagnoIco3,
+    diagnoIco4,
+    diabetes,
+    diabetesIco1,
+    diabetesIco2,
+    diabetesIco3,
+    heartDiag,
+    heartIco1,
+    heartIco2,
+    heartIco3,
+    fattyLiver,
+    liverIco1,
+    liverIco2,
+    liverIco3,
+    pcos,
+    pcosIco1,
+    pcosIco2,
+    pcosIco3,
+    pcosIco4,
+    bpCholesterol,
+    bpIco1,
+    bpIco2,
+    bpIco3,
+  },
   vitalOrgans:{
     heart:heartV,
     thyroid,
