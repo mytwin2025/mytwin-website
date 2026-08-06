@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Media } from '../utils/media';
 import Footer from '../components/Footer';
 import RazorpayButton from '../components/PaymentComponent';
@@ -12,10 +12,158 @@ import {
   FilePlus,
   Droplet,
   ArrowRightIcon as RightArrow,
+  ChevronLeft,
+  ChevronRight,
   X,
   Clock,
   FileText,
 } from 'lucide-react';
+const diagnosticBanner = [
+  {
+    badge: 'LIMITED TIME OFFER',
+    themeColor: '#f26522',
+    title: 'Full Body Checkups',
+    titleColor: '#000',
+    highlight: 'With Expert Health Insights',
+    highlightColor: '#f26522',
+    subtitle:
+      'Detect risks early with advanced diagnostics, doctor consultations, and comprehensive biomarker tracking.',
+    featuresVariant: 'cards',
+    features: [
+      {
+        icon: Media.diagnosticBanners.diagnoIco1,
+        title: 'On-time',
+        subtitle: 'sample collection',
+      },
+      {
+        icon: Media.diagnosticBanners.diagnoIco2,
+        title: 'FREE',
+        subtitle: 'doctor consultation',
+      },
+      {
+        icon: Media.diagnosticBanners.diagnoIco3,
+        title: 'Full body &',
+        subtitle: 'condition-specific tests',
+      },
+      {
+        icon: Media.diagnosticBanners.diagnoIco4,
+        title: 'Accurate reports',
+        subtitle: 'with health insights',
+      },
+    ],
+    btnText: 'Book Your Full Body Checkup',
+    btnColor: '#f26522',
+    showArrow: true,
+    image: Media.diagnosticBanners.diagnostics,
+  },
+  {
+    themeColor: '#9C1F52',
+    title: 'PCOS/PCOD CARE',
+    titleColor: '#701A41',
+    highlight: 'Blood Tests Package',
+    highlightColor: '#000',
+    hasSeparator: true,
+    separatorColor: '#701A41',
+    subtitle: 'Identify hormonal imbalances, manage symptoms & support better reproductive health.',
+    featuresVariant: 'icons',
+    features: [
+      { icon: Media.diagnosticBanners.pcosIco1, title: 'Hormone\nProfile' },
+      { icon: Media.diagnosticBanners.pcosIco2, title: 'Insulin\nResistance' },
+      { icon: Media.diagnosticBanners.pcosIco3, title: 'Thyroid\nProfile' },
+      { icon: Media.diagnosticBanners.pcosIco4, title: 'Vitamin D &\nB12' },
+    ],
+    btnText: 'KNOW MORE',
+    btnColor: '#9C1F52',
+    showArrow: false,
+    image: Media.diagnosticBanners.pcos,
+    slug: 'pcos-pcod-care',
+  },
+  {
+    themeColor: '#005C61',
+    title: 'DIABETES CARE',
+    titleColor: '#005C61',
+    highlight: 'Blood Tests Package',
+    highlightColor: '#000',
+    hasSeparator: true,
+    separatorColor: '#005C61',
+    subtitle: 'Track blood sugar, insulin & key markers to manage diabetes better.',
+    featuresVariant: 'icons',
+    features: [
+      { icon: Media.diagnosticBanners.diabetesIco1, title: 'Blood Sugar' },
+      { icon: Media.diagnosticBanners.diabetesIco2, title: 'HbA1c' },
+      { icon: Media.diagnosticBanners.diabetesIco3, title: 'Insulin\nResistance' },
+    ],
+    btnText: 'KNOW MORE',
+    btnColor: '#006E73',
+    showArrow: false,
+    image: Media.diagnosticBanners.diabetes,
+    slug: 'diabetes-care',
+  },
+  {
+    themeColor: '#96003B',
+    title: 'HEART CARE',
+    titleColor: '#96003B',
+    highlight: 'Blood Tests Package',
+    highlightColor: '#000',
+    hasSeparator: true,
+    separatorColor: '#96003B',
+    subtitle: 'Monitor heart health with advanced blood biomarkers.',
+    featuresVariant: 'icons',
+    features: [
+      { icon: Media.diagnosticBanners.heartIco1, title: 'Lipid\nProfile' },
+      { icon: Media.diagnosticBanners.heartIco2, title: 'hs-CRP' },
+      { icon: Media.diagnosticBanners.heartIco3, title: 'ApoB' },
+    ],
+    btnText: 'KNOW MORE',
+    btnColor: '#96003B',
+    showArrow: false,
+    image: Media.diagnosticBanners.heartDiag,
+    slug: 'heart-care',
+  },
+  {
+    themeColor: '#B84F00',
+    title: 'BP & CHOLESTEROL CARE',
+    titleColor: '#B84F00',
+    highlight: 'Blood Tests Package',
+    highlightColor: '#000',
+    hasSeparator: true,
+    separatorColor: '#B84F00',
+    subtitle: 'Keep your blood pressure & cholesterol in check to reduce heart risks.',
+    featuresVariant: 'icons',
+    features: [
+      { icon: Media.diagnosticBanners.bpIco1, title: 'Lipid\nProfile' },
+      { icon: Media.diagnosticBanners.bpIco2, title: 'BP Risk\nMarkers' },
+      { icon: Media.diagnosticBanners.bpIco3, title: 'Homocysteine' },
+    ],
+    btnText: 'KNOW MORE',
+    btnColor: '#C75300',
+    showArrow: false,
+    image: Media.diagnosticBanners.bpCholesterol,
+    slug: 'bp-cholesterol-care',
+  },
+  {
+    themeColor: '#346227',
+    title: 'FATTY LIVER CARE',
+    titleColor: '#346227',
+    highlight: 'Blood Tests Package',
+    highlightColor: '#000',
+    hasSeparator: true,
+    separatorColor: '#346227',
+    subtitle: 'Assess liver health & detect fatty liver early with key blood tests.',
+    featuresVariant: 'icons',
+    features: [
+      { icon: Media.diagnosticBanners.liverIco1, title: 'Liver Function\nTests (LFT)' },
+      { icon: Media.diagnosticBanners.liverIco2, title: 'GGT' },
+      { icon: Media.diagnosticBanners.liverIco3, title: 'Lipid\nProfile' },
+    ],
+    btnText: 'KNOW MORE',
+    btnColor: '#4C7D38',
+    showArrow: false,
+    image: Media.diagnosticBanners.fattyLiver,
+    slug: 'fatty-liver-care',
+  },
+];
+
 export default function Diagnostics() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,6 +173,25 @@ export default function Diagnostics() {
   const [showConsultationModal, setShowConsultationModal] = useState(false);
   const [selectedPackageId, setSelectedPackageId] = useState(null);
   const [selectedMemberCount, setSelectedMemberCount] = useState(1);
+  const [currentBanner, setCurrentBanner] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (!isHovered) {
+      const interval = setInterval(() => {
+        setCurrentBanner((prev) => (prev + 1) % diagnosticBanner.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [isHovered, diagnosticBanner.length]);
+
+  const nextBanner = () => {
+    setCurrentBanner((prev) => (prev + 1) % diagnosticBanner.length);
+  };
+
+  const prevBanner = () => {
+    setCurrentBanner((prev) => (prev - 1 + diagnosticBanner.length) % diagnosticBanner.length);
+  };
 
   const handleOpenBooking = (pkgId, membersCount = 1) => {
     setSelectedPackageId(pkgId);
@@ -50,288 +217,170 @@ export default function Diagnostics() {
     },
   ];
 
-  const diagnosticBanner = [
-    {
-      badge: 'LIMITED TIME OFFER',
-      themeColor: '#f26522',
-      title: 'Full Body Checkups',
-      titleColor: '#000',
-      highlight: 'With Expert Health Insights',
-      highlightColor: '#f26522',
-      subtitle:
-        'Detect risks early with advanced diagnostics, doctor consultations, and comprehensive biomarker tracking.',
-      featuresVariant: 'cards',
-      features: [
-        {
-          icon: Media.diagnosticBanners.diagnoIco1,
-          title: 'On-time',
-          subtitle: 'sample collection',
-        },
-        {
-          icon: Media.diagnosticBanners.diagnoIco2,
-          title: 'FREE',
-          subtitle: 'doctor consultation',
-        },
-        {
-          icon: Media.diagnosticBanners.diagnoIco3,
-          title: 'Full body &',
-          subtitle: 'condition-specific tests',
-        },
-        {
-          icon: Media.diagnosticBanners.diagnoIco4,
-          title: 'Accurate reports',
-          subtitle: 'with health insights',
-        },
-      ],
-      btnText: 'Book Your Full Body Checkup',
-      btnColor: '#f26522',
-      showArrow: true,
-      image: Media.diagnosticBanners.diagnostics,
-    },
-    {
-      themeColor: '#9C1F52',
-      title: 'PCOS/PCOD CARE',
-      titleColor: '#701A41',
-      highlight: 'Blood Tests Package',
-      highlightColor: '#000',
-      hasSeparator: true,
-      separatorColor: '#701A41',
-      subtitle:
-        'Identify hormonal imbalances, manage symptoms & support better reproductive health.',
-      featuresVariant: 'icons',
-      features: [
-        { icon: Media.diagnosticBanners.pcosIco1, title: 'Hormone\nProfile' },
-        { icon: Media.diagnosticBanners.pcosIco2, title: 'Insulin\nResistance' },
-        { icon: Media.diagnosticBanners.pcosIco3, title: 'Thyroid\nProfile' },
-        { icon: Media.diagnosticBanners.pcosIco4, title: 'Vitamin D &\nB12' },
-      ],
-      btnText: 'KNOW MORE',
-      btnColor: '#9C1F52',
-      showArrow: false,
-      image: Media.diagnosticBanners.pcos,
-      slug: 'pcos-pcod-care',
-    },
-    {
-      themeColor: '#005C61',
-      title: 'DIABETES CARE',
-      titleColor: '#005C61',
-      highlight: 'Blood Tests Package',
-      highlightColor: '#000',
-      hasSeparator: true,
-      separatorColor: '#005C61',
-      subtitle: 'Track blood sugar, insulin & key markers to manage diabetes better.',
-      featuresVariant: 'icons',
-      features: [
-        { icon: Media.diagnosticBanners.diabetesIco1, title: 'Blood Sugar' },
-        { icon: Media.diagnosticBanners.diabetesIco2, title: 'HbA1c' },
-        { icon: Media.diagnosticBanners.diabetesIco3, title: 'Insulin\nResistance' },
-      ],
-      btnText: 'KNOW MORE',
-      btnColor: '#006E73',
-      showArrow: false,
-      image: Media.diagnosticBanners.diabetes,
-      slug: 'diabetes-care',
-    },
-    {
-      themeColor: '#96003B',
-      title: 'HEART CARE',
-      titleColor: '#96003B',
-      highlight: 'Blood Tests Package',
-      highlightColor: '#000',
-      hasSeparator: true,
-      separatorColor: '#96003B',
-      subtitle: 'Monitor heart health with advanced blood biomarkers.',
-      featuresVariant: 'icons',
-      features: [
-        { icon: Media.diagnosticBanners.heartIco1, title: 'Lipid\nProfile' },
-        { icon: Media.diagnosticBanners.heartIco2, title: 'hs-CRP' },
-        { icon: Media.diagnosticBanners.heartIco3, title: 'ApoB' },
-      ],
-      btnText: 'KNOW MORE',
-      btnColor: '#96003B',
-      showArrow: false,
-      image: Media.diagnosticBanners.heartDiag,
-      slug: 'heart-care',
-    },
-    {
-      themeColor: '#B84F00',
-      title: 'BP & CHOLESTEROL CARE',
-      titleColor: '#B84F00',
-      highlight: 'Blood Tests Package',
-      highlightColor: '#000',
-      hasSeparator: true,
-      separatorColor: '#B84F00',
-      subtitle: 'Keep your blood pressure & cholesterol in check to reduce heart risks.',
-      featuresVariant: 'icons',
-      features: [
-        { icon: Media.diagnosticBanners.bpIco1, title: 'Lipid\nProfile' },
-        { icon: Media.diagnosticBanners.bpIco2, title: 'BP Risk\nMarkers' },
-        { icon: Media.diagnosticBanners.bpIco3, title: 'Homocysteine' },
-      ],
-      btnText: 'KNOW MORE',
-      btnColor: '#C75300',
-      showArrow: false,
-      image: Media.diagnosticBanners.bpCholesterol,
-      slug: 'bp-cholesterol-care',
-    },
-    {
-      themeColor: '#346227',
-      title: 'FATTY LIVER CARE',
-      titleColor: '#346227',
-      highlight: 'Blood Tests Package',
-      highlightColor: '#000',
-      hasSeparator: true,
-      separatorColor: '#346227',
-      subtitle: 'Assess liver health & detect fatty liver early with key blood tests.',
-      featuresVariant: 'icons',
-      features: [
-        { icon: Media.diagnosticBanners.liverIco1, title: 'Liver Function\nTests (LFT)' },
-        { icon: Media.diagnosticBanners.liverIco2, title: 'GGT' },
-        { icon: Media.diagnosticBanners.liverIco3, title: 'Lipid\nProfile' },
-      ],
-      btnText: 'KNOW MORE',
-      btnColor: '#4C7D38',
-      showArrow: false,
-      image: Media.diagnosticBanners.fattyLiver,
-      slug: 'fatty-liver-care',
-    },
-  ];
-
   return (
     <div className="flex min-h-screen w-full items-start justify-center bg-[#f0efed]">
       <div className="content mt-[84px] flex w-full flex-col items-center justify-start gap-5 pb-8 sm:mt-[100px] sm:gap-6 md:mt-[124px]">
         {/* Diagnostic Banners */}
-        <div className="flex w-[92%] snap-x snap-mandatory flex-row gap-4 overflow-x-auto pb-4 sm:w-[90%] md:gap-6" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          <style>{`
-            .flex.w-\\[92\\%\\].overflow-x-auto::-webkit-scrollbar,
-            .flex.w-\\[90\\%\\].overflow-x-auto::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
-          {diagnosticBanner.map((banner, index) => (
-            <div
-              key={index}
-              className="relative flex w-full shrink-0 snap-center flex-col justify-center overflow-hidden rounded-[24px] bg-[#fdfaf6] shadow-sm md:min-h-[460px] lg:min-h-[480px]"
-            >
-              {/* Desktop Image (Absolute Background) */}
-              <div className="absolute inset-0 z-0 hidden w-full md:block">
-                <img
-                  src={banner.image}
-                  alt="banner background"
-                  className="h-full w-full object-cover object-right"
-                />
-              </div>
-              {/* Mobile Image */}
-              <div className="relative z-0 w-full md:hidden">
-                <img
-                  src={banner.image}
-                  alt="banner background"
-                  className="h-auto w-full object-contain object-top"
-                />
-              </div>
+        <div
+          className="group relative w-[92%] overflow-hidden sm:w-[90%]"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div
+            className="flex flex-row transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${currentBanner * 100}%)` }}
+          >
+            {diagnosticBanner.map((banner, index) => (
+              <div
+                key={index}
+                className="relative flex w-full shrink-0 flex-col justify-center overflow-hidden rounded-[24px] bg-[#fdfaf6] shadow-sm md:min-h-[460px] lg:min-h-[480px]"
+              >
+                {/* Desktop Image (Absolute Background) */}
+                <div className="absolute inset-0 z-0 hidden w-full md:block">
+                  <img
+                    src={banner.image}
+                    alt="banner background"
+                    className="h-full w-full object-cover object-right"
+                  />
+                </div>
+                {/* Mobile Image */}
+                <div className="relative z-0 w-full md:hidden">
+                  <img
+                    src={banner.image}
+                    alt="banner background"
+                    className="h-auto w-full object-contain object-top"
+                  />
+                </div>
 
-              {/* Content Overlay */}
-              <div className="relative z-10 flex w-full flex-col items-start justify-center p-6 sm:p-8 md:w-[65%] lg:w-[60%] lg:p-12">
-                {banner.badge && (
-                  <div
-                    className="mb-4 inline-flex items-center justify-center rounded-full px-4 py-1.5 text-[10px] font-bold tracking-wide text-white sm:text-xs"
-                    style={{ backgroundColor: banner.themeColor }}
+                {/* Content Overlay */}
+                <div className="relative z-10 flex w-full flex-col items-start justify-center p-6 sm:p-8 md:w-[65%] lg:w-[60%] lg:p-12">
+                  {banner.badge && (
+                    <div
+                      className="mb-4 inline-flex items-center justify-center rounded-full px-4 py-1.5 text-[10px] font-bold tracking-wide text-white sm:text-xs"
+                      style={{ backgroundColor: banner.themeColor }}
+                    >
+                      {banner.badge}
+                    </div>
+                  )}
+
+                  <h2
+                    className="font-[Inter] text-3xl font-extrabold leading-[1.1] sm:text-4xl md:text-5xl lg:text-[52px]"
+                    style={{ color: banner.titleColor }}
                   >
-                    {banner.badge}
-                  </div>
-                )}
+                    {banner.title}
+                  </h2>
+                  <h2
+                    className={`font-[Inter] text-3xl font-extrabold leading-[1.1] sm:text-4xl md:text-5xl lg:text-[52px] ${banner.hasSeparator ? 'mb-2 md:mb-3' : 'mb-4'}`}
+                    style={{ color: banner.highlightColor }}
+                  >
+                    {banner.highlight}
+                  </h2>
 
-                <h2
-                  className="font-[Inter] text-3xl font-extrabold leading-[1.1] sm:text-4xl md:text-5xl lg:text-[52px]"
-                  style={{ color: banner.titleColor }}
-                >
-                  {banner.title}
-                </h2>
-                <h2
-                  className={`font-[Inter] text-3xl font-extrabold leading-[1.1] sm:text-4xl md:text-5xl lg:text-[52px] ${banner.hasSeparator ? 'mb-2 md:mb-3' : 'mb-4'}`}
-                  style={{ color: banner.highlightColor }}
-                >
-                  {banner.highlight}
-                </h2>
+                  {banner.hasSeparator && (
+                    <div
+                      className="mb-4 h-[2px] w-12 md:mb-6 lg:w-16"
+                      style={{ backgroundColor: banner.separatorColor }}
+                    ></div>
+                  )}
 
-                {banner.hasSeparator && (
-                  <div
-                    className="mb-4 h-[2px] w-12 md:mb-6 lg:w-16"
-                    style={{ backgroundColor: banner.separatorColor }}
-                  ></div>
-                )}
+                  <p className="mb-6 max-w-[480px] font-[Inter] text-sm font-medium text-[#4a4a4a] sm:text-base lg:text-lg">
+                    {banner.subtitle}
+                  </p>
 
-                <p className="mb-6 max-w-[480px] font-[Inter] text-sm font-medium text-[#4a4a4a] sm:text-base lg:text-lg">
-                  {banner.subtitle}
-                </p>
-
-                {banner.featuresVariant === 'cards' ? (
-                  <div className="mb-8 grid w-full max-w-[500px] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-                    {banner.features.map((feature, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-3 rounded-2xl border border-orange-100 bg-white/80 p-3 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:p-4"
-                      >
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center sm:h-12 sm:w-12">
-                          <img
-                            src={feature.icon}
-                            alt={feature.title}
-                            className="h-full w-full object-contain"
-                          />
+                  {banner.featuresVariant === 'cards' ? (
+                    <div className="mb-8 grid w-full max-w-[500px] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+                      {banner.features.map((feature, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-3 rounded-2xl border border-orange-100 bg-white/80 p-3 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:p-4"
+                        >
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center sm:h-12 sm:w-12">
+                            <img
+                              src={feature.icon}
+                              alt={feature.title}
+                              className="h-full w-full object-contain"
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="font-[Inter] text-sm font-bold leading-tight text-black sm:text-base">
+                              {feature.title}
+                            </span>
+                            <span className="font-[Inter] text-[11px] font-medium leading-tight text-gray-600 sm:text-xs">
+                              {feature.subtitle}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex flex-col">
-                          <span className="font-[Inter] text-sm font-bold leading-tight text-black sm:text-base">
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="mb-8 flex w-full max-w-[480px] items-start justify-between gap-2 sm:gap-4">
+                      {banner.features.map((feature, idx) => (
+                        <div
+                          key={idx}
+                          className="flex flex-col items-center justify-start gap-2 text-center"
+                        >
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center lg:h-14 lg:w-14">
+                            <img
+                              src={feature.icon}
+                              alt={feature.title}
+                              className="h-full w-full object-contain"
+                            />
+                          </div>
+                          <span className="whitespace-pre-line font-[Inter] text-[11px] font-bold leading-tight text-black sm:text-xs lg:text-sm">
                             {feature.title}
                           </span>
-                          <span className="font-[Inter] text-[11px] font-medium leading-tight text-gray-600 sm:text-xs">
-                            {feature.subtitle}
-                          </span>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="mb-8 flex w-full max-w-[480px] items-start justify-between gap-2 sm:gap-4">
-                    {banner.features.map((feature, idx) => (
-                      <div
-                        key={idx}
-                        className="flex flex-col items-center justify-start gap-2 text-center"
-                      >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center lg:h-14 lg:w-14">
-                          <img
-                            src={feature.icon}
-                            alt={feature.title}
-                            className="h-full w-full object-contain"
-                          />
-                        </div>
-                        <span className="whitespace-pre-line font-[Inter] text-[11px] font-bold leading-tight text-black sm:text-xs lg:text-sm">
-                          {feature.title}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                      ))}
+                    </div>
+                  )}
 
-                <button
-                  onClick={() => {
-                    if (banner.slug) {
-                      navigate(`/program-details/${banner.slug}`);
-                    } else {
-                      handleOpenBooking(null);
-                    }
-                  }}
-                  className="flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-[Inter] text-sm font-bold text-white transition-all hover:shadow-md sm:px-8 sm:py-4 sm:text-base"
-                  style={{ backgroundColor: banner.btnColor }}
-                  onMouseEnter={(e) => (e.currentTarget.style.filter = 'brightness(0.9)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.filter = 'brightness(1)')}
-                >
-                  {banner.btnText}
-                  {banner.showArrow && <RightArrow size={20} className="ml-1" />}
-                </button>
+                  <button
+                    onClick={() => {
+                      if (banner.slug) {
+                        navigate(`/program-details/${banner.slug}`);
+                      } else {
+                        handleOpenBooking(null);
+                      }
+                    }}
+                    className="flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-[Inter] text-sm font-bold text-white transition-all hover:shadow-md sm:px-8 sm:py-4 sm:text-base"
+                    style={{ backgroundColor: banner.btnColor }}
+                    onMouseEnter={(e) => (e.currentTarget.style.filter = 'brightness(0.9)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.filter = 'brightness(1)')}
+                  >
+                    {banner.btnText}
+                    {banner.showArrow && <RightArrow size={20} className="ml-1" />}
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevBanner}
+            className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-gray-800 opacity-0 shadow-md backdrop-blur-sm transition-opacity group-hover:opacity-100 sm:left-4 sm:h-12 sm:w-12"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={nextBanner}
+            className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-gray-800 opacity-0 shadow-md backdrop-blur-sm transition-opacity group-hover:opacity-100 sm:right-4 sm:h-12 sm:w-12"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Pagination Dots */}
+          <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2 sm:bottom-6">
+            {diagnosticBanner.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentBanner(idx)}
+                className={`h-2 rounded-full transition-all ${currentBanner === idx ? 'w-6 bg-orange-500' : 'w-2 bg-gray-300'}`}
+              />
+            ))}
+          </div>
         </div>
+
         <div className="flex h-full w-[92%] flex-col items-start justify-center gap-4 sm:w-[90%] sm:gap-6">
           <h2 className="mb-4 w-full font-[Arima] text-2xl font-bold leading-tight text-[#1E253A] sm:text-3xl md:text-[40px]">
             Find test by Organs
