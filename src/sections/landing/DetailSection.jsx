@@ -33,7 +33,7 @@ export default function DetailSection({ frameRef }) {
       image: Media.detailSection.bpMachineBg,
       icon: Media.heartRate2Icon,
       bgColor: '#F0F5F7',
-      redirectSlug: '/muscle-gain-strength',
+      redirectSlug: '/heart-health-hypertension',
     },
     {
       index: '03',
@@ -59,14 +59,15 @@ export default function DetailSection({ frameRef }) {
     },
     {
       index: '05',
-      title: `Gain Muscle & Strength`,
+      title: `Muscle, Strength & \nMobility Care`,
       paragraph: `Build lean Muscle , improve strength and\nfight muscle loss with strength training `,
       variant: 'horizontal',
       buttonColor: '#166A74',
       image: Media.detailSection.gainMuscle,
+      // icon: Media.muscleIcon,
       icon: Media.heartRate2Icon,
       bgColor: '#F5F9F8',
-      redirectSlug: '/high-cholesterol',
+      redirectSlug: '/muscle-gain-strength',
     },
     {
       index: '06',
@@ -79,7 +80,6 @@ export default function DetailSection({ frameRef }) {
       bgColor: '#FCF6F8',
       redirectSlug: '/pcos-pcod-care',
     },
-
   ];
 
   // useGSAP(() => {
@@ -191,7 +191,7 @@ export default function DetailSection({ frameRef }) {
         </div>
         <div
           id={'image-container'}
-          className="relative flex w-full items-start justify-center items-center justify-center"
+          className="relative flex w-full items-start items-center justify-center"
         >
           <GradientArcAnim
             scale={isMobile ? 2 : 6}
@@ -199,7 +199,12 @@ export default function DetailSection({ frameRef }) {
             color1="#f5f5f5"
             color2="#ffffff"
             strokeWidth={1}
-            style={{ backgroundColor: '', transform: 'translateY(-15%)', position: 'absolute', top: '0%' }}
+            style={{
+              backgroundColor: '',
+              transform: 'translateY(-15%)',
+              position: 'absolute',
+              top: '0%',
+            }}
           />
           <img
             src={Media.family}
@@ -212,7 +217,7 @@ export default function DetailSection({ frameRef }) {
       {/* <div className="w-full h-full bg-red-300"/> */}
       <div
         ref={cardRef}
-        className="relative z-10 hidden min-h-screen w-full items-center justify-end py-20 md:flex md:-mt-[12vw]"
+        className="relative z-10 hidden min-h-screen w-full items-center justify-end py-20 md:-mt-[12vw] md:flex"
       >
         <div className="flex min-h-full w-[100%] flex-wrap items-center justify-center p-4">
           <div className="flex w-full flex-wrap items-start justify-center">
@@ -324,7 +329,7 @@ export default function DetailSection({ frameRef }) {
 
       <div
         ref={cardRef}
-        className="relative z-10 flex w-full -mt-[25vw] flex-col items-center justify-center md:hidden"
+        className="relative z-10 -mt-[5vw] flex w-full flex-col items-center justify-center md:hidden"
       >
         <div className="flex-items-center flex w-[100%] flex-col items-center justify-center px-8">
           <DetailsCard
@@ -342,20 +347,19 @@ export default function DetailSection({ frameRef }) {
             redirectSlug={cardData[0].redirectSlug}
           />
           <DetailsCard
-            index={cardData[3].index}
-            title={cardData[3].title}
-            paragraph={cardData[3].paragraph}
-            variant={cardData[3].variant}
-            buttonColor={cardData[3].buttonColor}
-            image={cardData[3].image}
-            icon={cardData[3].icon}
-            bgColor={cardData[3].bgColor}
-            // imageClassName="h-[90%] md:h-full"
-            textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
-            imageClassName="w-[50%] md:w-auto"
-            redirectSlug={cardData[3].redirectSlug}
+            index={cardData[2].index}
+            title={cardData[2].title}
+            paragraph={cardData[2].paragraph}
+            variant={cardData[2].variant}
+            buttonColor={cardData[2].buttonColor}
+            image={cardData[2].image}
+            icon={cardData[2].icon}
+            bgColor={cardData[2].bgColor}
+            style={{ height: '70vh', marginRight: '0px' }}
+            textClassName="text-[10px] md:text-[16px] w-[100%] md:w-full whitespace-pre-wrap leading-tight md:leading-relaxed"
+            imageClassName="w-[100%] md:w-auto"
+            redirectSlug={cardData[2].redirectSlug}
           />
-          {/* </div> */}
           <div className="flex w-full flex-col items-center justify-center">
             <DetailsCard
               index={cardData[1].index}
@@ -368,24 +372,13 @@ export default function DetailSection({ frameRef }) {
               bgColor={cardData[1].bgColor}
               style={{ height: '75vh', marginLeft: '0px' }}
               textClassName="text-[10px] md:text-[16px] w-[100%] md:whitespace-pre-line leading-tight md:leading-relaxed"
-              imageClassName="w-[60%] md:w-auto"
+              imageClassName="w-[100%] md:w-auto"
               redirectSlug={cardData[1].redirectSlug}
             />
-            <DetailsCard
-              index={cardData[2].index}
-              title={cardData[2].title}
-              paragraph={cardData[2].paragraph}
-              variant={cardData[2].variant}
-              buttonColor={cardData[2].buttonColor}
-              image={cardData[2].image}
-              icon={cardData[2].icon}
-              bgColor={cardData[2].bgColor}
-              style={{ height: '75vh', marginRight: '0px' }}
-              textClassName="text-[10px] md:text-[16px] w-[100%] md:w-full whitespace-pre-wrap leading-tight md:leading-relaxed"
-              imageClassName="w-[60%] md:w-auto"
-              redirectSlug={cardData[2].redirectSlug}
-            />
           </div>
+
+          {/* </div> */}
+
           <DetailsCard
             index={cardData[4].index}
             title={cardData[4].title}
@@ -398,8 +391,22 @@ export default function DetailSection({ frameRef }) {
             // imageClassName="h-[90%] md:h-full"
             // textClassName="text-[12px] md:text-[16px] text-blue-300"
             textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
-            imageClassName="w-[100%] md:w-auto"
+            imageClassName="w-[97%] md:w-auto"
             redirectSlug={cardData[4].redirectSlug}
+          />
+          <DetailsCard
+            index={cardData[3].index}
+            title={cardData[3].title}
+            paragraph={cardData[3].paragraph}
+            variant={cardData[3].variant}
+            buttonColor={cardData[3].buttonColor}
+            image={cardData[3].image}
+            icon={cardData[3].icon}
+            bgColor={cardData[3].bgColor}
+            // imageClassName="h-[90%] md:h-full"
+            textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
+            imageClassName="w-[50%] md:w-auto"
+            redirectSlug={cardData[3].redirectSlug}
           />
           <DetailsCard
             index={cardData[5].index}

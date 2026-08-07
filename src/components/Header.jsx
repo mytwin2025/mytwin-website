@@ -8,6 +8,7 @@ import { useContactForm } from '../context/ContactFormContext';
 import ContactFormModal from './ContactFormModal';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import { useHeader } from '../context/HeaderContext';
 
 const navLinks = [
   { label: 'Care Programs', to: '/care-programs' },
@@ -21,7 +22,7 @@ const navLinks = [
 export default function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [showLogoutModal, setShowLogoutModal] = React.useState(false);
-  const [isHeaderVisible, setIsHeaderVisible] = React.useState(true);
+  const { isHeaderVisible, setIsHeaderVisible } = useHeader();
   const mobileMenuRef = React.useRef(null);
   const headerRef = React.useRef(null);
   const lastScrollYRef = React.useRef(0);
@@ -105,7 +106,7 @@ export default function Header() {
     <>
       <div
         ref={headerRef}
-        className="header align-center fixed z-[999] flex w-full flex-col justify-center md:top-[24px] md:flex-row"
+        className="header align-center fixed z-[777] flex w-full flex-col justify-center md:top-[24px] md:flex-row"
       >
         <div
           className={`content flex h-[70px] w-full items-center justify-between border border-gray-200 bg-white px-6 shadow-sm md:w-fit lg:min-w-[95%] lg:rounded-full`}

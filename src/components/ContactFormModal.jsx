@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { toast } from 'sonner';
 import { useContactForm } from '../context/ContactFormContext';
+import { useHeader } from '../context/HeaderContext';
 import { sendMail } from '../utils/helpers';
 import Loader from './Loader';
 
 export default function ContactFormModal() {
   const { showExpertModal, handleCloseModal } = useContactForm();
+  const { setIsHeaderVisible } = useHeader();
+
+  useEffect(() => {
+    if (showExpertModal) {
+      setIsHeaderVisible(false);
+    } else {
+      setIsHeaderVisible(true);
+    }
+    return () => setIsHeaderVisible(true);
+  }, [showExpertModal, setIsHeaderVisible]);
 
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', description: '', consent: false });
   const [phoneError, setPhoneError] = useState('');

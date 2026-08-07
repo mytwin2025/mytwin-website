@@ -8,30 +8,37 @@ export default function AddOnCards({
   isActive = false,
   onClick,
   gstIncludedText = '',
+  available = true,
 }) {
   return (
     <div
-      className={`plan-card border-1 relative rounded-[16px] bg-[#fff] p-4`}
+      className={`plan-card border-1 relative rounded-[16px] bg-[#fff] p-4 ${available === false ? 'opacity-60' : ''}`}
       style={{ borderColor: isActive ? '#ff6b01' : '#E5E7EB', borderWidth: '1px' }}
     >
       <div
         className={`absolute inset-0 rounded-[16px] ${isActive ? 'bg-[#ff6b0105]' : ''} pointer-events-none`}
       />
 
-      {/* Checkbox button in the top right */}
+      {/* Checkbox button or Coming Soon in the top right */}
       <div className="absolute right-4 top-4 z-10">
-        <button
-          type="button"
-          onClick={onClick}
-          className={`flex h-5 w-5 cursor-pointer items-center justify-center rounded border transition-all duration-200 ${
-            isActive
-              ? 'border-[#ff6b01] bg-[#ff6b01] text-white'
-              : 'border-gray-300 bg-white hover:border-[#ff6b01]'
-          }`}
-          aria-label={`Select ${name}`}
-        >
-          {isActive && <Check className="h-3.5 w-3.5 stroke-[3]" />}
-        </button>
+        {available === false ? (
+          <span className="rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-[10px] font-bold text-gray-500 shadow-sm">
+            Coming Soon
+          </span>
+        ) : (
+          <button
+            type="button"
+            onClick={onClick}
+            className={`flex h-5 w-5 cursor-pointer items-center justify-center rounded border transition-all duration-200 ${
+              isActive
+                ? 'border-[#ff6b01] bg-[#ff6b01] text-white'
+                : 'border-gray-300 bg-white hover:border-[#ff6b01]'
+            }`}
+            aria-label={`Select ${name}`}
+          >
+            {isActive && <Check className="h-3.5 w-3.5 stroke-[3]" />}
+          </button>
+        )}
       </div>
 
       <div className={'flex h-full w-full items-start justify-between gap-4 pr-6'}>

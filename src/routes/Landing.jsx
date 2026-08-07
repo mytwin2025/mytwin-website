@@ -35,11 +35,11 @@ export default function LandingPage() {
       <PeopleBehindSection />
       <FAQSection />
       <div
-        className="relative flex w-full flex-col items-center justify-center gap-6 bg-white bg-cover bg-center bg-no-repeat px-6 py-16 md:flex-row md:gap-0 md:px-24 md:py-8 md:gap-6"
+        className="relative flex w-full flex-col items-center justify-center gap-6 bg-white bg-cover bg-center bg-no-repeat px-6 py-16 md:flex-row md:gap-0 md:px-24 md:py-8 md:gap-12"
       >
         <span className="font-[Inter] font-semibold text-[18px] leading-[24px] text-[#2F387F]">Still have a question?</span>
         <button
-          className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pr-4 pl-4 transition-transform hover:scale-105 "
+          className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pr-2 pl-2 transition-transform hover:scale-105 "
           onClick={() => setShowConsultationModal(true)}
         >
           <div className="relative h-10 w-[136px] hidden md:flex">

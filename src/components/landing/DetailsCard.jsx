@@ -43,7 +43,7 @@ export default function DetailsCard({
           : 'w-full md:w-[563px] h-auto min-h-[220px] md:h-[342px]'
       }
     >
-      <div className="flex h-full w-full flex-col items-start justify-between gap-4 p-6">
+      <div className="relative z-10 flex h-full w-full flex-col items-start justify-between gap-4 p-6">
         <div className={``}>
           <img src={icon} alt={`${title} icon`} style={{ width: '60px', height: '60px', zIndex:2 }} />
           <h3
@@ -71,6 +71,7 @@ export default function DetailsCard({
           bottom: 0,
           right: 0,
           objectFit: 'cover',
+          zIndex: 0,
         }}
         className={` ${imageClassName}`}
       />

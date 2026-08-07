@@ -233,30 +233,21 @@ export default function Diagnostics() {
             {diagnosticBanner.map((banner, index) => (
               <div
                 key={index}
-                className="relative flex w-full shrink-0 flex-col justify-center overflow-hidden rounded-[24px] bg-[#fdfaf6] shadow-sm md:min-h-[460px] lg:min-h-[480px]"
+                className="relative flex aspect-[16/11] w-full shrink-0 flex-col justify-center overflow-hidden rounded-[24px] bg-[#fdfaf6] shadow-sm sm:aspect-auto md:min-h-[460px] lg:min-h-[480px]"
               >
-                {/* Desktop Image (Absolute Background) */}
-                <div className="absolute inset-0 z-0 hidden w-full md:block">
+                {/* Background Image (All screens) */}
+                <div className="absolute inset-0 z-0 w-full">
                   <img
                     src={banner.image}
                     alt="banner background"
-                    className="h-full w-full object-cover object-right"
+                    className="h-full w-full object-cover md:object-cover"
                   />
                 </div>
-                {/* Mobile Image */}
-                <div className="relative z-0 w-full md:hidden">
-                  <img
-                    src={banner.image}
-                    alt="banner background"
-                    className="h-auto w-full object-contain object-top"
-                  />
-                </div>
-
                 {/* Content Overlay */}
-                <div className="relative z-10 flex w-full flex-col items-start justify-center p-6 sm:p-8 md:w-[65%] lg:w-[60%] lg:p-12">
+                <div className="relative z-10 flex w-[90%] flex-col items-start justify-center p-4 sm:w-[75%] sm:p-6 md:w-[65%] lg:w-[60%] lg:p-12">
                   {banner.badge && (
                     <div
-                      className="mb-4 inline-flex items-center justify-center rounded-full px-4 py-1.5 text-[10px] font-bold tracking-wide text-white sm:text-xs"
+                      className={`mb-0 inline-flex items-center justify-center rounded-full px-2 py-0 text-[6px] font-bold tracking-wide text-white sm:px-3 sm:py-1.5 sm:text-[10px] md:mb-4 md:px-4 md:text-xs`}
                       style={{ backgroundColor: banner.themeColor }}
                     >
                       {banner.badge}
@@ -264,13 +255,13 @@ export default function Diagnostics() {
                   )}
 
                   <h2
-                    className="font-[Inter] text-3xl font-extrabold leading-[1.1] sm:text-4xl md:text-5xl lg:text-[52px]"
+                    className="font-[Inter] text-sm font-extrabold leading-[1.1] sm:text-2xl md:text-5xl lg:text-[52px]"
                     style={{ color: banner.titleColor }}
                   >
                     {banner.title}
                   </h2>
                   <h2
-                    className={`font-[Inter] text-3xl font-extrabold leading-[1.1] sm:text-4xl md:text-5xl lg:text-[52px] ${banner.hasSeparator ? 'mb-2 md:mb-3' : 'mb-4'}`}
+                    className={`font-[Inter] text-sm font-extrabold leading-[1.1] sm:text-2xl md:text-5xl lg:text-[52px] ${banner.hasSeparator ? 'mb-1 md:mb-3' : 'mb-2 md:mb-4'}`}
                     style={{ color: banner.highlightColor }}
                   >
                     {banner.highlight}
@@ -278,23 +269,23 @@ export default function Diagnostics() {
 
                   {banner.hasSeparator && (
                     <div
-                      className="mb-4 h-[2px] w-12 md:mb-6 lg:w-16"
+                      className="mb-1 h-[2px] w-6 md:mb-6 md:w-12 lg:w-16"
                       style={{ backgroundColor: banner.separatorColor }}
                     ></div>
                   )}
 
-                  <p className="mb-6 max-w-[480px] font-[Inter] text-sm font-medium text-[#4a4a4a] sm:text-base lg:text-lg">
+                  <p className="mb-0 max-w-[480px] font-[Inter] text-[8px] font-medium leading-[2] text-[#4a4a4a] sm:mb-4 sm:text-xs md:mb-6 md:text-base lg:text-lg">
                     {banner.subtitle}
                   </p>
 
                   {banner.featuresVariant === 'cards' ? (
-                    <div className="mb-8 grid w-full max-w-[500px] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+                    <div className="mb-3 grid w-full max-w-[500px] grid-cols-2 gap-1.5 sm:mb-6 sm:gap-3 md:mb-8 md:gap-4">
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-3 rounded-2xl border border-orange-100 bg-white/80 p-3 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:p-4"
+                          className="flex items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1.5 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
                         >
-                          <div className="flex h-10 w-10 shrink-0 items-center justify-center sm:h-12 sm:w-12">
+                          <div className="flex h-5 w-5 shrink-0 items-center justify-center sm:h-10 sm:w-10 md:h-12 md:w-12">
                             <img
                               src={feature.icon}
                               alt={feature.title}
@@ -302,10 +293,10 @@ export default function Diagnostics() {
                             />
                           </div>
                           <div className="flex flex-col">
-                            <span className="font-[Inter] text-sm font-bold leading-tight text-black sm:text-base">
+                            <span className="font-[Inter] text-[7px] font-bold leading-tight text-black sm:text-xs md:text-base">
                               {feature.title}
                             </span>
-                            <span className="font-[Inter] text-[11px] font-medium leading-tight text-gray-600 sm:text-xs">
+                            <span className="font-[Inter] text-[6px] font-medium leading-[1.1] text-gray-600 sm:text-[10px] md:text-xs">
                               {feature.subtitle}
                             </span>
                           </div>
@@ -313,20 +304,20 @@ export default function Diagnostics() {
                       ))}
                     </div>
                   ) : (
-                    <div className="mb-8 flex w-full max-w-[480px] items-start justify-between gap-2 sm:gap-4">
+                    <div className="mb-2 flex w-full max-w-[480px] items-start justify-start gap-4 sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between">
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
-                          className="flex flex-col items-center justify-start gap-2 text-center"
+                          className="flex flex-col items-center justify-start gap-1 text-center sm:gap-2"
                         >
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center lg:h-14 lg:w-14">
+                          <div className="flex h-6 w-6 shrink-0 items-center justify-center sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14">
                             <img
                               src={feature.icon}
                               alt={feature.title}
                               className="h-full w-full object-contain"
                             />
                           </div>
-                          <span className="whitespace-pre-line font-[Inter] text-[11px] font-bold leading-tight text-black sm:text-xs lg:text-sm">
+                          <span className="whitespace-pre-line font-[Inter] text-[7px] font-bold leading-tight text-black sm:text-[10px] md:text-[11px] lg:text-sm">
                             {feature.title}
                           </span>
                         </div>
@@ -336,13 +327,13 @@ export default function Diagnostics() {
 
                   <button
                     onClick={() => {
-                      if (banner.slug) {
-                        navigate(`/program-details/${banner.slug}`);
-                      } else {
+                      // if (banner.slug) {
+                      //   navigate(`/program-details/${banner.slug}`);
+                      // } else {
                         handleOpenBooking(null);
-                      }
+                      // }
                     }}
-                    className="flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-[Inter] text-sm font-bold text-white transition-all hover:shadow-md sm:px-8 sm:py-4 sm:text-base"
+                    className="flex items-center justify-center gap-1 rounded-md px-3 py-0 font-[Inter] text-[8px] font-bold text-white transition-all hover:shadow-md sm:gap-2 sm:rounded-xl sm:px-6 sm:py-3 sm:text-xs md:px-8 md:py-4 md:text-sm lg:text-base"
                     style={{ backgroundColor: banner.btnColor }}
                     onMouseEnter={(e) => (e.currentTarget.style.filter = 'brightness(0.9)')}
                     onMouseLeave={(e) => (e.currentTarget.style.filter = 'brightness(1)')}
@@ -356,7 +347,7 @@ export default function Diagnostics() {
           </div>
 
           {/* Navigation Arrows */}
-          <button
+          {/* <button
             onClick={prevBanner}
             className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-gray-800 opacity-0 shadow-md backdrop-blur-sm transition-opacity group-hover:opacity-100 sm:left-4 sm:h-12 sm:w-12"
           >
@@ -367,10 +358,10 @@ export default function Diagnostics() {
             className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-gray-800 opacity-0 shadow-md backdrop-blur-sm transition-opacity group-hover:opacity-100 sm:right-4 sm:h-12 sm:w-12"
           >
             <ChevronRight size={24} />
-          </button>
+          </button> */}
 
           {/* Pagination Dots */}
-          <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2 sm:bottom-6">
+          <div className="absolute bottom-0 left-1/2 z-20 flex -translate-x-1/2 gap-2 sm:bottom-6">
             {diagnosticBanner.map((_, idx) => (
               <button
                 key={idx}
@@ -448,7 +439,7 @@ export default function Diagnostics() {
                 Home
               </h3>
               <p className="font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:text-[14px]">
-                Hassle-free sample collections
+                Hassle-free sampling
               </p>
             </div>
             <div className="relative flex min-h-[140px] flex-col items-start justify-end rounded-[20px] bg-[#f5f5f7] p-4 pt-12 shadow-sm sm:min-h-[160px] sm:p-5 sm:pt-14">
@@ -506,14 +497,14 @@ export default function Diagnostics() {
             ))}
           </div>
 
-          <div className="flex flex-col items-center justify-center gap-4 text-center font-[Inter] text-[15px] font-medium text-[#6b7280] sm:text-[16px] md:flex-row">
+          <div className="flex flex-col items-center justify-center gap-4 text-center font-[Inter] text-[15px] font-medium text-[#6b7280] sm:text-[16px] md:flex-row md:gap-12">
             <span className="font-[Inter] text-[18px] font-semibold leading-[24px] text-[#2F387F]">
               Still have a question?
             </span>
             {/* Healthians Section */}
 
             <button
-              className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pl-4 pr-4 transition-transform hover:scale-105"
+              className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pl-2 pr-2 transition-transform hover:scale-105"
               onClick={handleOpenModal}
             >
               <div className="relative hidden h-10 w-[136px] md:flex">
@@ -568,6 +559,7 @@ const CheckupChip = ({
     'Diabetes',
     'Hypertension',
     'Liver Disease',
+    'Cancer',
   ],
 }) => {
   return (

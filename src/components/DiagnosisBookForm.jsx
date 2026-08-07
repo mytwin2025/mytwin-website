@@ -531,9 +531,11 @@ const STEPS = [
 ];
 
 import { useCart } from '../context/CartContext';
+import { useHeader } from '../context/HeaderContext';
 
 function DiagnosisBookForm({ isOpen, onClose, initialPackageId, initialMemberCount = 1, isBookingFlow }) {
   const { addToCart } = useCart();
+  const { setIsHeaderVisible } = useHeader();
   const [step, setStep] = useState(0); // 0 = Pincode Popup, 1 = Cart, 2 = Address, etc.
   const [pincode, setPincode] = useState('');
   const [pincodeError, setPincodeError] = useState('');
@@ -581,12 +583,20 @@ function DiagnosisBookForm({ isOpen, onClose, initialPackageId, initialMemberCou
   // Timing state
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
+  const [viewTestsPkg, setViewTestsPkg] = useState(null);
 
   // Razorpay Payment
   const { error: razorpayError, isLoading: isRazorpayLoading, Razorpay } = useRazorpay();
   const [isPaying, setIsPaying] = useState(false);
 
   // Initialize cart when modal opens
+  useEffect(() => {
+    setIsHeaderVisible(!isOpen);
+    return () => {
+      setIsHeaderVisible(true);
+    };
+  }, [isOpen, setIsHeaderVisible]);
+
   useEffect(() => {
     if (isOpen) {
       setStep(0);
@@ -1201,11 +1211,23 @@ function DiagnosisBookForm({ isOpen, onClose, initialPackageId, initialMemberCou
                               </div>
                             </div>
                           </div>
-                          <span className="rounded bg-orange-100 px-2 py-0.5 text-xs font-bold text-orange-600">
-                            {pkg.discount} OFF
-                          </span>
-                        </div>
-                        <div className="mt-3 flex items-center justify-between border-t border-gray-50 pt-3">
+                            <span
+                              onClick={() => {
+                                if (pkg.tests && pkg.tests.length > 0) setViewTestsPkg(pkg);
+                              }}
+                              className="cursor-pointer rounded-xl bg-[#e0f2f1] px-3 py-1.5 text-[12px] font-semibold text-teal-600 underline decoration-dotted underline-offset-4 hover:text-teal-700 sm:px-4 sm:py-2 sm:text-[14px]"
+                            >
+                              {pkg.sub} Tests
+                            </span>
+                          </div>
+                          
+                          <div className="mt-1 flex items-center justify-center rounded-lg bg-[#f0fdf4] px-4 py-2">
+                            <span className="font-[Public Sans] text-center text-[12px] font-medium text-green-600 sm:text-[13px]">
+                              {pkg.discount} OFF
+                            </span>
+                          </div>
+
+                          <div className="mt-1 flex items-center justify-between border-t border-gray-50 pt-3">
                           <div className="flex items-baseline gap-2">
                             <span className="text-xl font-bold text-gray-900">
                               ₹{(getNumericPrice(pkg.finalPrice) * expectedMemberCount).toLocaleString('en-IN')}
@@ -2115,6 +2137,41 @@ function DiagnosisBookForm({ isOpen, onClose, initialPackageId, initialMemberCou
                   )}
                 </button>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Tests Modal */}
+      {viewTestsPkg && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4">
+          <div
+            className="flex max-h-[85vh] w-full max-w-3xl flex-col rounded-2xl bg-white shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-gray-100 p-4 sm:p-5">
+              <h2 className="text-lg font-bold text-gray-900">{viewTestsPkg.name} - Included Tests</h2>
+              <button
+                onClick={() => setViewTestsPkg(null)}
+                className="rounded-full p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-4 sm:p-5">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {viewTestsPkg.tests.map((testGroup, idx) => (
+                  <div key={idx} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                    <h4 className="mb-2 text-sm font-bold text-gray-900">{testGroup.testName}</h4>
+                    {testGroup.subTests && testGroup.subTests.length > 0 ? (
+                      <ul className="flex list-disc flex-col gap-1.5 pl-4 text-xs text-gray-600">
+                        {testGroup.subTests.map((sub, sIdx) => (
+                          <li key={sIdx}>{sub}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

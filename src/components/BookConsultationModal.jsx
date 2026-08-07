@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle } from 'lucide-react';
 import { plansData } from '../routes/PlanDetails';
 import { sendMail } from '../utils/helpers';
 import Loader from './Loader';
 import { Link } from 'react-router-dom';
+import { useHeader } from '../context/HeaderContext';
 export default function BookConsultationModal({ isOpen, onClose }) {
+  const { setIsHeaderVisible } = useHeader();
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsHeaderVisible(false);
+    } else {
+      setIsHeaderVisible(true);
+    }
+    return () => setIsHeaderVisible(true);
+  }, [isOpen, setIsHeaderVisible]);
+
   const [step, setStep] = useState(1); // 1 = form entry, 'slot_booking' = date/time slot booking, 'success_appointment' = appointment success, 'success_submit' = direct submission success
   const [validationError, setValidationError] = useState('');
   const [name, setName] = useState('');

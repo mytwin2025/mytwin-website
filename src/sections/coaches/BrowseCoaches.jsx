@@ -28,7 +28,7 @@ export default function BrowseCoaches() {
     },
 
     {
-      name: `Muscle Gain & Strength`,
+      name: `Muscle, Strength & \nMobility Care`, 
       icon: Media.icons.muscle,
     },
     {

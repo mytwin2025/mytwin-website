@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { toast } from 'sonner';
 import becomeCoachImg from '../assets/images/become-coach.png';
 import { sendMail } from '../utils/helpers';
 import Loader from './Loader';
+import { useHeader } from '../context/HeaderContext';
 
 export default function BecomeCoachModal({ showModal, handleCloseModal }) {
+  const { setIsHeaderVisible } = useHeader();
+
+  useEffect(() => {
+    if (showModal) {
+      setIsHeaderVisible(false);
+    } else {
+      setIsHeaderVisible(true);
+    }
+    return () => setIsHeaderVisible(true);
+  }, [showModal, setIsHeaderVisible]);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',

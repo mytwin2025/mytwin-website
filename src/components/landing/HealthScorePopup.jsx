@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import DomainRiskVisualizer from './DomainRiskVisualizer';
 import { QUESTIONS_DATA, calculateHRS } from '../../constants/hrsCalculator';
 import BookConsultationModal from '../BookConsultationModal';
+import { useHeader } from '../../context/HeaderContext';
 
 export default function HealthScorePopup() {
   const [isOpen, setIsOpen] = useState(false);
+  const { setIsHeaderVisible } = useHeader();
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsHeaderVisible(false);
+    } else {
+      setIsHeaderVisible(true);
+    }
+    return () => setIsHeaderVisible(true);
+  }, [isOpen, setIsHeaderVisible]);
+
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState({});
   const [activeTab, setActiveTab] = useState('overall'); // 'overall' or 'domains'

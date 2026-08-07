@@ -254,6 +254,7 @@ export const Media = {
     maximize,
   },
   heartRate2Icon,
+  muscleIcon,
   weightScaleIcon,
   dropIcon,
   liverIcon,

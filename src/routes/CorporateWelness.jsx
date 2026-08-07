@@ -345,12 +345,12 @@ export default function CorporateWelness() {
           </div>
         </div>
       </div>
-      <div className="relative flex w-full flex-col items-center justify-center gap-6 bg-white bg-cover bg-center bg-no-repeat px-6 py-12 md:flex-row md:gap-0 md:gap-6 md:px-24 md:py-8">
+      <div className="relative flex w-full flex-col items-center justify-center gap-6 bg-white bg-cover bg-center bg-no-repeat px-6 py-12 md:flex-row md:gap-0 md:gap-12 md:px-24 md:py-8">
         <span className="font-[Inter] text-[18px] font-semibold leading-[24px] text-[#2F387F]">
           Still have a question?
         </span>
         <button
-          className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 px-4 transition-transform hover:scale-105"
+          className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 px-2 transition-transform hover:scale-105"
           onClick={() => setShowModal(true)}
         >
           <div className="relative hidden h-10 w-[136px] md:flex">

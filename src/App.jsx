@@ -18,6 +18,7 @@ import Cart from './routes/Cart';
 import { ContactFormProvider } from './context/ContactFormContext';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
+import { HeaderProvider } from './context/HeaderContext';
 import LoginModal from './components/LoginModal';
 import Support from './routes/Support';
 import ScrollToTop from './components/ScrollToTop';
@@ -51,6 +52,7 @@ function App() {
       <AuthProvider>
       <CartProvider>
       <ContactFormProvider>
+      <HeaderProvider>
         <LoginModal />
         <Routes>
           <Route path="/" element={<MainLayout />}>
@@ -70,6 +72,7 @@ function App() {
             <Route path="/faq" element={<Faq />} />
           </Route>
         </Routes>
+      </HeaderProvider>
       </ContactFormProvider>
       </CartProvider>
       </AuthProvider>

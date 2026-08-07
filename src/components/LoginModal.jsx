@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useHeader } from '../context/HeaderContext';
 import makeApiCall from '../utils/makeApiCall';
 import { X, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -7,7 +8,17 @@ import { useNavigate } from 'react-router-dom';
 
 export default function LoginModal() {
   const { isLoginModalOpen, closeLogin, login, handleAuthSuccess, updateProfile } = useAuth();
+  const { setIsHeaderVisible } = useHeader();
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (isLoginModalOpen) {
+      setIsHeaderVisible(false);
+    } else {
+      setIsHeaderVisible(true);
+    }
+    return () => setIsHeaderVisible(true);
+  }, [isLoginModalOpen, setIsHeaderVisible]);
   
   // Steps: 1 = Phone, 2 = OTP, 3 = Profile Completion
   const [step, setStep] = useState(1);

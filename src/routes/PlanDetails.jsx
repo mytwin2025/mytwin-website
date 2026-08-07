@@ -336,6 +336,7 @@ export default function PlanDetails() {
       gstExempt: true,
       pinCodeRequired: true,
       quantifiable: false,
+      available: true,
     },
     {
       title: 'Add Full Body Checkup - Female',
@@ -344,7 +345,9 @@ export default function PlanDetails() {
       image: Media.addOnIcons.labTest,
       gstExempt: true,
       pinCodeRequired: true,
-      quantifiable: false
+      quantifiable: false,
+      available: true,
+
     },
     {
       title: 'Doctor Consultation',
@@ -353,7 +356,9 @@ export default function PlanDetails() {
       image: Media.addOnIcons.doctorConsult,
       gstExempt: true,
       pinCodeRequired: false,
-      quantifiable: false
+      quantifiable: false,
+      available: true,
+
     },
     // {
     //   title: 'Family Partner Plan (2 Members)',
@@ -370,6 +375,8 @@ export default function PlanDetails() {
       gstExempt: false,
       pinCodeRequired: false,
       quantifiable: true,
+      available: false,
+
     },
     {
       title: 'Smart CGM (Continuous Glucose Monitor)',
@@ -379,6 +386,9 @@ export default function PlanDetails() {
       gstExempt: false,
       pinCodeRequired: false,
       quantifiable: true,
+      available: false,
+
+
     },
     {
       title: 'Smart Scale',
@@ -388,6 +398,8 @@ export default function PlanDetails() {
       gstExempt: false,
       pinCodeRequired: false,
       quantifiable: true,
+      available: false,
+
     },
     {
       title: 'Smart BP Monitor',
@@ -397,6 +409,8 @@ export default function PlanDetails() {
       gstExempt: false,
       pinCodeRequired: false,
       quantifiable: true,
+      available: false,
+
     },
   ];
 
@@ -856,7 +870,9 @@ export default function PlanDetails() {
                 price={addOn.price}
                 // price={`₹${(addOn.gstExempt ? addOn.price : addOn.price * 1.18).toLocaleString()}`}
                 image={addOn.image}
+                available={addOn.available}
                 onClick={() => {
+                  if (addOn.available === false) return;
                   const exists = selectedAddOns.some((item) => item.title === addOn.title);
                   if (exists) {
                     setSelectedAddOns((prev) => prev.filter((item) => item.title !== addOn.title));
