@@ -110,7 +110,7 @@ export default function ContactFormModal() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-rows-2 gap-3">
             <div className="flex flex-col gap-1.5">
               <label className="font-[Inter] text-xs font-semibold text-gray-700">Email *</label>
               <input
@@ -175,7 +175,7 @@ export default function ContactFormModal() {
               htmlFor="contact-consent"
               className="cursor-pointer font-[Inter] text-[11px] leading-snug text-gray-600"
             >
-              I consent to receive phone calls/messages/emails from MyTwin experts.
+              I consent to be contacted by MyTwin Support Team on Calls,WhatsApp, Email & SMS.
             </label>
           </div>
           <button

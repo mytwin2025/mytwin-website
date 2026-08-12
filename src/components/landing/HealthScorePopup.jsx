@@ -23,6 +23,22 @@ export default function HealthScorePopup() {
   const [activeTab, setActiveTab] = useState('overall'); // 'overall' or 'domains'
   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
 
+  // BMI Calculator State
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [calculatedBMI, setCalculatedBMI] = useState(null);
+
+  const calculateBMI = () => {
+    if (height && weight) {
+      const h = parseFloat(height) / 100;
+      const w = parseFloat(weight);
+      if (h > 0 && w > 0) {
+        const bmi = (w / (h * h)).toFixed(1);
+        setCalculatedBMI(bmi);
+      }
+    }
+  };
+
   const handleSelect = (optionIndex, questionId) => {
     setAnswers({ ...answers, [questionId]: optionIndex });
   };
@@ -46,6 +62,9 @@ export default function HealthScorePopup() {
       setCurrentStep(1);
       setAnswers({});
       setActiveTab('overall');
+      setHeight('');
+      setWeight('');
+      setCalculatedBMI(null);
     }, 300); // Reset after close animation
   };
 
@@ -144,26 +163,54 @@ export default function HealthScorePopup() {
                   </h2>
 
                   <div className="space-y-3">
-                    {QUESTIONS_DATA[currentStep - 1].options.map((option, idx) => {
-                      const questionId = QUESTIONS_DATA[currentStep - 1].id;
-                      const isSelected = answers[questionId] === idx;
-                      // Clean up options like "0 - Normal" -> "Normal"
-                      const optionText = option.includes(' - ') ? option.split(' - ')[1] : option;
-                      
-                      return (
-                        <button
-                          key={idx}
-                          onClick={() => handleSelect(idx, questionId)}
-                          className={`w-full rounded-xl border px-5 py-3 text-left text-[15px] transition-all duration-200 ${
-                            isSelected
-                              ? 'border-orange-500 bg-orange-50/30 text-orange-600'
-                              : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
-                          } `}
-                        >
-                          {optionText}
+                    {QUESTIONS_DATA[currentStep - 1].requiresBMICalculator && (
+                      <div className="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                        <h3 className="text-sm font-semibold mb-3 text-gray-700">Optional: Calculate your BMI</h3>
+                        <div className="flex gap-3 mb-3">
+                          <input type="number" placeholder="Height (cm)" value={height} onChange={(e) => setHeight(e.target.value)} className="flex-1 p-2 border rounded-lg text-sm bg-white text-black" />
+                          <input type="number" placeholder="Weight (kg)" value={weight} onChange={(e) => setWeight(e.target.value)} className="flex-1 p-2 border rounded-lg text-sm bg-white text-black" />
+                        </div>
+                        <button onClick={calculateBMI} className="w-full bg-blue-50 text-blue-600 font-medium py-2 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors text-sm">
+                          Calculate BMI
                         </button>
-                      );
-                    })}
+                        {calculatedBMI && (
+                          <div className="mt-3 text-center text-sm font-medium text-gray-800">
+                            Your BMI is: <span className="text-blue-600 font-bold text-lg">{calculatedBMI}</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {(() => {
+                      const question = QUESTIONS_DATA[currentStep - 1];
+                      let optionsToRender = [...question.options];
+                      if (question.hasDontKnow) {
+                        optionsToRender.push("4 - Don't Know");
+                      }
+                      
+                      return optionsToRender.map((option, idx) => {
+                        const questionId = question.id;
+                        // "Don't Know" value should be 4
+                        const valueToSet = idx === question.options.length ? 4 : idx;
+                        const isSelected = answers[questionId] === valueToSet;
+                        
+                        // Clean up options like "0 - Normal" -> "Normal"
+                        const optionText = option.includes(' - ') ? option.split(' - ')[1] : option;
+                        
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => handleSelect(valueToSet, questionId)}
+                            className={`w-full rounded-xl border px-5 py-3 text-left text-[15px] transition-all duration-200 ${
+                              isSelected
+                                ? 'border-orange-500 bg-orange-50/30 text-orange-600'
+                                : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
+                            } `}
+                          >
+                            {optionText}
+                          </button>
+                        );
+                      });
+                    })()}
                   </div>
                 </div>
               ) : (

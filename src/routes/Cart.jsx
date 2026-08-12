@@ -449,7 +449,7 @@ export default function Cart() {
                   </span>
                 )}
               </label>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <div className="flex flex-1">
                   <span className="flex items-center justify-center rounded-l-xl border border-r-0 border-gray-200 bg-gray-50 px-4 py-3.5 text-sm font-medium text-gray-500">
                     +91
@@ -473,7 +473,7 @@ export default function Cart() {
                     type="button"
                     disabled={contact.length !== 10 || isSendingOtp}
                     onClick={handleSendOtpClick}
-                    className="flex w-28 shrink-0 items-center justify-center rounded-xl bg-orange-100 px-3 text-xs font-bold text-orange-600 transition-colors hover:bg-orange-200 disabled:bg-gray-100 disabled:text-gray-400"
+                    className="flex w-full sm:w-28 shrink-0 items-center justify-center rounded-xl bg-orange-100 py-3.5 sm:py-0 px-3 text-xs font-bold text-orange-600 transition-colors hover:bg-orange-200 disabled:bg-gray-100 disabled:text-gray-400"
                   >
                     {isSendingOtp ? (
                       <Loader2 size={16} className="animate-spin" />

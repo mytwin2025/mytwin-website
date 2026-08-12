@@ -257,7 +257,7 @@ export default function Support() {
                     htmlFor="support-consent"
                     className="cursor-pointer font-[Inter] text-[11px] leading-snug text-gray-600"
                   >
-                    I consent to receive phone calls/messages/emails from MyTwin experts.
+                    I consent to be contacted by MyTwin Support Team on Calls,WhatsApp, Email & SMS.
                   </label>
                 </div>
                 <button

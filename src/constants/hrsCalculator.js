@@ -1,248 +1,253 @@
 /**
- * hrsCalculator.js
- * Contains the data structures and calculation logic for the Health Risk Score.
+ * 1. Questions Data Configuration
+ * Includes flags for 'hasDontKnow' and 'requiresBMICalculator' for UI rendering.
  */
-
-// 1. Questionnaire Data & Domain Weights
-// Maps each question to its available points (0-3) and how those points are apportioned across domains.
-
-
 export const QUESTIONS_DATA = [
   {
     id: "Q1",
-    question: "Age group",
+    question: "What is your current Age?",
     options: [
-      "0 - Under 34 years", 
-      "1 - 35 to 49 years", 
-      "2 - 50 to 59 years", 
+      "0 - Under 34 years",
+      "1 - 35 to 49 years",
+      "2 - 50 to 59 years",
       "3 - 60 years and above"
     ],
-    domainWeights: { Metabolic: 0.4, Frailty: 0.4, "Body Resilience": 0.2 }
+    hasDontKnow: false,
+    domainWeights: { Metabolic: 0.4, Frailty: 0.4, "Body Resilience": 0.2 } // Example weights
   },
   {
     id: "Q2",
     question: "Blood sugar status (fasting glucose / HbA1c)",
     options: [
-      "0 - Normal (FBS <100 / HbA1c <5.7)", 
-      "1 - Borderline / pre-diabetic (100-125 / 5.7-6.4)", 
-      "2 - Diabetic, well controlled on medication", 
+      "0 - Normal (FBS <100 / HbA1c <5.7)",
+      "1 - Borderline / pre-diabetic (100-125 / 5.7-6.4)",
+      "2 - Diabetic, well controlled on medication",
       "3 - Diabetic, uncontrolled or on insulin"
     ],
+    hasDontKnow: true,
     domainWeights: { Metabolic: 1.0 }
   },
   {
     id: "Q3",
     question: "Blood pressure / known heart condition",
     options: [
-      "0 - Normal BP, no heart condition", 
-      "1 - Borderline / pre-hypertension", 
-      "2 - Hypertension controlled on medication", 
+      "0 - Normal BP, no heart condition",
+      "1 - Borderline / pre-hypertension",
+      "2 - Hypertension controlled on medication",
       "3 - Uncontrolled BP or diagnosed heart disease"
     ],
+    hasDontKnow: true,
     domainWeights: { Cardiovascular: 1.0 }
   },
   {
     id: "Q4",
     question: "Breathlessness on exertion",
     options: [
-      "0 - Never breathless", 
-      "1 - Only on heavy exertion", 
-      "2 - On moderate activity (climbing one flight of stairs)", 
+      "0 - Never breathless",
+      "1 - Only on heavy exertion",
+      "2 - On moderate activity (climbing one flight of stairs)",
       "3 - On light activity or at rest"
     ],
+    hasDontKnow: true,
     domainWeights: { Cardiovascular: 0.7, "Body Resilience": 0.3 }
   },
   {
     id: "Q5",
     question: "Falls and balance in the last 12 months",
     options: [
-      "0 - No falls, steady on feet", 
-      "1 - Occasional unsteadiness, no falls", 
-      "2 - One fall, or needs support to walk", 
+      "0 - No falls, steady on feet",
+      "1 - Occasional unsteadiness, no falls",
+      "2 - One fall, or needs support to walk",
       "3 - Two or more falls, or fear of falling"
     ],
+    hasDontKnow: true,
     domainWeights: { Frailty: 0.6, Musculoskeletal: 0.4 }
   },
   {
     id: "Q6",
     question: "Memory and concentration",
     options: [
-      "0 - No problems", 
-      "1 - Occasional forgetfulness", 
-      "2 - Frequent, affects daily tasks", 
+      "0 - No problems",
+      "1 - Occasional forgetfulness",
+      "2 - Frequent, affects daily tasks",
       "3 - Diagnosed impairment / needs help"
     ],
+    hasDontKnow: true,
     domainWeights: { Neurological: 1.0 }
   },
   {
     id: "Q7",
     question: "Dizziness, numbness or tingling",
     options: [
-      "0 - None", 
-      "1 - Rare and mild", 
-      "2 - Frequent episodes", 
+      "0 - None",
+      "1 - Rare and mild",
+      "2 - Frequent episodes",
       "3 - Constant, or with weakness"
     ],
+    hasDontKnow: true,
     domainWeights: { Neurological: 1.0 }
   },
   {
     id: "Q8",
     question: "Strength, energy and walking speed",
     options: [
-      "0 - Strong, walks briskly", 
-      "1 - Slightly slower, tires easily", 
-      "2 - Noticeably weak or slow", 
+      "0 - Strong, walks briskly",
+      "1 - Slightly slower, tires easily",
+      "2 - Noticeably weak or slow",
       "3 - Needs assistance, exhausted easily"
     ],
+    hasDontKnow: false,
     domainWeights: { Frailty: 1.0 }
   },
   {
     id: "Q9",
     question: "Joint and muscle pain",
     options: [
-      "0 - No pain", 
-      "1 - Occasional mild pain", 
-      "2 - Frequent pain, limits some activity", 
+      "0 - No pain",
+      "1 - Occasional mild pain",
+      "2 - Frequent pain, limits some activity",
       "3 - Daily pain, limits most activity"
     ],
+    hasDontKnow: false,
     domainWeights: { Musculoskeletal: 1.0 }
   },
   {
     id: "Q10",
     question: "Digestive health (appetite, acidity, bowel regularity)",
     options: [
-      "0 - Normal appetite and digestion", 
-      "1 - Occasional acidity or bloating", 
-      "2 - Frequent symptoms or irregular bowels", 
+      "0 - Normal appetite and digestion",
+      "1 - Occasional acidity or bloating",
+      "2 - Frequent symptoms or irregular bowels",
       "3 - Daily symptoms or diagnosed GI condition"
     ],
+    hasDontKnow: true,
     domainWeights: { Digestive: 1.0 }
   },
   {
     id: "Q11",
     question: "Body composition (BMI / waist circumference)",
     options: [
-      "0 - Normal (BMI 18.5-22.9, normal waist)", 
-      "1 - Overweight (BMI 23-24.9)", 
-      "2 - Obese (BMI 25-29.9) or high waist", 
+      "0 - Normal (BMI 18.5-22.9, normal waist)",
+      "1 - Overweight (BMI 23-24.9)",
+      "2 - Obese (BMI 25-29.9) or high waist",
       "3 - BMI 30+ or very high waist"
     ],
+    hasDontKnow: false,
+    requiresBMICalculator: true, // UI FLAG: Render BMI calculator inputs
     domainWeights: { "Body Resilience": 1.0 }
   },
   {
     id: "Q12",
     question: "Cholesterol / lipid profile",
     options: [
-      "0 - Normal lipid profile", 
-      "1 - Borderline high", 
-      "2 - High, on medication", 
+      "0 - Normal lipid profile",
+      "1 - Borderline high",
+      "2 - High, on medication",
       "3 - Very high or uncontrolled"
     ],
+    hasDontKnow: true,
     domainWeights: { Metabolic: 1.0 }
   },
   {
     id: "Q13",
     question: "Lifestyle (physical activity,smoking,alcohol) per week",
     options: [
-      "0 - Mostly active,no smoking or no alcohol per week", 
-      "1 - Little active, 1 or 2 times alcohol or smoking per week", 
-      "2 - Sedentary or 2 or more times alcohol or smoking per week", 
+      "0 - Mostly active,no smoking or no alcohol per week",
+      "1 - Little active, 1 or 2 times alcohol or smoking per week",
+      "2 - Sedentary or 2 or more times alcohol or smoking per week",
       "3 - Sedentary with heavy or regular alcohol or smoking per week"
     ],
+    hasDontKnow: false,
     domainWeights: { Lifestyle: 1.0 }
   },
   {
     id: "Q14",
     question: "Sleep quality and duration",
     options: [
-      "0 - 7-8 hours, refreshing", 
-      "1 - 6-7 hours, mostly fine", 
-      "2 - 5-6 hours, disturbed sleep", 
+      "0 - 7-8 hours, refreshing",
+      "1 - 6-7 hours, mostly fine",
+      "2 - 5-6 hours, disturbed sleep",
       "3 - Under 5 hours, insomnia or sleep apnoea"
     ],
+    hasDontKnow: true,
     domainWeights: { Sleep: 1.0 }
   },
   {
     id: "Q15",
     question: "Emotional wellbeing and stress",
     options: [
-      "0 - Calm and positive", 
-      "1 - Occasional stress", 
-      "2 - Frequent stress, anxiety or low mood", 
+      "0 - Calm and positive",
+      "1 - Occasional stress",
+      "2 - Frequent stress, anxiety or low mood",
       "3 - Severe, affects daily life"
     ],
+    hasDontKnow: true,
     domainWeights: { Emotional: 1.0 }
   }
 ];
 
-// 2. Maximum possible points per domain
-// Calculated as: (Sum of Domain Weights across all questions) * 3 max points
-export const DOMAIN_MAX_SCORES = {
-  Metabolic: 7.2,           // (0.4 + 1.0 + 1.0) * 3
-  Cardiovascular: 5.1,      // (1.0 + 0.7) * 3
-  Neurological: 6.0,        // (1.0 + 1.0) * 3
-  Frailty: 6.0,             // (0.4 + 0.6 + 1.0) * 3
-  "Body Resilience": 4.5,   // (0.2 + 0.3 + 1.0) * 3
-  Musculoskeletal: 4.2,     // (0.4 + 1.0) * 3
-  Lifestyle: 3.0,           // 1.0 * 3
-  Sleep: 3.0,               // 1.0 * 3
-  Emotional: 3.0,           // 1.0 * 3
-  Digestive: 3.0,           // 1.0 * 3
-};
-
 /**
- * 3. Core Calculation Engine
+ * 2. Core Calculation Engine
  * 
- * @param {Object} userAnswers - An object mapping question IDs to the selected point value (0, 1, 2, or 3).
- *                               Example: { Q1: 1, Q2: 0, Q3: 2, ... }
+ * @param {Object} userAnswers - An object mapping question IDs to the selected point value (0, 1, 2, 3, or 4 for Don't Know).
+ *                               Example: { Q1: 1, Q2: 4, Q3: 2, ... }
  * @returns {Object} The calculated raw points, domain scores, and percentages.
  */
 export function calculateHRS(userAnswers) {
   let totalRawPoints = 0;
+  let totalPossiblePoints = 0; // Dynamic max points depending on "Don't Know" answers
   
-  // Initialize domain scores at 0
+  // Initialize domain scores and max possible domain scores at 0
   const domainScores = {
-    Metabolic: 0,
-    Cardiovascular: 0,
-    Neurological: 0,
-    Frailty: 0,
-    "Body Resilience": 0,
-    Musculoskeletal: 0,
-    Lifestyle: 0,
-    Sleep: 0,
-    Emotional: 0,
-    Digestive: 0
+    Metabolic: 0, Cardiovascular: 0, Neurological: 0, Frailty: 0,
+    "Body Resilience": 0, Musculoskeletal: 0, Lifestyle: 0,
+    Sleep: 0, Emotional: 0, Digestive: 0
   };
+  
+  const domainMaxPossible = { ...domainScores };
 
   // 1. Distribute points to domains based on weights
   QUESTIONS_DATA.forEach(question => {
-    // Default to 0 if the question hasn't been answered yet
-    const pointsScored = userAnswers[question.id] || 0; 
-    totalRawPoints += pointsScored;
+    const rawAnswer = userAnswers[question.id];
+    
+    // Treat undefined or '4' (Don't Know) as skipped for scoring purposes
+    const isAnswered = rawAnswer !== undefined && rawAnswer !== 4;
+    const pointsScored = isAnswered ? rawAnswer : 0;
+    
+    if (isAnswered) {
+      totalRawPoints += pointsScored;
+      totalPossiblePoints += 3; // Max points per question is 3
+    }
 
-    // Multiply the points scored by the apportioning percentage for that specific question
-    Object.entries(question.domainWeights).forEach(([domain, weight]) => {
-      domainScores[domain] += (pointsScored * weight);
-    });
+    // Apportion points and calculate dynamic max domain score
+    if (question.domainWeights) {
+      Object.entries(question.domainWeights).forEach(([domain, weight]) => {
+        if (isAnswered) {
+          domainScores[domain] += (pointsScored * weight);
+          domainMaxPossible[domain] += (3 * weight); // Max possible points for this domain mapping
+        }
+      });
+    }
   });
 
-  // 2. Calculate Domain Risk Percentages
+  // 2. Calculate Domain Risk Percentages dynamically based on answered questions
   const domainRiskPercentages = {};
-  Object.keys(DOMAIN_MAX_SCORES).forEach(domain => {
-    const maxScore = DOMAIN_MAX_SCORES[domain];
+  Object.keys(domainScores).forEach(domain => {
+    const maxScore = domainMaxPossible[domain];
     const actualScore = domainScores[domain];
     
-    // Protect against division by zero, though maxScore should never be 0
+    // Protect against division by zero if all questions in a domain were "Don't Know"
     domainRiskPercentages[domain] = maxScore > 0 
       ? (actualScore / maxScore) * 100 
       : 0;
   });
 
-  // 3. Calculate Overall Scores (Linear fallback)
-  // Note: The sheet shows 2 points = ~3.2% risk. If your dashboard uses a specific 
-  // non-linear curve or weighted average for the final score, apply that math here.
-  const MAX_TOTAL_POINTS = 45;
-  const overallRiskScoreLinear = (totalRawPoints / MAX_TOTAL_POINTS) * 100;
+  // 3. Calculate Overall Scores (Linear fallback using dynamic max points)
+  // Prevents "Don't Know" answers from artificially lowering the risk score
+  const overallRiskScoreLinear = totalPossiblePoints > 0 
+    ? (totalRawPoints / totalPossiblePoints) * 100 
+    : 0;
+    
   const overallHealthScoreLinear = 100 - overallRiskScoreLinear;
 
   return {

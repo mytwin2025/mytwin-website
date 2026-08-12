@@ -219,7 +219,7 @@ export default function BecomeCoachModal({ showModal, handleCloseModal }) {
                   htmlFor="coach-consent"
                   className="cursor-pointer font-[Inter] text-[11px] leading-snug text-gray-600"
                 >
-                  I consent to receive phone calls/messages/emails from MyTwin experts.
+                  I consent to be contacted by MyTwin Support Team on Calls,WhatsApp, Email & SMS.
                 </label>
               </div>
 

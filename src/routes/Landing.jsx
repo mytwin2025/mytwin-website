@@ -39,7 +39,7 @@ export default function LandingPage() {
       >
         <span className="font-[Inter] font-semibold text-[18px] leading-[24px] text-[#2F387F]">Still have a question?</span>
         <button
-          className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pr-2 pl-2 transition-transform hover:scale-105 "
+          className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pr-2  pl-6 sm:pl-2 md:pl-2 lg:pl-2 transition-transform hover:scale-105 "
           onClick={() => setShowConsultationModal(true)}
         >
           <div className="relative h-10 w-[136px] hidden md:flex">

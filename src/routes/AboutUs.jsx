@@ -29,8 +29,9 @@ export default function AboutUs() {
         <div className="mx-auto flex w-full max-w-5xl flex-col items-start justify-between gap-4 lg:flex-row lg:gap-10">
           <h2 className="font-[Arima] text-4xl font-bold text-black sm:text-[48px]">Our Mission</h2>
           <p className="font-[Inter] text-sm text-[#484c48] sm:text-base md:w-1/2">
-            To help 10 million people achieve optimal health through preventive measures,early
-            detection,early intervention, continuous monitoring and doctor led clinical protocols.
+            To help 10 million people achieve optimal health through preventive measures, early
+            diagnosis, personalised intervention, continuous monitoring and doctor-led clinical
+            protocols.
           </p>
         </div>
         <div className="mx-auto my-8 flex w-full max-w-5xl flex-col items-start justify-between gap-10 lg:my-12 lg:flex-row">
