@@ -331,7 +331,7 @@ export default function PlanDetails() {
     {
       title: 'Add Full Body Checkup - Male',
       description: `Lab tests to evaluate key biomarkers, identify metabolic risks early, and optimise your plan with real data.`,
-      price: 5046,
+      price: 3949,
       image: Media.addOnIcons.labTest,
       gstExempt: true,
       pinCodeRequired: true,
@@ -341,7 +341,7 @@ export default function PlanDetails() {
     {
       title: 'Add Full Body Checkup - Female',
       description: `Lab tests to evaluate key biomarkers, identify metabolic risks early, and optimise your plan with real data.`,
-      price: 5046,
+      price: 3934,
       image: Media.addOnIcons.labTest,
       gstExempt: true,
       pinCodeRequired: true,

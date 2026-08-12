@@ -348,7 +348,7 @@ export const card = [
   {
     name: 'Full Body Checkup-Female (Advance)',
     price: '₹ 6500',
-    finalPrice: '₹ 3,949',
+    finalPrice: '₹ 3,934',
     description: 'Advance Cardio & Metabolic Health Panel',
     sub: '99',
     discount: '39%',

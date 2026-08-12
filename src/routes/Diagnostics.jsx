@@ -240,7 +240,7 @@ export default function Diagnostics() {
                   <img
                     src={banner.image}
                     alt="banner background"
-                    className="h-full w-full object-cover md:object-cover"
+                    className="h-full w-full object-cover object-[-70vw]  md:object-cover"
                   />
                 </div>
                 {/* Content Overlay */}
