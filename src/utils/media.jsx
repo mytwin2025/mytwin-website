@@ -199,6 +199,9 @@ import bpIco1 from '../assets/images/diagnostics/icons/bpIco1.png'
 import bpIco2 from '../assets/images/diagnostics/icons/bpIco2.png'
 import bpIco3 from '../assets/images/diagnostics/icons/bpIco3.png'
 
+//after hrs result
+import humanBg from '../assets/images/afterScreen/humanBg.png'
+
 
 export const Media = {
   webMetrics: {

@@ -240,7 +240,7 @@ export default function Diagnostics() {
                   <img
                     src={banner.image}
                     alt="banner background"
-                    className="h-full w-full object-cover object-[-70vw]  md:object-cover"
+                    className="h-full w-full object-cover object-[-70vw] sm:object-center md:object-cover md:object-center lg:object-center"
                   />
                 </div>
                 {/* Content Overlay */}
@@ -330,7 +330,7 @@ export default function Diagnostics() {
                       // if (banner.slug) {
                       //   navigate(`/program-details/${banner.slug}`);
                       // } else {
-                        handleOpenBooking(null);
+                      handleOpenBooking(null);
                       // }
                     }}
                     className="flex items-center justify-center gap-1 rounded-md px-3 py-0 font-[Inter] text-[8px] font-bold text-white transition-all hover:shadow-md sm:gap-2 sm:rounded-xl sm:px-6 sm:py-3 sm:text-xs md:px-8 md:py-4 md:text-sm lg:text-base"
@@ -504,7 +504,7 @@ export default function Diagnostics() {
             {/* Healthians Section */}
 
             <button
-              className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pl-2 pr-2 pl-6 sm:pl-2 md:pl-2 lg:pl-2 transition-transform hover:scale-105"
+              className="flex flex-row items-center justify-between gap-4 rounded-full bg-[#f3f3f4] p-2 pl-2 pl-6 pr-2 transition-transform hover:scale-105 sm:pl-2 md:pl-2 lg:pl-2"
               onClick={handleOpenModal}
             >
               <div className="relative hidden h-10 w-[136px] md:flex">
