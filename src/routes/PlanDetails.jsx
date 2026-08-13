@@ -501,6 +501,8 @@ export default function PlanDetails() {
 
   const [selectedAddOns, setSelectedAddOns] = React.useState([]);
   const [isPincodeDialogOpen, setIsPincodeDialogOpen] = React.useState(false);
+  const [isHeroVideoLoaded, setIsHeroVideoLoaded] = React.useState(false);
+  const [isBgVideoLoaded, setIsBgVideoLoaded] = React.useState(false);
   const [tempAddOn, setTempAddOn] = React.useState(null);
   const [pincode, setPincode] = React.useState('');
   const [pincodeError, setPincodeError] = React.useState('');
@@ -707,7 +709,10 @@ export default function PlanDetails() {
           loop
           muted
           playsInline
-          className="absolute inset-0 z-0 h-full w-full object-cover"
+          onLoadedData={() => setIsHeroVideoLoaded(true)}
+          className={`absolute inset-0 z-0 h-full w-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
+            isHeroVideoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
         />
 
         <img
@@ -791,7 +796,10 @@ export default function PlanDetails() {
           loop
           muted
           playsInline
-          className="absolute inset-0 z-0 h-full w-full rounded-bl-[32px] rounded-br-[32px] object-cover"
+          onLoadedData={() => setIsBgVideoLoaded(true)}
+          className={`absolute inset-0 z-0 h-full w-full rounded-bl-[32px] rounded-br-[32px] object-cover transition-opacity duration-[1500ms] ease-in-out ${
+            isBgVideoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
         />
         <div className="overlay absolute inset-0 z-0 bg-black opacity-50" />
 

@@ -27,7 +27,7 @@ const diagnosticBanner = [
     highlight: 'With Expert Health Insights',
     highlightColor: '#f26522',
     subtitle:
-      'Detect risks early with advanced diagnostics, doctor consultations, and comprehensive biomarker tracking.',
+      'Detect risks early with advanced diagnostics,\ndoctor consultations, and comprehensive\nbiomarker tracking.',
     featuresVariant: 'cards',
     features: [
       {
@@ -64,7 +64,7 @@ const diagnosticBanner = [
     highlightColor: '#000',
     hasSeparator: true,
     separatorColor: '#701A41',
-    subtitle: 'Identify hormonal imbalances, manage symptoms & support better reproductive health.',
+    subtitle: `Identify hormonal imbalances,\nmanage symptoms & support\nbetter reproductive health.`,
     featuresVariant: 'icons',
     features: [
       { icon: Media.diagnosticBanners.pcosIco1, title: 'Hormone\nProfile' },
@@ -86,7 +86,7 @@ const diagnosticBanner = [
     highlightColor: '#000',
     hasSeparator: true,
     separatorColor: '#005C61',
-    subtitle: 'Track blood sugar, insulin & key markers to manage diabetes better.',
+    subtitle: 'Track blood sugar, insulin\n& key markers to manage\ndiabetes better.',
     featuresVariant: 'icons',
     features: [
       { icon: Media.diagnosticBanners.diabetesIco1, title: 'Blood Sugar' },
@@ -107,7 +107,7 @@ const diagnosticBanner = [
     highlightColor: '#000',
     hasSeparator: true,
     separatorColor: '#96003B',
-    subtitle: 'Monitor heart health with advanced blood biomarkers.',
+    subtitle: 'Monitor heart health\nwith advanced blood\nbiomarkers.',
     featuresVariant: 'icons',
     features: [
       { icon: Media.diagnosticBanners.heartIco1, title: 'Lipid\nProfile' },
@@ -128,7 +128,7 @@ const diagnosticBanner = [
     highlightColor: '#000',
     hasSeparator: true,
     separatorColor: '#B84F00',
-    subtitle: 'Keep your blood pressure & cholesterol in check to reduce heart risks.',
+    subtitle: 'Keep your blood pressure &\ncholesterol in check to reduce\nheart risks.',
     featuresVariant: 'icons',
     features: [
       { icon: Media.diagnosticBanners.bpIco1, title: 'Lipid\nProfile' },
@@ -149,7 +149,7 @@ const diagnosticBanner = [
     highlightColor: '#000',
     hasSeparator: true,
     separatorColor: '#346227',
-    subtitle: 'Assess liver health & detect fatty liver early with key blood tests.',
+    subtitle: 'Assess liver health & detect\nfatty liver early with key\nblood tests.',
     featuresVariant: 'icons',
     features: [
       { icon: Media.diagnosticBanners.liverIco1, title: 'Liver Function\nTests (LFT)' },
@@ -233,21 +233,20 @@ export default function Diagnostics() {
             {diagnosticBanner.map((banner, index) => (
               <div
                 key={index}
-                className="relative flex aspect-[16/11] w-full shrink-0 flex-col justify-center overflow-hidden rounded-[24px] bg-[#fdfaf6] shadow-sm sm:aspect-auto md:min-h-[460px] lg:min-h-[480px]"
+                className="relative w-full shrink-0 overflow-hidden rounded-[24px] bg-[#fdfaf6] shadow-sm"
               >
                 {/* Background Image (All screens) */}
-                <div className="absolute inset-0 z-0 w-full">
-                  <img
-                    src={banner.image}
-                    alt="banner background"
-                    className="h-full w-full object-cover object-[-70vw] sm:object-center md:object-cover md:object-center lg:object-center"
-                  />
-                </div>
+                <img
+                  src={banner.image}
+                  alt="banner background"
+                  className="block h-auto w-full object-contain"
+                />
+
                 {/* Content Overlay */}
-                <div className="relative z-10 flex w-[90%] flex-col items-start justify-center p-4 sm:w-[75%] sm:p-6 md:w-[65%] lg:w-[60%] lg:p-12">
+                <div className="absolute inset-0 z-10 flex w-[90%] flex-col items-start justify-center p-3 sm:w-[75%] sm:p-6 md:w-[65%] lg:w-[60%] lg:p-12">
                   {banner.badge && (
                     <div
-                      className={`mb-0 inline-flex items-center justify-center rounded-full px-2 py-0 text-[6px] font-bold tracking-wide text-white sm:px-3 sm:py-1.5 sm:text-[10px] md:mb-4 md:px-4 md:text-xs`}
+                      className={`mb-0.5 inline-flex items-center justify-center rounded-full px-2 py-0 text-[6px] font-bold tracking-wide text-white sm:px-3 sm:py-1.5 sm:text-[10px] md:mb-4 md:px-4 md:text-xs`}
                       style={{ backgroundColor: banner.themeColor }}
                     >
                       {banner.badge}
@@ -261,7 +260,7 @@ export default function Diagnostics() {
                     {banner.title}
                   </h2>
                   <h2
-                    className={`font-[Inter] text-sm font-extrabold leading-[1.1] sm:text-2xl md:text-5xl lg:text-[52px] ${banner.hasSeparator ? 'mb-1 md:mb-3' : 'mb-2 md:mb-4'}`}
+                    className={`font-[Inter] text-sm font-extrabold leading-[1.1] sm:text-2xl md:text-5xl lg:text-[52px] ${banner.hasSeparator ? 'mb-0.5 md:mb-3' : 'mb-1 md:mb-4'}`}
                     style={{ color: banner.highlightColor }}
                   >
                     {banner.highlight}
@@ -269,21 +268,21 @@ export default function Diagnostics() {
 
                   {banner.hasSeparator && (
                     <div
-                      className="mb-1 h-[2px] w-6 md:mb-6 md:w-12 lg:w-16"
+                      className="mb-0.5 h-[2px] w-6 md:mb-6 md:w-12 lg:w-16"
                       style={{ backgroundColor: banner.separatorColor }}
                     ></div>
                   )}
 
-                  <p className="mb-0 max-w-[480px] font-[Inter] text-[8px] font-medium leading-[2] text-[#4a4a4a] sm:mb-4 sm:text-xs md:mb-6 md:text-base lg:text-lg">
+                  <p className="whitespace-pre-line mb-1 max-w-[480px] font-[Inter] text-[8px] font-medium leading-[1.5] text-[#4a4a4a] sm:mb-4 sm:text-xs md:mb-6 md:text-base lg:text-lg">
                     {banner.subtitle}
                   </p>
 
                   {banner.featuresVariant === 'cards' ? (
-                    <div className="mb-3 grid w-full max-w-[500px] grid-cols-2 gap-1.5 sm:mb-6 sm:gap-3 md:mb-8 md:gap-4">
+                    <div className="mb-1 grid w-full max-w-[500px] grid-cols-2 gap-1 sm:mb-6 sm:gap-3 md:mb-8 md:gap-4">
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1.5 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
+                          className="flex items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
                         >
                           <div className="flex h-5 w-5 shrink-0 items-center justify-center sm:h-10 sm:w-10 md:h-12 md:w-12">
                             <img

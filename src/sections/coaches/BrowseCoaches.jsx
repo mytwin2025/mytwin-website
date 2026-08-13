@@ -16,117 +16,38 @@ export default function BrowseCoaches() {
   const categoryData = [
     {
       name: `Obesity & Weight\nmanagement`,
+      value: `Obesity & Weight\nmanagement`,
       icon: Media.icons.weighScale,
     },
     {
       name: `Diabetes & Metabolic\nhealth`,
+      value: `Diabetes & Metabolic\nhealth`,
       icon: Media.icons.bloodBagGray,
     },
     {
       name: `Heart Health, Blood Pressure & Cholesterol Care`,
+      value: `Heart Health, Blood Pressure & Cholesterol Care`,
       icon: Media.icons.heart,
     },
 
     {
       name: `Muscle, Strength & \nMobility Care`, 
+      value: `Muscle, Strength & \nMobility Care`, 
       icon: Media.icons.muscle,
     },
     {
       name: `Fatty Liver`,
+      value: `Fatty Liver`,
       icon: Media.icons.fattyLiver,
     },
     {
       name: `PCOS/PCOD Care`,
+      value: `PCOS/PCOD Care`,
       icon: Media.icons.ovary,
     },
   ];
 
-  // const coachesData = [
-  //   {
-  //     name: 'Rajat Verma',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.8,
-  //     peopleCoached: 1235,
-  //     availableSlots: 5,
-  //     categories: [`Obesity & Weight\nmanagement`, `Diabetes & Metabolic\nhealth`],
-  //   },
-  //   {
-  //     name: 'Priya Sharma',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.6,
-  //     peopleCoached: 980,
-  //     availableSlots: 3,
-  //     categories: [`Diabetes & Metabolic\nhealth`, `PCOS/PCOD Care`],
-  //   },
-  //   {
-  //     name: 'Arjun Mehta',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.9,
-  //     peopleCoached: 2100,
-  //     availableSlots: 7,
-  //     categories: [`Obesity & Weight\nmanagement`, `Muscle gain & Strength`],
-  //   },
-  //   {
-  //     name: 'Sneha Iyer',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.5,
-  //     peopleCoached: 540,
-  //     availableSlots: 2,
-  //     categories: [`PCOS/PCOD Care`, `Fatty Liver`],
-  //   },
-  //   {
-  //     name: 'Karan Kapoor',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.7,
-  //     peopleCoached: 310,
-  //     availableSlots: 6,
-  //     categories: [`Heart Health &\nHypertension`, `High Cholesterol`],
-  //   },
-  //   {
-  //     name: 'Meera Nair',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.3,
-  //     peopleCoached: 760,
-  //     availableSlots: 4,
-  //     categories: [`Diabetes & Metabolic\nhealth`, `Fatty Liver`],
-  //   },
-  //   {
-  //     name: 'Vikram Malhotra',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.7,
-  //     peopleCoached: 890,
-  //     availableSlots: 6,
-  //     categories: [
-  //       `Heart Health &\nHypertension`,
-  //       `High Cholesterol`,
-  //       `Obesity & Weight\nmanagement`,
-  //     ],
-  //   },
-  //   {
-  //     name: 'Anjali Desai',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.4,
-  //     peopleCoached: 620,
-  //     availableSlots: 4,
-  //     categories: [`PCOS/PCOD Care`, `Obesity & Weight\nmanagement`],
-  //   },
-  //   {
-  //     name: 'Rohan Gupta',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.9,
-  //     peopleCoached: 1450,
-  //     availableSlots: 8,
-  //     categories: [`Muscle gain & Strength`, `Obesity & Weight\nmanagement`],
-  //   },
-  //   {
-  //     name: 'Kriti Sen',
-  //     image: Media.coaches.coachImage,
-  //     rating: 4.8,
-  //     peopleCoached: 1100,
-  //     availableSlots: 5,
-  //     categories: [`Diabetes & Metabolic\nhealth`, `PCOS/PCOD Care`, `Fatty Liver`],
-  //   },
-  // ];
+ 
 
   const fetchPresignedUrl = async (key) => {
     try {

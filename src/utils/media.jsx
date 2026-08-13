@@ -39,13 +39,13 @@ import liverIcon from '../assets/svgs/liver.svg';
 import womenIcon from '../assets/svgs/womenIcon.svg';
 
 //detail section card svgs
-import womenBg from '../assets/svgs/detailSection/womenBg.svg';
-import womenBgTwo from '../assets/svgs/detailSection/womenBgTwo.svg';
-import skinSenseBg from '../assets/svgs/detailSection/skinSenseBg.svg';
-import liverBg from '../assets/svgs/detailSection/liverBg.svg';
-import cholesterolBg from '../assets/svgs/detailSection/cholesterolBg.svg';
-import bpMachineBg from '../assets/svgs/detailSection/bpMachineBg.svg';
-import gainMuscle from '../assets/svgs/detailSection/musclegain.svg'
+import womenBg from '../assets/svgs/detailSection/womenBg.png';
+import womenBgTwo from '../assets/svgs/detailSection/womenBgTwo.png';
+import skinSenseBg from '../assets/svgs/detailSection/skinSenseBg.png';
+import liverBg from '../assets/svgs/detailSection/liverBg.png';
+import cholesterolBg from '../assets/svgs/detailSection/cholesterolBg.png';
+import bpMachineBg from '../assets/svgs/detailSection/bpMachineBg.png';
+import gainMuscle from '../assets/svgs/detailSection/musclegain.png'
 // import testmonone from '../assets/svgs/detailSection/testmonone.svg';
 // import testmontwo from '../assets/svgs/detailSection/testmontwo.svg';
 // import testmonthree from '../assets/svgs/detailSection/testmonthree.svg';
@@ -297,7 +297,7 @@ export const Media = {
       muscleGainStrengthVideo: '/video/plans/muscle-gain-strength.mp4',
       obesityWeightManagementVideo: '/video/plans/obesity-weight-management.mp4',
       pcosPcodCareVideo: '/video/plans/pcos-pcod-care.mp4',
-      fattyLiverVideo: '/video/plans/fatty-liver.svg',
+      fattyLiverVideo: '/video/plans/fatty-liver.mp4',
       scrollCardBgVideo: '/video/plans/scrollCardBgVideo.mp4',
     },
     scrollCards: {

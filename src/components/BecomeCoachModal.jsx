@@ -148,7 +148,7 @@ export default function BecomeCoachModal({ showModal, handleCloseModal }) {
                 />
               </div>
 
-              <div className="grid gap-2 grid-cols-2">
+              <div className="grid gap-2 grid-rows-2">
                 <div className="flex flex-col gap-1.5">
                   <label className="font-[Inter] text-xs font-semibold text-gray-700">
                     Your email *

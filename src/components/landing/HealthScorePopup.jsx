@@ -166,7 +166,7 @@ export default function HealthScorePopup() {
                     {QUESTIONS_DATA[currentStep - 1].requiresBMICalculator && (
                       <div className="mb-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
                         <h3 className="text-sm font-semibold mb-3 text-gray-700">Optional: Calculate your BMI</h3>
-                        <div className="flex gap-3 mb-3">
+                        <div className="flex flex-col md:flex-row gap-3 mb-3">
                           <input type="number" placeholder="Height (cm)" value={height} onChange={(e) => setHeight(e.target.value)} className="flex-1 p-2 border rounded-lg text-sm bg-white text-black" />
                           <input type="number" placeholder="Weight (kg)" value={weight} onChange={(e) => setWeight(e.target.value)} className="flex-1 p-2 border rounded-lg text-sm bg-white text-black" />
                         </div>

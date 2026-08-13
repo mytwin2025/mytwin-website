@@ -13,6 +13,7 @@ export default function DetailsCard({
   imageClassName = '',
   textClassName = '',
   redirectSlug = "",
+  imageStyle={}
 }) {
   const procTitle = title.split('\n').map((line, i) => (
     <span key={i} className="block">
@@ -72,6 +73,7 @@ export default function DetailsCard({
           right: 0,
           objectFit: 'cover',
           zIndex: 0,
+          ...imageStyle,
         }}
         className={` ${imageClassName}`}
       />
