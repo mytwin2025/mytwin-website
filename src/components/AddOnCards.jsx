@@ -22,7 +22,7 @@ export default function AddOnCards({
         className={`absolute inset-0 rounded-[16px] ${isActive ? 'bg-[#ff6b0105]' : ''} pointer-events-none`}
       />
 
-      <div className="absolute right-4 top-4 z-10">
+      <div className="absolute right-4 top-4 z-10"> 
         {available !== false && (
           <button
             type="button"
