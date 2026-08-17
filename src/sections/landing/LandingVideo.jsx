@@ -341,7 +341,7 @@ export default function LandingVideo({ forwardedRef }) {
           className="relative z-[90] flex h-full w-full items-center justify-center"
         >
           <div className="z-[20] w-full px-4 pt-14 text-center text-white">
-            <h1 className="font-[Arima] text-[40px] font-bold md:text-6xl">Optimal Health</h1>
+            <h1 className="font-[Arima] text-[40px] font-bold md:text-6xl">Optimal Helth</h1>
             <h2 className="mt-2 font-[Inter] text-2xl font-extralight md:text-4xl">
               through clinically guided and outcome-driven care.
             </h2>
