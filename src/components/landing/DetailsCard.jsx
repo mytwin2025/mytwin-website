@@ -53,7 +53,7 @@ export default function DetailsCard({
           >
             {procTitle}
           </h3>
-          <p className={`text-sm text-[#484848] mt-2 whitespace-pre-wrap ${textClassName}`}>{paragraph}</p>
+          <p className={`text-sm text-black mt-2 whitespace-pre-wrap ${textClassName}`}>{paragraph}</p>
         </div>
         <RoundArrowButton
           buttonColor={buttonColor}

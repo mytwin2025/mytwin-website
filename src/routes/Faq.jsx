@@ -67,7 +67,7 @@ export default function Faq() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-orange-500/20 via-transparent to-transparent opacity-70" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className="mt-4 font-[Arima] text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-            How can we help you?
+            FAQs
           </h1>
           <p className="mt-4 mx-auto max-w-2xl font-[Inter] text-sm text-gray-400 sm:text-base">
             Find answers to common questions about MyTwin's digital twin health platform, wearable integration, care plans, and health outcomes.

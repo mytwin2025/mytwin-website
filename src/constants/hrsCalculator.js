@@ -17,7 +17,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q2",
-    question: "Blood sugar status (fasting glucose / HbA1c)",
+    question: "What is your blood sugar status (fasting glucose / HbA1c)?",
     options: [
       "0 - Normal (FBS <100 / HbA1c <5.7)",
       "1 - Borderline / pre-diabetic (100-125 / 5.7-6.4)",
@@ -29,7 +29,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q3",
-    question: "Blood pressure / known heart condition",
+    question: "Have you been diagnosed with blood pressure / known heart condition?",
     options: [
       "0 - Normal BP, no heart condition",
       "1 - Borderline / pre-hypertension",
@@ -41,7 +41,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q4",
-    question: "Breathlessness on exertion",
+    question: "Do you become unusually tired or short of breath during routine activities such as walking or climbing stairs?",
     options: [
       "0 - Never breathless",
       "1 - Only on heavy exertion",
@@ -53,7 +53,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q5",
-    question: "Falls and balance in the last 12 months",
+    question: "Have you experienced falls, tremors, stroke-like symptoms, or difficulty with movement in last 12 months? ",
     options: [
       "0 - No falls, steady on feet",
       "1 - Occasional unsteadiness, no falls",
@@ -65,7 +65,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q6",
-    question: "Memory and concentration",
+    question: "Have you noticed problems with memory, concentration, balance, or frequent confusion?",
     options: [
       "0 - No problems",
       "1 - Occasional forgetfulness",
@@ -77,7 +77,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q7",
-    question: "Dizziness, numbness or tingling",
+    question: "Have you noticed dizziness, numbness or tingling in last 12 months?",
     options: [
       "0 - None",
       "1 - Rare and mild",
@@ -89,7 +89,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q8",
-    question: "Strength, energy and walking speed",
+    question: "Tell us more on strength, energy and walking speed?",
     options: [
       "0 - Strong, walks briskly",
       "1 - Slightly slower, tires easily",
@@ -101,7 +101,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q9",
-    question: "Joint and muscle pain",
+    question: "Do joint, back, or knee problems limit your daily movement or activities? ",
     options: [
       "0 - No pain",
       "1 - Occasional mild pain",
@@ -113,7 +113,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q10",
-    question: "Digestive health (appetite, acidity, bowel regularity)",
+    question: "How is your digestive health (appetite, acidity, bowel regularity)?",
     options: [
       "0 - Normal appetite and digestion",
       "1 - Occasional acidity or bloating",
@@ -125,7 +125,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q11",
-    question: "Body composition (BMI / waist circumference)",
+    question: "What is your body composition index (BMI / waist circumference) ",
     options: [
       "0 - Normal (BMI 18.5-22.9, normal waist)",
       "1 - Overweight (BMI 23-24.9)",
@@ -138,7 +138,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q12",
-    question: "Cholesterol / lipid profile",
+    question: "How is your cholesterol / lipid profile?",
     options: [
       "0 - Normal lipid profile",
       "1 - Borderline high",
@@ -150,7 +150,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q13",
-    question: "Lifestyle (physical activity,smoking,alcohol) per week",
+    question: "Which of these lifestyle habits currently apply to you?(physical activity, smoking, alcohol)",
     options: [
       "0 - Mostly active,no smoking or no alcohol per week",
       "1 - Little active, 1 or 2 times alcohol or smoking per week",
@@ -162,7 +162,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q14",
-    question: "Sleep quality and duration",
+    question: "How would you rate your sleep quality and duration over the past few months?",
     options: [
       "0 - 7-8 hours, refreshing",
       "1 - 6-7 hours, mostly fine",
@@ -174,7 +174,7 @@ export const QUESTIONS_DATA = [
   },
   {
     id: "Q15",
-    question: "Emotional wellbeing and stress",
+    question: "How often do you feel stressed, anxious, or emotionally low?",
     options: [
       "0 - Calm and positive",
       "1 - Occasional stress",

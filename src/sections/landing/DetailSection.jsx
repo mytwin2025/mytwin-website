@@ -380,7 +380,7 @@ export default function DetailSection({ frameRef }) {
             bgColor={cardData[2].bgColor}
             style={{ height: '70vh', marginRight: '0px' }}
             textClassName="text-[10px] md:text-[16px] w-[100%] md:w-full whitespace-pre-wrap leading-tight md:leading-relaxed"
-            imageClassName="w-full translate-y-24"
+            imageClassName="w-full translate-y-40"
             redirectSlug={cardData[2].redirectSlug}
             imageStyle={{
               width: '100%',
@@ -417,14 +417,11 @@ export default function DetailSection({ frameRef }) {
             imageStyle={{
               objectPosition: 'right bottom',
               width: 'auto',
-              height: '80%',
+              height: '60%',
             }}
             icon={cardData[4].icon}
             bgColor={cardData[4].bgColor}
-            // imageClassName="h-[90%] md:h-full"
-            // textClassName="text-[12px] md:text-[16px] text-blue-300"
             textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
-            imageClassName="w-[97%] md:w-auto"
             redirectSlug={cardData[4].redirectSlug}
           />
           <DetailsCard
@@ -437,11 +434,10 @@ export default function DetailSection({ frameRef }) {
             imageStyle={{
               objectPosition: 'right bottom',
               width: 'auto',
-              height: '90%',
+              height: '60%',
             }}
             icon={cardData[3].icon}
             bgColor={cardData[3].bgColor}
-            // imageClassName="h-[90%] md:h-full"
             textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
             imageClassName="w-[50%] md:w-auto"
             redirectSlug={cardData[3].redirectSlug}
@@ -455,38 +451,12 @@ export default function DetailSection({ frameRef }) {
             image={cardData[5].image}
             icon={cardData[5].icon}
             bgColor={cardData[5].bgColor}
-            // imageClassName="h-[90%] md:h-full"
-            // textClassName="text-[12px] md:text-[16px] text-blue-300"
             textClassName="text-[10px] md:text-[16px] w-[60%] md:w-full md:whitespace-pre-line leading-tight md:leading-relaxed"
             imageClassName="w-[60%] md:w-auto"
             redirectSlug={cardData[5].redirectSlug}
           />
         </div>
       </div>
-      {/* <div className="z-4 pointer-events-none flex w-full translate-y-[-15%] flex-col items-center justify-end md:hidden">
-        <div className="w-full">
-          <h2 className="mt-4 w-full text-center font-[Arima] text-4xl font-bold leading-tight text-white">
-            Real People. Real Results.
-          </h2>
-          <div className="flex w-full flex-col items-center justify-center gap-4 py-12">
-            <img
-              src={Media.testimonials.testmonone}
-              alt="Testimonial 1"
-              className="h-auto w-[90%] object-cover"
-            />
-            <img
-              src={Media.testimonials.testmontwo}
-              alt="Testimonial 2"
-              className="h-auto w-[90%] object-cover"
-            />
-            <img
-              src={Media.testimonials.testmonthree}
-              alt="Testimonial 3"
-              className="h-auto w-[90%] object-cover"
-            />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

@@ -32,6 +32,79 @@ gsap.registerPlugin(ScrollTrigger);
 // - Fatty Liver Related Issues
 // - PCOS/PCOD
 
+export const addOnData = [
+  {
+    title: 'Add Full Body Checkup - Male',
+    description: `Lab tests to evaluate key biomarkers, identify metabolic risks early, and optimise your plan with real data.`,
+    price: 3949,
+    image: Media.addOnIcons.labTest,
+    gstExempt: true,
+    pinCodeRequired: true,
+    quantifiable: false,
+    available: true,
+  },
+  {
+    title: 'Add Full Body Checkup - Female',
+    description: `Lab tests to evaluate key biomarkers, identify metabolic risks early, and optimise your plan with real data.`,
+    price: 3934,
+    image: Media.addOnIcons.labTest,
+    gstExempt: true,
+    pinCodeRequired: true,
+    quantifiable: false,
+    available: true,
+  },
+  {
+    title: 'Doctor Consultation',
+    description: `Personalized doctor consultation to review reports,address concerns, and guide your health journey `,
+    price: 1000,
+    image: Media.addOnIcons.doctorConsult,
+    gstExempt: true,
+    pinCodeRequired: false,
+    quantifiable: false,
+    available: true,
+  },
+  {
+    title: 'Smart Ring',
+    description: `Track sleep, recovery, and readiness.  Because what you do at night impacts everything the next day.`,
+    price: 7099,
+    image: Media.addOnIcons.smartRing,
+    gstExempt: false,
+    pinCodeRequired: false,
+    quantifiable: true,
+    available: false,
+  },
+  {
+    title: 'Smart CGM (Continuous Glucose Monitor)',
+    description: `See your glucose in real time.  Understand how your body reacts to food, stress, and lifestyle—instantly.`,
+    price: 3500,
+    image: Media.addOnIcons.smartCgm,
+    gstExempt: false,
+    pinCodeRequired: false,
+    quantifiable: true,
+    available: false,
+  },
+  {
+    title: 'Smart Scale',
+    description: `Go beyond weight.  Track body fat, muscle mass, and progress that actually matters.`,
+    price: 10500,
+    image: Media.addOnIcons.smartScale,
+    gstExempt: false,
+    pinCodeRequired: false,
+    quantifiable: true,
+    available: false,
+  },
+  {
+    title: 'Smart BP Monitor',
+    description: `Manage,monitor and improve your blood pressure naturally.Undertand how your BP reacts to sleep, stress and lifestyle habits instantly.`,
+    price: 2749,
+    image: Media.addOnIcons.familyIcon,
+    gstExempt: false,
+    pinCodeRequired: false,
+    quantifiable: true,
+    available: false,
+  },
+];
+
 export const plansData = [
   {
     index: '01',
@@ -325,93 +398,6 @@ export default function PlanDetails() {
     { id: 1, name: '12 Weeks', week: 12, price: 999 },
     { id: 2, name: '24 Weeks', week: 24, price: 1799 },
     { id: 3, name: '52 Weeks', week: 52, price: 2999 },
-  ];
-
-  const addOnData = [
-    {
-      title: 'Add Full Body Checkup - Male',
-      description: `Lab tests to evaluate key biomarkers, identify metabolic risks early, and optimise your plan with real data.`,
-      price: 3949,
-      image: Media.addOnIcons.labTest,
-      gstExempt: true,
-      pinCodeRequired: true,
-      quantifiable: false,
-      available: true,
-    },
-    {
-      title: 'Add Full Body Checkup - Female',
-      description: `Lab tests to evaluate key biomarkers, identify metabolic risks early, and optimise your plan with real data.`,
-      price: 3934,
-      image: Media.addOnIcons.labTest,
-      gstExempt: true,
-      pinCodeRequired: true,
-      quantifiable: false,
-      available: true,
-
-    },
-    {
-      title: 'Doctor Consultation',
-      description: `Personalized doctor consultation to review reports,address concerns, and guide your health journey `,
-      price: 1000,
-      image: Media.addOnIcons.doctorConsult,
-      gstExempt: true,
-      pinCodeRequired: false,
-      quantifiable: false,
-      available: true,
-
-    },
-    // {
-    //   title: 'Family Partner Plan (2 Members)',
-    //   description: `Stay consistent together.  Shared goals, better accountability, and support that actually sticks.`,
-    //   price: 14500,
-    //   image: Media.addOnIcons.familyIcon,
-    //   gstExempt: false,
-    // },
-    {
-      title: 'Smart Ring',
-      description: `Track sleep, recovery, and readiness.  Because what you do at night impacts everything the next day.`,
-      price: 7099,
-      image: Media.addOnIcons.smartRing,
-      gstExempt: false,
-      pinCodeRequired: false,
-      quantifiable: true,
-      available: false,
-
-    },
-    {
-      title: 'Smart CGM (Continuous Glucose Monitor)',
-      description: `See your glucose in real time.  Understand how your body reacts to food, stress, and lifestyle—instantly.`,
-      price: 3500,
-      image: Media.addOnIcons.smartCgm,
-      gstExempt: false,
-      pinCodeRequired: false,
-      quantifiable: true,
-      available: false,
-
-
-    },
-    {
-      title: 'Smart Scale',
-      description: `Go beyond weight.  Track body fat, muscle mass, and progress that actually matters.`,
-      price: 10500,
-      image: Media.addOnIcons.smartScale,
-      gstExempt: false,
-      pinCodeRequired: false,
-      quantifiable: true,
-      available: false,
-
-    },
-    {
-      title: 'Smart BP Monitor',
-      description: `Manage,monitor and improve your blood pressure naturally.Undertand how your BP reacts to sleep, stress and lifestyle habits instantly.`,
-      price: 2749,
-      image: Media.addOnIcons.familyIcon,
-      gstExempt: false,
-      pinCodeRequired: false,
-      quantifiable: true,
-      available: false,
-
-    },
   ];
 
   const steps = [

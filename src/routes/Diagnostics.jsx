@@ -260,7 +260,7 @@ export default function Diagnostics() {
                     {banner.title}
                   </h2>
                   <h2
-                    className={`font-[Inter] text-sm font-extrabold leading-[1.1] sm:text-2xl md:text-5xl lg:text-[52px] ${banner.hasSeparator ? 'mb-0.5 md:mb-3' : 'mb-1 md:mb-4'}`}
+                    className={`font-[Inter] text-[13px] font-extrabold leading-[1] md:text-5xl lg:text-[52px] ${banner.hasSeparator ? 'mb-0.5 md:mb-3' : 'mb-1 md:mb-4'}`}
                     style={{ color: banner.highlightColor }}
                   >
                     {banner.highlight}
@@ -273,16 +273,16 @@ export default function Diagnostics() {
                     ></div>
                   )}
 
-                  <p className="whitespace-pre-line mb-1 max-w-[480px] font-[Inter] text-[8px] font-medium leading-[1.5] text-[#4a4a4a] sm:mb-4 sm:text-xs md:mb-6 md:text-base lg:text-lg">
+                  <p className="mb-1 max-w-[480px] whitespace-pre-line font-[Inter] text-[8px] font-medium leading-[1.5] text-[#4a4a4a] sm:mb-4 sm:text-xs md:mb-6 md:text-base lg:text-lg">
                     {banner.subtitle}
                   </p>
 
                   {banner.featuresVariant === 'cards' ? (
-                    <div className="mb-1 grid w-full max-w-[500px] grid-cols-2 gap-1 sm:mb-6 sm:gap-3 md:mb-8 md:gap-4">
+                    <div className="mb-1 grid w-full max-w-[500px] grid-cols-2 gap-1 sm:mb-6 sm:gap-3 md:mb-8 md:max-w-[780px] md:gap-4">
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
+                          className="flex w-[calc(100%-20px)] items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
                         >
                           <div className="flex h-5 w-5 shrink-0 items-center justify-center sm:h-10 sm:w-10 md:h-12 md:w-12">
                             <img
@@ -303,7 +303,7 @@ export default function Diagnostics() {
                       ))}
                     </div>
                   ) : (
-                    <div className="mb-2 flex w-full max-w-[480px] items-start justify-start gap-4 sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between">
+                    <div className="mb-2 flex w-full max-w-[480px] items-start justify-start gap-2 sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between">
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
@@ -313,6 +313,9 @@ export default function Diagnostics() {
                             <img
                               src={feature.icon}
                               alt={feature.title}
+                              style={{
+                                marginRight: idx === 2 ? '6px' : '0px',
+                              }}
                               className="h-full w-full object-contain"
                             />
                           </div>
@@ -448,7 +451,7 @@ export default function Diagnostics() {
               <h3 className="font-[Inter] text-[20px] font-bold tracking-tight text-[#1c1c1c] sm:text-[24px]">
                 Smart
               </h3>
-              <p className="font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:text-[14px]">
+              <p className="mb-4 font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:mb-0 sm:text-[14px]">
                 & fast report
               </p>
             </div>
@@ -456,10 +459,10 @@ export default function Diagnostics() {
               <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#dcedc8] text-[#33691e] sm:h-12 sm:w-12">
                 <ShieldCheck size={28} />
               </div>
-              <h3 className="font-[Inter] text-[20px] font-bold tracking-tight text-[#1c1c1c] sm:text-[24px]">
+              <h3 className="font-[Inter] text-[20px] font-bold tracking-tight text-[#1c1c1c] sm:mb-0 sm:text-[24px]">
                 Safe
               </h3>
-              <p className="font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:text-[14px]">
+              <p className="mb-4 font-[Inter] text-[13px] font-medium text-[#4a4a4a] sm:mb-0 sm:text-[14px]">
                 & secure data
               </p>
             </div>
