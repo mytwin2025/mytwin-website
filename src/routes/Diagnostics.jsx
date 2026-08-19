@@ -239,7 +239,7 @@ export default function Diagnostics() {
                 <img
                   src={banner.image}
                   alt="banner background"
-                  className="block w-full object-cotain"
+                  className="block w-full h-full object-cover"
                 />
 
                 {/* Content Overlay */}
