@@ -303,7 +303,7 @@ export default function Diagnostics() {
                       ))}
                     </div>
                   ) : (
-                    <div className="mb-2 flex w-full max-w-[480px] items-start justify-start gap-2 sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between">
+                    <div className="mb-2 flex w-full max-w-[480px] items-start justify-start gap-6 sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between">
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
