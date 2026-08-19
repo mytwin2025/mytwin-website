@@ -239,7 +239,7 @@ export default function Diagnostics() {
                 <img
                   src={banner.image}
                   alt="banner background"
-                  className="block h-auto w-full object-contain"
+                  className="block w-full object-cotain"
                 />
 
                 {/* Content Overlay */}
@@ -303,7 +303,8 @@ export default function Diagnostics() {
                       ))}
                     </div>
                   ) : (
-                    <div className="mb-2 flex w-full max-w-[480px] items-start justify-start gap-6 sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between">
+                    <div className="mb-2 flex w-full max-w-[480px] items-start justify-start sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between"
+                    style={{display: 'flex', gap: index === 1 ? '6px' : '16px'}}>
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
