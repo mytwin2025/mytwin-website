@@ -176,14 +176,14 @@ export default function Diagnostics() {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    if (!isHovered) {
-      const interval = setInterval(() => {
-        setCurrentBanner((prev) => (prev + 1) % diagnosticBanner.length);
-      }, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [isHovered, diagnosticBanner.length]);
+  // useEffect(() => {
+  //   if (!isHovered) {
+  //     const interval = setInterval(() => {
+  //       setCurrentBanner((prev) => (prev + 1) % diagnosticBanner.length);
+  //     }, 5000);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [isHovered, diagnosticBanner.length]);
 
   const nextBanner = () => {
     setCurrentBanner((prev) => (prev + 1) % diagnosticBanner.length);
@@ -233,13 +233,13 @@ export default function Diagnostics() {
             {diagnosticBanner.map((banner, index) => (
               <div
                 key={index}
-                className="relative w-full shrink-0 overflow-hidden rounded-[24px] bg-[#fdfaf6] shadow-sm"
+                className="relative w-full shrink-0 overflow-hidden rounded-[8px] bg-[#fdfaf6] shadow-sm"
               >
                 {/* Background Image (All screens) */}
                 <img
                   src={banner.image}
                   alt="banner background"
-                  className="block w-full h-full object-cover"
+                  className="block h-full w-full object-cover"
                 />
 
                 {/* Content Overlay */}
@@ -278,11 +278,11 @@ export default function Diagnostics() {
                   </p>
 
                   {banner.featuresVariant === 'cards' ? (
-                    <div className="mb-1 grid w-full max-w-[500px] grid-cols-2 gap-1 sm:mb-6 sm:gap-3 md:mb-8 md:max-w-[780px] md:gap-4">
+                    <div className="mb-1 grid w-full max-w-[250px] grid-cols-2 gap-1 sm:mb-6 sm:gap-3 md:mb-8 md:max-w-[780px] md:gap-4">
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
-                          className="flex w-[calc(100%-20px)] items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
+                          className="flex w-[95%] mx-auto items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
                         >
                           <div className="flex h-5 w-5 shrink-0 items-center justify-center sm:h-10 sm:w-10 md:h-12 md:w-12">
                             <img

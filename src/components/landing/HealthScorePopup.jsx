@@ -293,13 +293,13 @@ export default function HealthScorePopup() {
             <div className="absolute inset-0" />
             {/* Text on top */}
             <div className="absolute inset-0 flex flex-col items-start justify-start pb-4">
-              <h2 className="text-[2.4rem] font-black leading-[1.8rem] tracking-tight text-gray-900">
+              <h2 className="text-[2.2rem] font-black leading-[1.8rem] tracking-tight text-gray-900">
                 Get your
               </h2>
-              <h2 className="text-[2.4rem] font-black leading-[3.8rem] tracking-tight text-[#F36B21]">
+              <h2 className="text-[2.2rem] font-black leading-[3.8rem] tracking-tight text-[#F36B21]">
                 Health
               </h2>
-              <h2 className="text-[2.4rem] font-black leading-[1.8rem] tracking-tight text-[#F36B21]">
+              <h2 className="text-[2.2rem] font-black leading-[1.8rem] tracking-tight text-[#F36B21]">
                 Risk Score
               </h2>
               {/* ECG divider */}
@@ -333,16 +333,6 @@ export default function HealthScorePopup() {
                 personalised guidance and <br />
                 experts clinical protocols <br /> tailored to your profile straight <br /> to your
                 inbox.
-              </p>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="mt-0.5 shrink-0 rounded-full bg-[#F36B21] p-2.5 text-white shadow">
-                <ShieldCheck size={18} strokeWidth={2.5} />
-              </div>
-              <p className="text-left text-[12px] font-medium leading-snug text-gray-700">
-                No spam, full data privacy
-                <br />
-                and security.
               </p>
             </div>
           </div>
@@ -392,7 +382,7 @@ export default function HealthScorePopup() {
 
               <button
                 onClick={handleSubmitLead}
-                className="flex w-full items-center justify-center gap-3 rounded-full bg-[#F36B21] py-4 text-[15px] font-bold text-white shadow-lg transition-all hover:bg-[#e05e19] active:scale-[0.98]"
+                className="flex w-full items-center justify-center gap-3 rounded-full bg-[#F36B21] py-4 text-[14px] font-bold text-white shadow-lg transition-all hover:bg-[#e05e19] active:scale-[0.98]"
               >
                 See MyTwin Health Risk Score <ArrowRight size={20} strokeWidth={2.5} />
               </button>
@@ -445,8 +435,8 @@ export default function HealthScorePopup() {
     let riskDesc =
       'Your current habits and health profile suggest there are early signs of increased metabolic health risk. Improving your sleep, nutrition, physical activity, and other daily habits can significantly reduce your long-term risk and improve your overall health over time.';
     let priorities = [
-      'Improve daily nutrition',
-      'Increase weekly exercise',
+      'Improve daily routine',
+      'Increase daily physical activity',
       'Monitor metabolic markers',
     ];
 
@@ -455,7 +445,7 @@ export default function HealthScorePopup() {
       riskColor = '#22c55e'; // Green
       riskDesc =
         'Your current habits indicate a strong metabolic profile. Keep maintaining your healthy lifestyle choices to minimize long-term health risks.';
-      priorities = ['Maintain balanced diet', 'Continue active lifestyle', 'Optimize sleep habits'];
+      priorities = ['Maintain daily routines', 'Track food, activity, sleep & stress daily', 'Optimize healthy habits'];
     } else if (score < 50) {
       riskText = 'High Risk';
       riskColor = '#ef4444'; // Red
@@ -463,8 +453,8 @@ export default function HealthScorePopup() {
         'Your current habits indicate a high risk for metabolic health issues. We strongly advise taking proactive measures and consulting with health experts.';
       priorities = [
         'Consult a specialist immediately',
-        'Adopt strict nutrition plan',
-        'Daily physical activity',
+        'Adopt strict action plans',
+        'Continue health monitoring',
         'Monitor blood sugar',
       ];
     }
@@ -475,8 +465,8 @@ export default function HealthScorePopup() {
       priorities = [
         'Lose 5-7 kg',
         'Improve blood sugar',
-        'Increase weekly exercise',
-        'Improve sleep',
+        'Adopt daily healthy habits',
+        'Improve food, activity, sleep & stress levels',
       ];
     }
 
@@ -503,7 +493,7 @@ export default function HealthScorePopup() {
         </button>
 
         <div className="custom-scrollbar flex flex-1 flex-col items-center overflow-y-auto p-6 pt-14 md:p-8">
-          <h2 className="mb-8 text-2xl font-bold text-gray-900">MyTwin Health Risk Score</h2>          {/* Semi-circle Gauge */}
+          <h2 className="mb-8 text-2xl font-bold text-gray-900">Your MyTwin <br /> Health Risk Score</h2>          {/* Semi-circle Gauge */}
           <div 
             className="relative mb-6 flex flex-col items-center justify-end overflow-hidden shrink-0" 
             style={{ height: '192px', width: '320px', minHeight: '192px', minWidth: '320px' }}
@@ -537,7 +527,7 @@ export default function HealthScorePopup() {
                 <circle cx="20" cy="100" r="10" fill="#f59e0b" stroke="white" strokeWidth="5" />
               </g>
             </svg>
-            <div className="absolute bottom-4 flex flex-col items-center">
+            <div className="absolute bottom-2 flex flex-col items-center">
               <div className="font-black leading-none tracking-tight" style={{ color: riskColor, fontSize: '72px' }}>
                 {isNaN(score) ? '--' : score}
               </div>
@@ -553,8 +543,8 @@ export default function HealthScorePopup() {
           </div>
           <button
             onClick={() => setViewState('DOMAIN_RISK')}
-            className="mb-8 flex items-center justify-center gap-2 rounded-full px-4 py-1.5"
-            style={{ backgroundColor: `${riskColor}20`, color: '#23c55f' }}
+            className="mb-8 flex items-center justify-center gap-2 rounded-full px-4 py-1.5 border-2 border-gray-200 "
+            style={{ color: '#23c55f' }}
           >
             <span className="text-sm font-bold">Domain Risk</span>
             <ArrowRight size={20} />
@@ -686,17 +676,12 @@ export default function HealthScorePopup() {
         {/* Header Section */}
         <div className="mb-4 flex items-center justify-center gap-2">
           <PartyPopper size={36} className="text-[#F36B21]" />
-          <h2 className="text-[2.2rem] font-black tracking-tight text-[#F36B21]">Thank You!</h2>
+          <h2 className="text-[2.1rem] font-black tracking-tight text-[#F36B21]">Thank You!</h2>
         </div>
 
-        <div className="mb-6 text-center text-[17px] font-bold leading-snug text-gray-900">
-          Your details have been
-          <br />
-          received <span className="text-[#15803d]">successfully.</span>
-        </div>
 
         {/* Human Body section */}
-        <div className="relative mb-8 flex justify-center">
+        <div className="relative mb-0 flex justify-center">
           <img
             src={thankHumanImg}
             alt="Human Assessment"
@@ -705,7 +690,7 @@ export default function HealthScorePopup() {
         </div>
 
         {/* List Section */}
-        <div className="mb-8 px-2">
+        <div className="mb-4 px-2">
           <h3 className="mb-3 text-[17px] font-bold text-gray-900">Download the MyTwin App to:</h3>
           <ul className="flex flex-col">
             {[
@@ -775,7 +760,7 @@ export default function HealthScorePopup() {
         </div>
 
         {/* Security Badges */}
-        <div className="mb-6 flex justify-between rounded-xl bg-[#fafafa] p-3 text-[10px] font-bold">
+        <div className="mb-6 flex justify-between rounded-xl p-3 text-[10px] font-bold">
           <div className="flex flex-1 flex-col items-center gap-1.5 text-center text-[#166534]">
             <div className="rounded-full bg-[#dcfce7] p-2">
               <ShieldCheck size={16} />
@@ -810,7 +795,7 @@ export default function HealthScorePopup() {
 
         {/* Contact/Support */}
         <div className="flex flex-col overflow-hidden rounded-2xl border border-orange-100 bg-[#fff7ed]">
-          <div className="flex items-center gap-3 px-4 py-3 justify-center">
+          <div className="flex items-center gap-3 px-4 py-4 justify-center">
             {/* <img src={supportImg} alt="Support" className="h-10 w-10 object-contain" /> */}
             <Headphones size={20} color='orange'/>
             <div className="text-[14px] font-bold leading-tight text-[#F36B21] text-center">

@@ -9,6 +9,7 @@ export default function AddOnCards({
   onClick,
   gstIncludedText = '',
   available = true,
+  coach=false
 }) {
   return (
     <div
@@ -62,7 +63,8 @@ export default function AddOnCards({
                     currency: 'INR',
                   })}
                 </span>
-                <span className="font-[Inter] text-sm font-normal text-[#6B7280]">
+                <span className={`font-[Inter] text-sm font-normal text-[#6B7280]`}
+                  style={{fontSize: coach ? '12px': '14px'}}>
                   {gstIncludedText}
                 </span>
               </>

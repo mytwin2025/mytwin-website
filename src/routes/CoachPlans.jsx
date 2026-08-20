@@ -310,7 +310,7 @@ export default function CoachPlans() {
               <div className="flex justify-center">
                 <button
                   onClick={() => setIsAddOnsModalOpen(true)}
-                  className="flex items-center gap-2 rounded-full border border-orange-500 bg-orange-50 px-6 py-2.5 text-sm font-bold text-orange-600 transition-colors hover:bg-orange-100"
+                  className="flex items-center gap-2 rounded-full border border-orange-500 bg-orange-50 px-6 py-2.5 text-sm font-bold text-orange-600 transition-colors hover:bg-orange-100 w-full justify-center"
                 >
                   <Plus size={16} strokeWidth={3} />
                   Add Ons

@@ -48,6 +48,7 @@ export default function CoachCheckoutModal({
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
   const [payMentLoading, setPayMentLoading] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const { setIsHeaderVisible } = useHeader();
 
   useEffect(() => {
@@ -188,7 +189,7 @@ export default function CoachCheckoutModal({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm transition-all sm:p-6">
-      <div className="relative flex max-h-[95vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl md:flex-row">
+      <div className="relative flex max-h-[95vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl md:flex-row overflow-y-auto">
         
         {/* Close Button */}
         <button
@@ -359,15 +360,43 @@ export default function CoachCheckoutModal({
             <div className="mt-6">
               <button
                 onClick={handleCheckout}
-                disabled={payMentLoading || !isPhoneVerified}
+                disabled={payMentLoading || !isPhoneVerified || !termsAccepted}
                 className="flex w-full items-center justify-center gap-2 rounded-full bg-orange-500 px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-orange-600 hover:shadow active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {payMentLoading && <Loader2 size={16} className="animate-spin" />}
                 Pay & Enroll
               </button>
-              <p className="mt-3 text-center text-xs text-gray-500">
-                By proceeding, you agree to our Terms & Conditions
-              </p>
+              <div className="mt-3 flex items-start gap-2">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  checked={termsAccepted}
+                  onChange={(e) => {
+                    setTermsAccepted(e.target.checked);
+                  }}
+                  className="mt-0.5 cursor-pointer rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+                />
+                <label htmlFor="terms" className="cursor-pointer font-[Inter] text-[10px] leading-snug text-gray-500">
+                  By continuing, you acknowledge that you have read, understood, and agree to the
+                  MyTwin{' '}
+                  <a
+                    href="/terms-and-conditions"
+                    className="text-blue-600 hover:underline"
+                    target="_blank"
+                  >
+                    Terms & Conditions
+                  </a>{' '}
+                  and{' '}
+                  <a
+                    href="/privacy-policy"
+                    className="text-blue-600 hover:underline"
+                    target="_blank"
+                  >
+                    Privacy Policy
+                  </a>
+                  . I hereby consent to receive calls/messages from MyTwin experts.
+                </label>
+              </div>
             </div>
           </div>
         </div>

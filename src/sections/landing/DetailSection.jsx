@@ -39,7 +39,7 @@ export default function DetailSection({ frameRef }) {
     {
       index: '03',
       title: `Type-2 Diabetes &\nPre-Diabetes Care`,
-      paragraph: `Regulate blood sugar levels and reduce or\neliminate medications, including insulin, \nthrough our diabetes Reversal Programm`,
+      paragraph: `Regulate blood sugar levels and reduce or eliminate medications, including insulin, through our diabetes Reversal Programm`,
       variant: 'vertical',
       buttonColor: '#36107D',
       image: Media.detailSection.skinSenseBg,

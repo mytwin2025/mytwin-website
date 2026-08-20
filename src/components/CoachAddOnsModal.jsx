@@ -45,6 +45,7 @@ export default function CoachAddOnsModal({
               const isSelected = selectedAddOns.some((item) => item.title === addon.title);
               return (
                 <AddOnCards
+                  coach={true}
                   key={idx}
                   name={addon.title}
                   image={addon.image}
