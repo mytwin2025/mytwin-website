@@ -176,14 +176,14 @@ export default function Diagnostics() {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // useEffect(() => {
-  //   if (!isHovered) {
-  //     const interval = setInterval(() => {
-  //       setCurrentBanner((prev) => (prev + 1) % diagnosticBanner.length);
-  //     }, 5000);
-  //     return () => clearInterval(interval);
-  //   }
-  // }, [isHovered, diagnosticBanner.length]);
+  useEffect(() => {
+    if (!isHovered) {
+      const interval = setInterval(() => {
+        setCurrentBanner((prev) => (prev + 1) % diagnosticBanner.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [isHovered, diagnosticBanner.length]);
 
   const nextBanner = () => {
     setCurrentBanner((prev) => (prev + 1) % diagnosticBanner.length);
@@ -282,7 +282,7 @@ export default function Diagnostics() {
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
-                          className="flex w-[95%] mx-auto items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
+                          className="mx-auto flex w-[95%] items-center gap-1 rounded-lg border border-orange-100 bg-white/80 p-1 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1 sm:gap-3 sm:rounded-2xl sm:p-3 md:p-4"
                         >
                           <div className="flex h-5 w-5 shrink-0 items-center justify-center sm:h-10 sm:w-10 md:h-12 md:w-12">
                             <img
@@ -303,8 +303,10 @@ export default function Diagnostics() {
                       ))}
                     </div>
                   ) : (
-                    <div className="mb-2 flex w-full max-w-[480px] items-start justify-start sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between"
-                    style={{display: 'flex', gap: index === 1 ? '6px' : '16px'}}>
+                    <div
+                      className="mb-2 flex w-full max-w-[480px] items-start justify-start sm:mb-6 sm:justify-between sm:gap-2 md:mb-8 md:justify-between md:gap-4 lg:justify-between"
+                      style={{ display: 'flex', gap: index === 1 ? '6px' : '16px' }}
+                    >
                       {banner.features.map((feature, idx) => (
                         <div
                           key={idx}
