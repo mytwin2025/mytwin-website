@@ -47,7 +47,7 @@ export default function HealthScorePopup() {
     return () => setIsHeaderVisible(true);
   }, [isOpen, setIsHeaderVisible]);
 
-  const [viewState, setViewState] = useState('QUESTIONS'); // QUESTIONS, LEAD_CAPTURE, SCORE_RESULT, THANK_YOU
+  const [viewState, setViewState] = useState('LEAD_CAPTURE'); // QUESTIONS, LEAD_CAPTURE, SCORE_RESULT, THANK_YOU
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState({});
   const [activeTab, setActiveTab] = useState('overall'); // 'overall' or 'domains'
@@ -257,7 +257,7 @@ export default function HealthScorePopup() {
   );
 
   const renderLeadCapture = () => (
-    <div className="animate-in fade-in zoom-in-95 relative flex h-full flex-col bg-[#f2f3f7] duration-500">
+    <div className="animate-in fade-in zoom-in-95 relative flex h-full flex-col overflow-y-auto custom-scrollbar bg-[#f2f3f7] duration-500">
       <button
         onClick={closeWizard}
         className="absolute right-4 top-4 z-10 rounded-full bg-white/70 p-2 text-gray-500 backdrop-blur-sm hover:bg-gray-200"
