@@ -47,7 +47,7 @@ export default function HealthScorePopup() {
     return () => setIsHeaderVisible(true);
   }, [isOpen, setIsHeaderVisible]);
 
-  const [viewState, setViewState] = useState('LEAD_CAPTURE'); // QUESTIONS, LEAD_CAPTURE, SCORE_RESULT, THANK_YOU
+  const [viewState, setViewState] = useState('QUESTIONS'); // QUESTIONS, LEAD_CAPTURE, SCORE_RESULT, THANK_YOU
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState({});
   const [activeTab, setActiveTab] = useState('overall'); // 'overall' or 'domains'
